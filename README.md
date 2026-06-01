@@ -1,6 +1,10 @@
 # TSW-PROGETTO
-Ragazzi questo sarà il nostro spazio di lavoro per il progetto. 
+Ragazzi questo sarà il nostro spazio di lavoro per il progetto.
+
+
 👤 PERSONA 1 — Utente + Sicurezza + DB + Validazione
+
+
 🔹 Requisiti assegnati (testo identico al documento)
 Registrazione utente con validazione dei campi tramite espressioni regolari
 
