@@ -1,12 +1,8 @@
 # TSW-PROGETTO
 Ragazzi questo sarà il nostro spazio di lavoro per il progetto.
-
-
 👤 PERSONA 1 — Utente + Sicurezza + DB + Validazione
 
-
-🔹 Requisiti assegnati (testo identico al documento)
-Registrazione utente con validazione dei campi tramite espressioni regolari
+🔹 Requisiti assegnati (testo identico al documento) Registrazione utente con validazione dei campi tramite espressioni regolari
 
 Login e gestione della sessione
 
@@ -34,8 +30,7 @@ Fragment JSP per header, footer e menu
 
 Sito responsive (parte form e pagine utente)
 
-🔹 Funzionalità complete assegnate
-Registrazione + Login
+🔹 Funzionalità complete assegnate Registrazione + Login
 
 Profilo utente
 
@@ -49,9 +44,7 @@ Struttura DB utenti + ordini (in collaborazione)
 
 👤 PERSONA 2 — Catalogo + Carrello + AJAX + Responsive
 
-
-🔹 Requisiti assegnati (testo identico al documento)
-Catalogo prodotti con visualizzazione dettagliata
+🔹 Requisiti assegnati (testo identico al documento) Catalogo prodotti con visualizzazione dettagliata
 
 Barra di ricerca con AJAX
 
@@ -75,8 +68,7 @@ HTML generato solo da JSP
 
 Fragment JSP (catalogo, navbar, footer)
 
-🔹 Funzionalità complete assegnate
-Catalogo + dettaglio prodotto
+🔹 Funzionalità complete assegnate Catalogo + dettaglio prodotto
 
 Carrello completo
 
@@ -90,9 +82,7 @@ Responsive design lato catalogo
 
 👤 PERSONA 3 — Area Admin + Filtri + Ordini + CRUD
 
-
-🔹 Requisiti assegnati (testo identico al documento)
-Autenticazione programmata per area admin
+🔹 Requisiti assegnati (testo identico al documento) Autenticazione programmata per area admin
 
 Utilizzo dei filtri servlet
 
@@ -118,8 +108,7 @@ HTML generato solo da JSP
 
 Fragment JSP (menu admin)
 
-🔹 Funzionalità complete assegnate
-Dashboard admin
+🔹 Funzionalità complete assegnate Dashboard admin
 
 CRUD prodotti
 
@@ -128,6 +117,8 @@ Filtri ordini
 Sicurezza admin (filtri + autenticazione)
 
 DB prodotti + ordini (parte admin)
+
+
 
 <h2>📁 Struttura di lavoro (divisione per persona)</h2>
 
