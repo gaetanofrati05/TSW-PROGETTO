@@ -1,123 +1,93 @@
 # TSW-PROGETTO
-Ragazzi questo sarà il nostro spazio di lavoro per il progetto.
-👤 PERSONA 1 — Utente + Sicurezza + DB + Validazione
+<h2>👤 PERSONA 1 — Utente + Sicurezza + DB + Validazione</h2>
 
-🔹 Requisiti assegnati (testo identico al documento) Registrazione utente con validazione dei campi tramite espressioni regolari
+<h3>🔹 Requisiti assegnati (testo identico al documento)</h3>
+<ul>
+  <li>Registrazione utente con validazione dei campi tramite espressioni regolari</li>
+  <li>Login e gestione della sessione</li>
+  <li>Validazione form con regex e JavaScript</li>
+  <li>Focus sul campo attivo e placeholder descrittivi</li>
+  <li>Messaggi di errore inline (no alert)</li>
+  <li>Cifratura delle password</li>
+  <li>Prevenzione SQL Injection (PreparedStatement)</li>
+  <li>DataSource o DriverManager + Connection Pool</li>
+  <li>Gestione sessioni per il carrello (parte utente)</li>
+  <li>Pagine di errore personalizzate (404, 500, 403)</li>
+  <li>Pattern MVC rispettato (Model + Servlet Control)</li>
+  <li>HTML generato solo da JSP</li>
+  <li>Fragment JSP per header, footer e menu</li>
+  <li>Sito responsive (parte form e pagine utente)</li>
+</ul>
 
-Login e gestione della sessione
+<h3>🔹 Funzionalità complete assegnate</h3>
+<ul>
+  <li>Registrazione + Login</li>
+  <li>Profilo utente</li>
+  <li>Validazione client-side completa</li>
+  <li>Sicurezza lato server</li>
+  <li>Configurazione web.xml errori</li>
+  <li>Struttura DB utenti + ordini (in collaborazione)</li>
+</ul>
 
-Validazione form con regex e JavaScript
+<hr>
 
-Focus sul campo attivo e placeholder descrittivi
+<h2>👤 PERSONA 2 — Catalogo + Carrello + AJAX + Responsive</h2>
 
-Messaggi di errore inline (no alert)
+<h3>🔹 Requisiti assegnati (testo identico al documento)</h3>
+<ul>
+  <li>Catalogo prodotti con visualizzazione dettagliata</li>
+  <li>Barra di ricerca con AJAX</li>
+  <li>AJAX: verifica email già presente in fase di registrazione</li>
+  <li>Carrello: aggiunta, modifica quantità, rimozione</li>
+  <li>Conferma ordine e svuotamento carrello</li>
+  <li>Storico ordini effettuati dal cliente</li>
+  <li>Messaggi di conferma per le azioni dell’utente</li>
+  <li>Fetch API con JSON per comunicazioni asincrone</li>
+  <li>Sito responsive (catalogo, carrello, storico)</li>
+  <li>Pattern MVC rispettato</li>
+  <li>HTML generato solo da JSP</li>
+  <li>Fragment JSP (catalogo, navbar, footer)</li>
+</ul>
 
-Cifratura delle password
+<h3>🔹 Funzionalità complete assegnate</h3>
+<ul>
+  <li>Catalogo + dettaglio prodotto</li>
+  <li>Carrello completo</li>
+  <li>Conferma ordine</li>
+  <li>Storico ordini</li>
+  <li>AJAX ricerca + email</li>
+  <li>Responsive design lato catalogo</li>
+</ul>
 
-Prevenzione SQL Injection (PreparedStatement)
+<hr>
 
-DataSource o DriverManager + Connection Pool
+<h2>👤 PERSONA 3 — Area Admin + Filtri + Ordini + CRUD</h2>
 
-Gestione sessioni per il carrello (parte utente)
+<h3>🔹 Requisiti assegnati (testo identico al documento)</h3>
+<ul>
+  <li>Autenticazione programmata per area admin</li>
+  <li>Utilizzo dei filtri servlet</li>
+  <li>CRUD completo prodotti (inserisci/modifica/visualizza/cancella)</li>
+  <li>Conferma prima di cancellare un prodotto</li>
+  <li>Visualizzazione ordini complessivi</li>
+  <li>Filtro ordini per intervallo di date</li>
+  <li>Filtro ordini per cliente</li>
+  <li>Prezzo e IVA salvati nella riga d’ordine (integrità storica)</li>
+  <li>Vincolo d’integrità referenziale (prodotti cancellati negli ordini)</li>
+  <li>Pagine di errore personalizzate (403 area admin)</li>
+  <li>Pattern MVC rispettato</li>
+  <li>HTML generato solo da JSP</li>
+  <li>Fragment JSP (menu admin)</li>
+</ul>
 
-Pagine di errore personalizzate (404, 500, 403)
-
-Pattern MVC rispettato (Model + Servlet Control)
-
-HTML generato solo da JSP
-
-Fragment JSP per header, footer e menu
-
-Sito responsive (parte form e pagine utente)
-
-🔹 Funzionalità complete assegnate Registrazione + Login
-
-Profilo utente
-
-Validazione client-side completa
-
-Sicurezza lato server
-
-Configurazione web.xml errori
-
-Struttura DB utenti + ordini (in collaborazione)
-
-👤 PERSONA 2 — Catalogo + Carrello + AJAX + Responsive
-
-🔹 Requisiti assegnati (testo identico al documento) Catalogo prodotti con visualizzazione dettagliata
-
-Barra di ricerca con AJAX
-
-AJAX: verifica email già presente in fase di registrazione
-
-Carrello: aggiunta, modifica quantità, rimozione
-
-Conferma ordine e svuotamento carrello
-
-Storico ordini effettuati dal cliente
-
-Messaggi di conferma per le azioni dell’utente
-
-Fetch API con JSON per comunicazioni asincrone
-
-Sito responsive (catalogo, carrello, storico)
-
-Pattern MVC rispettato
-
-HTML generato solo da JSP
-
-Fragment JSP (catalogo, navbar, footer)
-
-🔹 Funzionalità complete assegnate Catalogo + dettaglio prodotto
-
-Carrello completo
-
-Conferma ordine
-
-Storico ordini
-
-AJAX ricerca + email
-
-Responsive design lato catalogo
-
-👤 PERSONA 3 — Area Admin + Filtri + Ordini + CRUD
-
-🔹 Requisiti assegnati (testo identico al documento) Autenticazione programmata per area admin
-
-Utilizzo dei filtri servlet
-
-CRUD completo prodotti (inserisci/modifica/visualizza/cancella)
-
-Conferma prima di cancellare un prodotto
-
-Visualizzazione ordini complessivi
-
-Filtro ordini per intervallo di date
-
-Filtro ordini per cliente
-
-Prezzo e IVA salvati nella riga d’ordine (integrità storica)
-
-Vincolo d’integrità referenziale (prodotti cancellati negli ordini)
-
-Pagine di errore personalizzate (403 area admin)
-
-Pattern MVC rispettato
-
-HTML generato solo da JSP
-
-Fragment JSP (menu admin)
-
-🔹 Funzionalità complete assegnate Dashboard admin
-
-CRUD prodotti
-
-Filtri ordini
-
-Sicurezza admin (filtri + autenticazione)
-
-DB prodotti + ordini (parte admin)
-
+<h3>🔹 Funzionalità complete assegnate</h3>
+<ul>
+  <li>Dashboard admin</li>
+  <li>CRUD prodotti</li>
+  <li>Filtri ordini</li>
+  <li>Sicurezza admin (filtri + autenticazione)</li>
+  <li>DB prodotti + ordini (parte admin)</li>
+</ul>
 
 
 <h2>📁 Struttura di lavoro (divisione per persona)</h2>
