@@ -128,3 +128,115 @@ Filtri ordini
 Sicurezza admin (filtri + autenticazione)
 
 DB prodotti + ordini (parte admin)
+
+
+
+Struttura personale di ognugno di noi su Eclipse
+TSW-PROGETTO/
+│
+├── persona1-utente-sicurezza/
+│   ├── servlet/
+│   │   ├── RegisterServlet.java
+│   │   ├── LoginServlet.java
+│   │   ├── SessionManager.java
+│   │   └── ErrorHandlerServlet.java
+│   ├── model/
+│   │   ├── User.java
+│   │   ├── UserDAO.java
+│   │   └── DBConnection.java
+│   ├── jsp/
+│   │   ├── login.jsp
+│   │   ├── register.jsp
+│   │   ├── profilo.jsp
+│   │   └── errori/
+│   │       ├── 404.jsp
+│   │       ├── 500.jsp
+│   │       └── 403.jsp
+│   └── validation/
+│       ├── regex.js
+│       └── form-validation.js
+│
+├── persona2-catalogo-carrello/
+│   ├── servlet/
+│   │   ├── CatalogoServlet.java
+│   │   ├── ProdottoServlet.java
+│   │   ├── CarrelloServlet.java
+│   │   └── OrdineServlet.java
+│   ├── model/
+│   │   ├── Prodotto.java
+│   │   ├── ProdottoDAO.java
+│   │   ├── Carrello.java
+│   │   └── OrdineDAO.java
+│   ├── jsp/
+│   │   ├── catalogo.jsp
+│   │   ├── prodotto.jsp
+│   │   ├── carrello.jsp
+│   │   └── storico-ordini.jsp
+│   ├── ajax/
+│   │   ├── ricerca.js
+│   │   └── email-check.js
+│   └── css/
+│       └── catalogo.css
+│
+├── persona3-admin-filtri/
+│   ├── servlet/
+│   │   ├── AdminLoginServlet.java
+│   │   ├── AdminProdottiServlet.java
+│   │   ├── AdminOrdiniServlet.java
+│   │   └── Filtri/
+│   │       ├── AuthFilter.java
+│   │       └── LoggingFilter.java
+│   ├── model/
+│   │   ├── AdminDAO.java
+│   │   ├── OrdineAdminDAO.java
+│   │   └── ProdottoAdminDAO.java
+│   ├── jsp/
+│   │   ├── admin-dashboard.jsp
+│   │   ├── admin-prodotti.jsp
+│   │   ├── admin-ordini.jsp
+│   │   └── conferma-eliminazione.jsp
+│   ├── fetch/
+│   │   ├── admin-prodotti.js
+│   │   └── admin-ordini.js
+│   └── css/
+│       └── admin.css
+│
+├── shared/
+│   ├── fragment/
+│   │   ├── header.jsp
+│   │   ├── footer.jsp
+│   │   └── navbar.jsp
+│   ├── css/
+│   │   └── global.css
+│   ├── js/
+│   │   └── utils.js
+│   ├── db/
+│   │   └── schema.sql
+│   └── config/
+│       ├── web.xml
+│       └── context.xml
+│
+└── README.md
+
+Parte finale del progetto su github
+
+TSW-PROGETTO/
+│
+├── src/
+│   └── main/
+│       └── java/
+│           └── controller/
+│           └── model/
+│           └── filters/
+│
+├── webapp/
+│   ├── WEB-INF/
+│   │   └── web.xml
+│   ├── jsp/
+│   ├── css/
+│   ├── js/
+│   └── fragment/
+│
+└── shared/
+
+
