@@ -129,9 +129,9 @@ Sicurezza admin (filtri + autenticazione)
 
 DB prodotti + ordini (parte admin)
 
+<h2>📁 Struttura di lavoro (divisione per persona)</h2>
 
-
-Struttura personale di ognugno di noi su Eclipse
+<pre>
 TSW-PROGETTO/
 │
 ├── persona1-utente-sicurezza/
@@ -217,16 +217,20 @@ TSW-PROGETTO/
 │       └── context.xml
 │
 └── README.md
+</pre>
 
-Parte finale del progetto su github
+<hr>
 
+<h2>📦 Struttura finale del progetto (versione da consegnare)</h2>
+
+<pre>
 TSW-PROGETTO/
 │
 ├── src/
 │   └── main/
 │       └── java/
-│           └── controller/
-│           └── model/
+│           ├── controller/
+│           ├── model/
 │           └── filters/
 │
 ├── webapp/
@@ -238,5 +242,9 @@ TSW-PROGETTO/
 │   └── fragment/
 │
 └── shared/
+</pre>
+
+
+
 
 
