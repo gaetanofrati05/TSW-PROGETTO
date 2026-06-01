@@ -48,6 +48,8 @@ Configurazione web.xml errori
 Struttura DB utenti + ordini (in collaborazione)
 
 👤 PERSONA 2 — Catalogo + Carrello + AJAX + Responsive
+
+
 🔹 Requisiti assegnati (testo identico al documento)
 Catalogo prodotti con visualizzazione dettagliata
 
@@ -87,6 +89,8 @@ AJAX ricerca + email
 Responsive design lato catalogo
 
 👤 PERSONA 3 — Area Admin + Filtri + Ordini + CRUD
+
+
 🔹 Requisiti assegnati (testo identico al documento)
 Autenticazione programmata per area admin
 
