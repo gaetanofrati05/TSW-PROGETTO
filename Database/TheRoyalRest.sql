@@ -6,10 +6,11 @@ USE TheRoyalRest;
 
 -- Tabella: Utente
 CREATE TABLE Utente (
-    email VARCHAR(50) PRIMARY KEY,
+    email VARCHAR(255) PRIMARY KEY,
+    password_hash VARCHAR(255) NOT NULL
     nome VARCHAR(50) NOT NULL,
     cognome VARCHAR(50) NOT NULL,
-    eta INT NOT NULL,
+   //rimossa eta perchè ridondante con dataNascita
     dataNascita DATE NOT NULL,
     nazionalita VARCHAR(20) NOT NULL,
     prefisso VARCHAR(10) NOT NULL,        
@@ -20,11 +21,11 @@ CREATE TABLE Utente (
 
 -- Tabella: Prodotto
 CREATE TABLE Prodotto (
-    idProdotto INT PRIMARY KEY,
-    nome VARCHAR(20) NOT NULL,
+    idProdotto INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(50) NOT NULL,
     stile VARCHAR(10) DEFAULT 'neutro' NOT NULL,
     colore VARCHAR(10) DEFAULT '#ffffff' NOT NULL,
-    dimensioni FLOAT DEFAULT 0 NOT NULL,
+    dimensioni VARCHAR(50) NOT NULL, //passato a VARCHAR perchè altrimenti servirebbe altezza, larghezza, dimensione buco...
     prezzo FLOAT DEFAULT 0.0 NOT NULL,
     quantita INT DEFAULT 0,               
     descrizione VARCHAR(250) NOT NULL
@@ -34,7 +35,7 @@ CREATE TABLE Prodotto (
 
 -- Tabella: Ordinazione (Dipende da Utente)
 CREATE TABLE Ordinazione (
-    idOrdinazione INT PRIMARY KEY,
+    idOrdinazione INT AUTO_INCREMENT PRIMARY KEY,
     citta VARCHAR(20) NOT NULL,
     dataOrdinazione DATE NOT NULL,
     importo FLOAT NOT NULL DEFAULT 0,
@@ -47,9 +48,9 @@ CREATE TABLE Ordinazione (
 
 -- Tabella: Recensione (Dipende da Prodotto)
 CREATE TABLE Recensione (
-    idRecensione INT PRIMARY KEY,
+    idRecensione INT AUTO_INCREMENT PRIMARY KEY,
     data_Recensione DATE NOT NULL,
-    Scoring INT DEFAULT 0 NOT NULL,
+    Scoring INT DEFAULT 0 NOT NULL CHECK (Scoring >= 0 AND Scoring <= 5),
     descrizione VARCHAR(250) NOT NULL,
     fk_Prodotto_idProdotto INT NOT NULL,
     FOREIGN KEY (fk_Prodotto_idProdotto) REFERENCES Prodotto(idProdotto) ON DELETE CASCADE
