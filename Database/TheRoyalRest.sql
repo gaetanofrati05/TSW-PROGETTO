@@ -6,7 +6,7 @@ USE TheRoyalRest;
 
 -- Tabella: Utente
 CREATE TABLE Utente (
-    email VARCHAR(255) AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(255)  PRIMARY KEY,
     password_hash VARCHAR(255) NOT NULL
     nome VARCHAR(50) NOT NULL,
     cognome VARCHAR(50) NOT NULL,
