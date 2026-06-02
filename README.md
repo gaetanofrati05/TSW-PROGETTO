@@ -33,7 +33,7 @@
 
 <h2>👤 PERSONA 2 — Catalogo + Carrello + AJAX + Responsive</h2>
 
-<h3>🔹 Requisiti assegnati (testo identico al documento)</h3>
+<h3>🔹 Requisiti assegnati </h3>
 <ul>
   <li>Catalogo prodotti con visualizzazione dettagliata</li>
   <li>Barra di ricerca con AJAX</li>
@@ -182,7 +182,7 @@ TSW-PROGETTO/
 
 <hr>
 
-<h2>📦 Struttura finale del progetto (versione da consegnare)</h2>
+<h2>📦 Struttura finale del progetto </h2>
 
 <pre>
 TSW-PROGETTO/
