@@ -29,7 +29,7 @@ public class RegistrazioneServlet extends HttpServlet {
 	 * @see Servlet#init(ServletConfig)
 	 */
 	public void init(ServletConfig config) throws ServletException {
-	     UtenteDAO utenteDAO= new UtenteDAO();
+	      utenteDAO= new UtenteDAO();
 	}
 
 	/**
@@ -78,5 +78,4 @@ public class RegistrazioneServlet extends HttpServlet {
 	    }
 		
 	}
-
 }
