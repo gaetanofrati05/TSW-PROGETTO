@@ -51,7 +51,7 @@ public class RegistrazioneServlet extends HttpServlet {
 		java.util.Date dataNascita = null;
 		if (dataNascitaStr != null && !dataNascitaStr.isEmpty()) {
 		    java.time.LocalDate localDate = java.time.LocalDate.parse(dataNascitaStr);
-		    // Converte il LocalDate nel java.util.Date che si aspetta il tuo Bean
+		    // Converte il LocalDate nel java.util.Date che si aspetta il  Bean
 		    dataNascita = java.sql.Date.valueOf(localDate); 
 		}
 		String nazionalita= request.getParameter("nazionalita");
