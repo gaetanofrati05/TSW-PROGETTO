@@ -4,6 +4,9 @@ import utils.PasswordEncryption;
 import bean.UtenteBean;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,19 +24,41 @@ public class LoginServlet extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
+    @Override
+	public void init() throws ServletException {
+		utenteDAO = new UtenteDAO();
+	}
     public LoginServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
 
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("/jsp/login.jsp").forward(request, response);
+	}
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		List<String> errori= new ArrayList<>();
 		String email =request.getParameter("email");
 		String password=request.getParameter("password");
-		String passwordCifrata= PasswordEncryption.encrypt(password);
+		if(email==null || email.trim().isEmpty()) {
+			errori.add("Il campo email non può essere vuoto");
+		}
+		if(password==null || password.trim().isEmpty()) {
+			errori.add("Il campo password non può essere vuoto");
+		}
+		if(!errori.isEmpty()) {
+			request.setAttribute("errore", errori);
+			request.getRequestDispatcher("/jsp/login.jsp").forward(request, response);
+			return;
+		}
+		email=email.trim();
+		password=password.trim();
 		try {
+			String passwordCifrata= PasswordEncryption.encrypt(password);
 			UtenteBean utente= utenteDAO.doRetrieveByEmailAndPassword(email, passwordCifrata);
 			if(utente!=null) {
 				HttpSession session = request.getSession(true);
