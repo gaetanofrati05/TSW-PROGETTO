@@ -1,5 +1,5 @@
 # TSW-PROGETTO
-<h2>👤 PERSONA 1 — Utente + Sicurezza + DB + Validazione</h2>
+<h2>👤 Gaetano — Utente + Sicurezza + DB + Validazione</h2>
 
 <h3>🔹 Requisiti assegnati (testo identico al documento)</h3>
 <ul>
@@ -31,7 +31,7 @@
 
 <hr>
 
-<h2>👤 PERSONA 2 — Catalogo + Carrello + AJAX + Responsive</h2>
+<h2>👤 David — Catalogo + Carrello + AJAX + Responsive</h2>
 
 <h3>🔹 Requisiti assegnati </h3>
 <ul>
@@ -61,9 +61,9 @@
 
 <hr>
 
-<h2>👤 PERSONA 3 — Area Admin + Filtri + Ordini + CRUD</h2>
+<h2>👤 Massimo — Area Admin + Filtri + Ordini + CRUD</h2>
 
-<h3>🔹 Requisiti assegnati (testo identico al documento)</h3>
+<h3>🔹 Requisiti assegnati</h3>
 <ul>
   <li>Autenticazione programmata per area admin</li>
   <li>Utilizzo dei filtri servlet</li>
