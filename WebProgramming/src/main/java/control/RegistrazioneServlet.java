@@ -1,6 +1,9 @@
 package control;
+import utils.ValidazioneUtente;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -43,10 +46,41 @@ public class RegistrazioneServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		List<String> errori= new ArrayList<>();
 		String email= request.getParameter("email");
+		
+		if(email==null || email.trim().isEmpty()) {
+			errori.add("Il campo email non può essere vuoto");
+		}
+		
+		else if(!ValidazioneUtente.validateEmail(email)) {
+			errori.add("Email non valida");
+		}
+		
 		String passwordLeggibile= request.getParameter("password");
+		if(passwordLeggibile==null || passwordLeggibile.trim().isEmpty()) {
+			errori.add("Il campo password non può essere vuoto");
+		}
+		else if(!ValidazioneUtente.validatePassword(passwordLeggibile)) {
+			errori.add("Password non valida");
+		}
+		
 		String nome= request.getParameter("nome");
+		if(nome==null || nome.trim().isEmpty()) {
+			errori.add("Il campo nome utente non può essere vuoto");
+		}
+		else if(!ValidazioneUtente.validateNome(nome)) {
+			errori.add("Nome non valido");
+		}
+		
 		String cognome= request.getParameter("cognome");
+		if(cognome==null || cognome.trim().isEmpty()) {
+			errori.add("Il campo cognome non può essere vuoto");
+		}
+		if(!ValidazioneUtente.validateCognome(cognome)) {
+			errori.add("Cognome non valido");
+		}
+		
 		String dataNascitaStr = request.getParameter("dataNascita");
 		java.util.Date dataNascita = null;
 		if (dataNascitaStr != null && !dataNascitaStr.isEmpty()) {
@@ -55,9 +89,23 @@ public class RegistrazioneServlet extends HttpServlet {
 		    dataNascita = java.sql.Date.valueOf(localDate); 
 		}
 		String nazionalita= request.getParameter("nazionalita");
+		
 		String prefisso= request.getParameter("prefisso");
+		if(!ValidazioneUtente.validatePrefisso(prefisso)) {
+			errori.add("Prefisso non valido");
+		}
+		
 		String cellulare= request.getParameter("cellulare");
-		//qui vanno i controlli regex sulla registrazione per vedere se è corretta o meno
+		if(!ValidazioneUtente.validateCellulare(cellulare)) {
+			errori.add("Cellulare non valido");
+		}
+		
+		if(!errori.isEmpty()) {
+			request.setAttribute("errore", errori);
+			request.getRequestDispatcher("/jsp/registrazione.jsp").forward(request, response);
+			return;
+		}
+		
 		try {
 		String passwordCifrata= PasswordEncryption.encrypt(passwordLeggibile);
 		UtenteBean nuovoUtente= new UtenteBean();
@@ -71,7 +119,7 @@ public class RegistrazioneServlet extends HttpServlet {
 		nuovoUtente.setCellulare(cellulare);
 		nuovoUtente.setAdmin(false);
 		utenteDAO.doSave(nuovoUtente);
-		response.sendRedirect(request.getContextPath()+ "Login?registrato=true");
+		response.sendRedirect(request.getContextPath()+ "/Login?registrato=true");
 	    }catch(SQLException e) {
 	    	e.printStackTrace();
 	    	response.sendError(0); //qui devo creare la pagina di errore con XML
