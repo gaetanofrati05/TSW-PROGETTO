@@ -53,7 +53,9 @@ CREATE TABLE Recensione (
     Scoring INT DEFAULT 0 NOT NULL CHECK (Scoring >= 0 AND Scoring <= 5),
     descrizione VARCHAR(250) NOT NULL,
     fk_Prodotto_idProdotto INT NOT NULL,
+    fk_Utente_email INT NOT NULL
     FOREIGN KEY (fk_Prodotto_idProdotto) REFERENCES Prodotto(idProdotto) ON DELETE CASCADE
+    FOREIGN KEY(fk_Utente_email) REFERENCES UTENTE(email) ON DELETE CASCADE
 );
 
 
