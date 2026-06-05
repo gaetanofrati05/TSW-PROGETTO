@@ -65,17 +65,18 @@ public class LoginServlet extends HttpServlet {
 				//controllo se l'utente è admin oppure no
 				if(utente.getAdmin()) {
 					System.out.println("Benvenuto admin" + utente.getNome());
-					response.sendRedirect(request.getContextPath() +"/jsp/admin.jsp");				
+					response.sendRedirect(request.getContextPath() +"admin.jsp");				
 				}else {
 					System.out.println("Benvenuto"+ utente.getNome());
-					response.sendRedirect(request.getContextPath()+ "/jsp/index.jsp");
+					response.sendRedirect(request.getContextPath()+ "index.jsp");
 				}
 			}else {
 				request.setAttribute("erroredilogin", "Email o password errate");
-				request.getRequestDispatcher("/jsp/login.jsp").forward(request, response);
+				request.getRequestDispatcher("login.jsp").forward(request, response);
 			}			
 		}catch(SQLException e) {
 			e.printStackTrace();
+			throw new ServletException ("Errore di accesso al database durante il login", e);
 		}
 	}
 }

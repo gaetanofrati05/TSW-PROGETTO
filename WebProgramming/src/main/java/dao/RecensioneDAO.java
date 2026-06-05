@@ -1,16 +1,15 @@
 package dao;
 import bean.RecensioneBean;
-import bean.UtenteBean;
-import bean.ProdottoBean;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.Statement;
 public class RecensioneDAO {
 
-    public synchronized void doSaveRecensione(RecensioneBean recensione) throws SQLException {
+    public  void doSaveRecensione(RecensioneBean recensione) throws SQLException {
     Connection connection = null;
     PreparedStatement psRecensione = null;
     PreparedStatement psValutazione = null;
@@ -57,11 +56,13 @@ public class RecensioneDAO {
     } finally {
         if (psRecensione != null) psRecensione.close();
         if (psValutazione != null) psValutazione.close();
+        if(connection!=null) {
         connection.setAutoCommit(true);
         ConnectionPool.releaseConnection(connection);
+        }
      }
    }
-   public synchronized void doUpdateRecensione(RecensioneBean recensione)throws SQLException {
+   public void doUpdateRecensione(RecensioneBean recensione)throws SQLException {
 	   Connection connection = null;
 	   PreparedStatement psRecensione = null;
 	   String updateRecensione= "UPDATE Recensione SET data_recensione=?, Scoring=?,descrizione=? WHERE idRecensione=?";
@@ -84,10 +85,10 @@ public class RecensioneDAO {
 	    ConnectionPool.releaseConnection(connection);
 	   }
    }
-   public synchronized void deleteRecensione(RecensioneBean recensione) throws SQLException{
+   public void deleteRecensione(RecensioneBean recensione) throws SQLException{
 	   Connection connection = null;
 	   PreparedStatement psRecensione = null;
-	   String deleteRecensione = "DELETE Recensione WHERE idRecensione=?";
+	   String deleteRecensione = "DELETE FROM Recensione WHERE idRecensione=?";
 	   try {
 		   connection=ConnectionPool.getConnection();
 		   psRecensione=connection.prepareStatement(deleteRecensione);
@@ -101,7 +102,7 @@ public class RecensioneDAO {
 	   }
    }
    /*query per mostrare le recensioni in base alla data, lo scoring*/
-   public synchronized List<RecensioneBean> doRetrieveByDate() throws SQLException {
+   public List<RecensioneBean> doRetrieveByDate() throws SQLException {
 	    Connection connection = null;
 	    PreparedStatement ps = null;
 	    ResultSet result = null;
@@ -132,7 +133,7 @@ public class RecensioneDAO {
 	        ConnectionPool.releaseConnection(connection);
 	    }
 	}
-   public synchronized List<RecensioneBean> doRetrieveByScoring() throws SQLException{
+   public List<RecensioneBean> doRetrieveByScoring() throws SQLException{
 	   Connection connection = null;
 	    PreparedStatement ps = null;
 	    ResultSet result = null;

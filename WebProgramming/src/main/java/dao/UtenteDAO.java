@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class UtenteDAO {
 
 	//Metodo per inserire un nuovo utente nel database
-	public synchronized void doSave(UtenteBean utente)throws SQLException {
+	public void doSave(UtenteBean utente)throws SQLException {
 		Connection connection=null;
 	    PreparedStatement preparedStatement=null;
 	    String insertQuery= "INSERT INTO Utente (email, password_hash, nome,cognome, dataNascita, nazionalita,"
@@ -39,22 +39,22 @@ public class UtenteDAO {
 	    }
 	}
 	//Metodo per il login per cercare un utente se già è registrato o meno nel database
-	public synchronized UtenteBean doRetrieveByEmailAndPassword(String email, String password)throws SQLException {
+	public  UtenteBean doRetrieveByEmailAndPassword(String email, String password)throws SQLException {
 		Connection connection=null;
 		PreparedStatement preparedStatement = null;
 		ResultSet result=null;
 		UtenteBean utente=null;
-		String trovaUtenteSQL= "SELECT * FROM Utente WHERE email= ? AND hash_password= ?";
+		String trovaUtenteSQL= "SELECT * FROM Utente WHERE email= ? AND password_hash= ?";
 		try {
 			connection=ConnectionPool.getConnection();
 			preparedStatement= connection.prepareStatement(trovaUtenteSQL);
 			preparedStatement.setString(1,email);
 			preparedStatement.setString(2, password);
 			result= preparedStatement.executeQuery();
-			while(result.next()) {
+			if(result.next()) {
 				utente= new UtenteBean();
 				utente.setEmail(result.getString("email"));
-				utente.setHashPassword(result.getString("hash_password"));
+				utente.setHashPassword(result.getString("password_hash"));
 				utente.setNome(result.getString("nome"));
 				utente.setCognome(result.getString("cognome"));
 				utente.setData(result.getDate("dataNascita"));
@@ -76,7 +76,7 @@ public class UtenteDAO {
 		return utente;
 	}
 	//Metodo che permette all'utente di modificare le proprie informazioni
-	public synchronized void doUpdate(UtenteBean utente)throws SQLException {
+	public void doUpdate(UtenteBean utente)throws SQLException {
 		Connection connection=null;
 		PreparedStatement preparedStatement = null;
 		String updateQuery= "UPDATE Utente SET  nome=?, cognome=?, dataNascita=?, nazionalita=?, prefisso=?, cellulare=? WHERE email=?";
@@ -105,10 +105,10 @@ public class UtenteDAO {
 		}
 	}
 	//Metodo specifico per il cambio della password
-	public synchronized void doUpdatePassword(String email, String nuovaPassword)throws SQLException {
+	public void doUpdatePassword(String email, String nuovaPassword)throws SQLException {
 		Connection connection=null;
 		PreparedStatement preparedStatement=null;
-		String updatePassword= "UPDATE Utente SET hash_password=? WHERE email=?";
+		String updatePassword= "UPDATE Utente SET password_hash=? WHERE email=?";
 		try {
 		connection= ConnectionPool.getConnection();
 		preparedStatement= connection.prepareStatement(updatePassword);

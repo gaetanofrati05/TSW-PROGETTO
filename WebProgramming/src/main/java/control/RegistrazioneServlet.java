@@ -77,7 +77,7 @@ public class RegistrazioneServlet extends HttpServlet {
 		if(cognome==null || cognome.trim().isEmpty()) {
 			errori.add("Il campo cognome non può essere vuoto");
 		}
-		if(!ValidazioneUtente.validateCognome(cognome)) {
+		else if(!ValidazioneUtente.validateCognome(cognome)) {
 			errori.add("Cognome non valido");
 		}
 		
@@ -122,7 +122,7 @@ public class RegistrazioneServlet extends HttpServlet {
 		response.sendRedirect(request.getContextPath()+ "/LoginServlet?registrato=true");
 	    }catch(SQLException e) {
 	    	e.printStackTrace();
-	    	response.sendError(0); //qui devo creare la pagina di errore con XML
+	    	throw new ServletException("Errore nel database durante la registrazione", e);
 	    }
 		
 	}
