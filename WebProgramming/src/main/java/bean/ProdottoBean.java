@@ -78,4 +78,4 @@ public class ProdottoBean {
         this.descrizione = descrizione;
     }
 }
-}
+

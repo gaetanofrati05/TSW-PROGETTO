@@ -1,5 +1,4 @@
 package bean;
-import bean.ProdottoBean;
 import java.sql.Date;
 
 public class RecensioneBean {
