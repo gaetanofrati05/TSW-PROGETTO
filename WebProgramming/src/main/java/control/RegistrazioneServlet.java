@@ -119,7 +119,7 @@ public class RegistrazioneServlet extends HttpServlet {
 		nuovoUtente.setCellulare(cellulare);
 		nuovoUtente.setAdmin(false);
 		utenteDAO.doSave(nuovoUtente);
-		response.sendRedirect(request.getContextPath()+ "/Login?registrato=true");
+		response.sendRedirect(request.getContextPath()+ "/LoginServlet?registrato=true");
 	    }catch(SQLException e) {
 	    	e.printStackTrace();
 	    	response.sendError(0); //qui devo creare la pagina di errore con XML
