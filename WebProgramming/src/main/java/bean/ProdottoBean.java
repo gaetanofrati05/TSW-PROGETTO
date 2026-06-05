@@ -1,6 +1,7 @@
 package bean;
-public class ProdottoBean {
-	
+import java.io.Serializable;
+public class ProdottoBean  implements Serializable {
+    private static final long serialVersionUID = 1L;
 	private int idProdotto;
 	private String nome;
 	private String stile;
@@ -78,4 +79,4 @@ public class ProdottoBean {
         this.descrizione = descrizione;
     }
 }
-}
+

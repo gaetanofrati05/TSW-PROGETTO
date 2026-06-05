@@ -3,7 +3,6 @@ import java.io.Serializable;
 import java.sql.Date;
 public class OrdinazioneBean implements Serializable {
     private static final long serialVersionUID = 1L;
-
     private int idOrdinazione;
     private String citta;
     private Date dataOrdinazione; 
@@ -16,8 +15,6 @@ public class OrdinazioneBean implements Serializable {
     
     public OrdinazioneBean() {
     }
-
-    
 
     public int getIdOrdinazione() {
         return idOrdinazione;

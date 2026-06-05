@@ -10,7 +10,7 @@ public class UtenteDAO {
 	public synchronized void doSave(UtenteBean utente)throws SQLException {
 		Connection connection=null;
 	    PreparedStatement preparedStatement=null;
-	    String insertQuery= "INSERT INTO UTENTE (email, password_hash, nome,cognome, dataNascita, nazionalita,"
+	    String insertQuery= "INSERT INTO Utente (email, password_hash, nome,cognome, dataNascita, nazionalita,"
 	    		+ "prefisso,cellulare, num_ordinazioni, isAdmin) VALUES(?,?,?,?,?,?,?,?,?,?)";
 	    try {
 	    	connection= ConnectionPool.getConnection(); //prendo la connessione dal pool
@@ -44,14 +44,14 @@ public class UtenteDAO {
 		PreparedStatement preparedStatement = null;
 		ResultSet result=null;
 		UtenteBean utente=null;
-		String trovaUtenteSQL= "SELECT * FROM UTENTE WHERE email= ? AND hash_password= ?";
+		String trovaUtenteSQL= "SELECT * FROM Utente WHERE email= ? AND hash_password= ?";
 		try {
 			connection=ConnectionPool.getConnection();
 			preparedStatement= connection.prepareStatement(trovaUtenteSQL);
 			preparedStatement.setString(1,email);
 			preparedStatement.setString(2, password);
 			result= preparedStatement.executeQuery();
-			if(result.next()) {
+			while(result.next()) {
 				utente= new UtenteBean();
 				utente.setEmail(result.getString("email"));
 				utente.setHashPassword(result.getString("hash_password"));
@@ -79,7 +79,7 @@ public class UtenteDAO {
 	public synchronized void doUpdate(UtenteBean utente)throws SQLException {
 		Connection connection=null;
 		PreparedStatement preparedStatement = null;
-		String updateQuery= "UPDATE UTENTE SET  nome=?, cognome=?, dataNascita=?, nazionalita=?, prefisso=?, cellulare=? WHERE email=?";
+		String updateQuery= "UPDATE Utente SET  nome=?, cognome=?, dataNascita=?, nazionalita=?, prefisso=?, cellulare=? WHERE email=?";
 		try {
 			connection= ConnectionPool.getConnection();
 			preparedStatement= connection.prepareStatement(updateQuery);
@@ -108,7 +108,7 @@ public class UtenteDAO {
 	public synchronized void doUpdatePassword(String email, String nuovaPassword)throws SQLException {
 		Connection connection=null;
 		PreparedStatement preparedStatement=null;
-		String updatePassword= "UPDATE UTENTE SET hash_password=? WHERE email=?";
+		String updatePassword= "UPDATE Utente SET hash_password=? WHERE email=?";
 		try {
 		connection= ConnectionPool.getConnection();
 		preparedStatement= connection.prepareStatement(updatePassword);

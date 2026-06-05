@@ -1,14 +1,14 @@
 package bean;
-import bean.ProdottoBean;
 import java.sql.Date;
-
-public class RecensioneBean {
-
+import java.io.Serializable;
+public class RecensioneBean implements Serializable {
+    private static final long serialVersionUID = 1L;
 	private int idRecensione;
 	private Date dataRecensione;
 	private int scoring;
 	private String descrizione;
 	private ProdottoBean prodotto;
+	private UtenteBean utente;
 	public RecensioneBean() {
 		
 	}
@@ -47,13 +47,19 @@ public class RecensioneBean {
     public void setDescrizione(String descrizione) {
         this.descrizione = descrizione;
     }
-
+    
     public ProdottoBean getProdotto() {
         return prodotto;
     }
 
     public void setProdotto(ProdottoBean prodotto) {
         this.prodotto = prodotto;
+    }
+    public UtenteBean getUtente() {
+    	return utente;
+    }
+    public void setUtente(UtenteBean utente) {
+    	this.utente=utente;
     }
 }
 
