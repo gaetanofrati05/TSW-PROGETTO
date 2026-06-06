@@ -4,9 +4,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>500-error</title>
 </head>
 <body>
-
+<div class="class-500">
+<h1 class="500-title">Internal server error</h1>
+<h2 class="500-subtitle">Siamo spiacenti ma abbiamo riscontrato un problema</h2>
+<div class="error-action">
+ <a href="{pageContext.request.contextPath}" class="button">Torna alla home page</a>
+    </div>
+  </div>
 </body>
 </html>
