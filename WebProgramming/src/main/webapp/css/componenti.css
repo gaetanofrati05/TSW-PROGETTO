@@ -1,0 +1,14 @@
+body {
+    background: #F6F3ED; /*crema*/
+    font-family: sans-serif;
+    color: #14181B; /*nero*/
+}
+
+nav ul li a {
+    color: #5A6670;
+    text-decoration: none; /*rimuovi sottolineatura link*/
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}

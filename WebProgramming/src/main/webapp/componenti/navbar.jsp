@@ -2,7 +2,7 @@
 <header>
   <nav>
     <div class="nav-logo">
-      <div class="nav-logo-mark">R</div>
+      <img src="img/logo.png" alt="The Royal Rest">
       <span>THE ROYAL REST</span>
     </div>
     <ul class="nav-links">
@@ -11,5 +11,7 @@
       <li><a href="#">Concierge</a></li>
       <li><a href="#">Clienti Onorevoli</a></li>
     </ul>
+    
+    dio
   </nav>
 </header>

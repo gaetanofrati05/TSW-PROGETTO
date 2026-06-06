@@ -1,0 +1,29 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*navbar*/
+nav {
+    display: flex;
+    justify-content: space-between;/*spingi il primo elemento a sinistra e l'ultimo a destra'*/
+    align-items: center;
+    padding: 28px 52px 28px 52px; /*top-right-bottom-left*/
+}
+nav ul {
+    display: flex;
+    gap: 44px; /*spazio tra i link*/
+    list-style: none; /*rimuovi i pallini dalla lista*/
+}
+.nav-logo img {
+    width: 120px;
+    height: auto;
+}
+
+/*main*/
+.main {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /*dividi in 2 parti uguali */
+    min-height: 100vh; /* tutto lo spazio verticale disponibile*/
+}
