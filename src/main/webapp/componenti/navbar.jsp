@@ -2,8 +2,7 @@
 <header>
   <nav>
     <div class="nav-logo">
-      <img src="img/logo.png" alt="The Royal Rest">
-      <span>THE ROYAL REST</span>
+      <img src="${pageContext.request.contextPath}/componenti/img/logo.png" alt="The Royal Rest">
     </div>
     <ul class="nav-links">
       <li><a href="#">Filosofia</a></li>
@@ -11,7 +10,5 @@
       <li><a href="#">Concierge</a></li>
       <li><a href="#">Clienti Onorevoli</a></li>
     </ul>
-    
-    dio
   </nav>
 </header>

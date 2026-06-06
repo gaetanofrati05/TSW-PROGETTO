@@ -14,7 +14,7 @@
   <jsp:include page="componenti/navbar.jsp" />
   <section class="main">
   	<div class="main-content">
-	  	<div class="main-goldtext">fondato nel 1894  · Lusso silenzioso per il trono</div>
+	  	<div class="main-goldtext">Est. MDCCCLXXXV · Quiet Luxury for the Throne</div>
 	  	<h1>L'eleganza si siede in silenzio</h1>
 	  	<p>da scrivere</p>
 	  	<a href="#catalogo" class="main-exp">ESPLORA LE DESINAZIONI →</a>
