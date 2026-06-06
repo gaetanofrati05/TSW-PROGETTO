@@ -59,7 +59,7 @@ public class ConnectionPool {
              return conn;
          } 
          
-         // CORREZIONE 2: Se la lista è vuota creiamo una nuova connessione (se non abbiamo superato il max)
+         //  Se la lista è vuota creiamo una nuova connessione (se non abbiamo superato il max)
          if (current_pool_size < max_pool_size) {
              Connection conn = DriverManager.getConnection(url, user, password);
              current_pool_size++;

@@ -162,5 +162,63 @@ public class RecensioneDAO {
 	    }
    }
    //da qui possiamo fare altre query ad esempio per data e scoring in un certo intervallo di scoring e tante altre quelle che volete scrivetele
+   public RecensioneBean doRetrieveByKey(int idRecensione) throws SQLException{
+	   Connection connection = null;
+	    PreparedStatement ps = null;
+	    ResultSet result = null;
+	    String queryId = "SELECT * FROM RECENSIONE WHERE idRecensione=?";
+	    
+	    try {
+	    	connection = ConnectionPool.getConnection();
+	        ps = connection.prepareStatement(queryId);
+	        ps.setInt(1, idRecensione);
+	        result = ps.executeQuery(); 
+	        while (result.next()) {
+	        	 RecensioneBean recensione = new RecensioneBean();
+		            recensione.setIdRecensione(result.getInt("idRecensione"));
+		            recensione.setDataRecensione(result.getDate("data_Recensione"));
+		            recensione.setScoring(result.getInt("Scoring"));
+		            recensione.setDescrizione(result.getString("descrizione"));
+		            return recensione;
+	        }
+	        return null;
+	    }finally {
+	    	if (result != null) result.close();
+	        if (ps != null) ps.close();
+	        ConnectionPool.releaseConnection(connection);
+	    }
+   }
+   public List<RecensioneBean> doRetrieveByEmail(String email) throws SQLException{
+	   Connection connection = null;
+	    PreparedStatement ps = null;
+	    ResultSet result = null;
+	    String queryId = "SELECT R.* FROM Recensione R " +
+                "JOIN Valutazione V ON R.idRecensione = V.fk_Valutazione_idRecensione " +
+                "WHERE V.fk_Valutazione_email = ? ORDER BY R.data_Recensione DESC";
+	
+	    try {
+	        
+	    	connection = ConnectionPool.getConnection();
+	        ps = connection.prepareStatement(queryId);
+	        ps.setString(1, email);
+	        result = ps.executeQuery();
+	        List<RecensioneBean> listaRecensioni = new ArrayList<>();
+	        while(result.next()) {
+	        	 RecensioneBean recensione = new RecensioneBean();
+	        	 recensione.setIdRecensione(result.getInt("idRecensione"));
+	             recensione.setDataRecensione(result.getDate("data_Recensione"));
+	             recensione.setScoring(result.getInt("Scoring"));
+	             recensione.setDescrizione(result.getString("descrizione"));
+	             
+	             listaRecensioni.add(recensione);
+	        }
+	        return listaRecensioni;
+	        
+     }finally {
+         if (result != null) result.close();
+         if (ps != null) ps.close();
+         ConnectionPool.releaseConnection(connection);
+     }
+   }
    
 }
