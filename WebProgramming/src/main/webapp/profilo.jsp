@@ -26,7 +26,6 @@
    <div class="dropdown">
     <button onclick="btnonclick" class="dropbtn">Menù</button>
     <div class="dropdwn-content">
-    
      <a href="">Area Personale</a>
      <a href="">I miei ordini</a>
      <a href="">Impostazioni account</a>
