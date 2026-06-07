@@ -15,12 +15,12 @@
   <section class="main">
   	<div class="main-content">
 	  	<div class="main-goldtext">Est. MDCCCLXXXV · Quiet Luxury for the Throne</div>
-	  	<h1>L'eleganza si siede in silenzio</h1>
+	  	<h1>L'eleganza si siede in <span class="oro">silenzio</span></h1>
 	  	<p>da scrivere</p>
-	  	<a href="#catalogo" class="main-exp">ESPLORA LE DESINAZIONI →</a>
+	  	<a href="#catalogo" class="main-explore">ESPLORA LE DESINAZIONI →</a>
   	</div>
   	<div class="main-image">
-  		<img src="img/hero.jpg" alt="Royal Rest">
+  		<img src="componenti/img/home.png" alt="Royal Rest">
   	</div>
   </section>
  
