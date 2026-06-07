@@ -17,6 +17,9 @@
   <li>HTML generato solo da JSP</li>
   <li>Fragment JSP per header, footer e menu</li>
   <li>Sito responsive (parte form e pagine utente)</li>
+  <li>Creazione e gestione delle recensioni</li>
+  <li>Configurazione file xml</li>
+  <li>Pattern MVC rispettato</li>
 </ul>
 
 <h3>🔹 Funzionalità complete assegnate</h3>
