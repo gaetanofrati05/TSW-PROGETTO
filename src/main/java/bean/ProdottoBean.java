@@ -9,7 +9,8 @@ public class ProdottoBean {
 	private float prezzo;
 	private int quantita;
 	private String descrizione;
-	
+	private String immagine;
+	// + getter e setter
 	public ProdottoBean() {
     
 	}

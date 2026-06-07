@@ -24,7 +24,7 @@
   	</div>
   </section>
  
-
-  <script src="js/main.js"></script>
+	<jsp:include page="catalogo.jsp" />
+	<script src="js/main.js"></script>
 </body>
 </html>
