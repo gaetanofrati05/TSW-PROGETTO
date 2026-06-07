@@ -1,7 +1,7 @@
 # TSW-PROGETTO
 <h2>👤 Gaetano — Utente + Sicurezza + DB + Validazione</h2>
 
-<h3>🔹 Requisiti assegnati (testo identico al documento)</h3>
+<h3>🔹 Requisiti assegnati </h3>
 <ul>
   <li>Registrazione utente con validazione dei campi tramite espressioni regolari</li>
   <li>Login e gestione della sessione</li>
