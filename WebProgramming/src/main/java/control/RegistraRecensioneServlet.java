@@ -1,10 +1,8 @@
 package control;
-
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,12 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import bean.ProdottoBean;
 import bean.RecensioneBean;
 import bean.UtenteBean;
 import dao.RecensioneDAO;
-import dao.UtenteDAO;
 
 /**
  * Servlet implementation class RegistraRecensioneServlet
@@ -96,7 +92,7 @@ public class RegistraRecensioneServlet extends HttpServlet {
 			recensione.setUtente(utente);
 			recensione.setScoring(scoring);
 			recensione.setDescrizione(descrizione.trim());
-			recensione.setDataRecensione(new java.util.Date()); // Data corrente
+			recensione.setDataRecensione(new java.sql.Date(System.currentTimeMillis()));
 			ProdottoBean prodotto = new ProdottoBean();
 			prodotto.setIdProdotto(idProdotto);
 			recensione.setProdotto(prodotto);

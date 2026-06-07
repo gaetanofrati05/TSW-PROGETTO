@@ -122,4 +122,49 @@ public class UtenteDAO {
 	    ConnectionPool.releaseConnection(connection);
 		}
 	}
+	public void doDeleteUtente(UtenteBean utente)throws SQLException {
+		Connection connection=null;
+		PreparedStatement  psUtente=null;
+		String deleUtente= "DELETE FROM Utente WHERE email=?";
+		try {
+			connection= ConnectionPool.getConnection();
+			psUtente= connection.prepareStatement(deleUtente);
+			psUtente.setString(1, utente.getEmail());
+			psUtente.executeUpdate();
+		}finally {
+			if(psUtente!=null) {
+				psUtente.close();
+			}
+			ConnectionPool.releaseConnection(connection);
+		}
+	}
+	public UtenteBean doRetrieveByEmail(String email)throws SQLException {
+		Connection connection=null;
+		PreparedStatement psUtente=null;
+		ResultSet result=null;
+		String searchUtente= "SELECT * FROM Utente WHERE email=?";
+		try {
+			connection= ConnectionPool.getConnection();
+			psUtente= connection.prepareStatement(searchUtente);
+			psUtente.setString(1,email);
+			result= psUtente.executeQuery();
+			while(result.next()) {
+				UtenteBean utente= new UtenteBean();
+				utente.setEmail(result.getString("email"));
+				utente.setHashPassword(result.getString("hash_password"));
+				utente.setNome(result.getString("nome"));
+				utente.setCognome(result.getString("cognome"));
+				utente.setData(result.getDate("dataNascita"));
+				utente.setNazionalita(result.getString("nazionalita"));
+				utente.setPrefisso(result.getString("prefisso"));
+				utente.setCellulare(result.getString("cellulare"));
+				return utente;
+			}
+			return null;
+		}finally {
+			if (result != null) result.close();
+	        if (psUtente != null) psUtente.close();
+	        ConnectionPool.releaseConnection(connection);
+		}
+	}
 }

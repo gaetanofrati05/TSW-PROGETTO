@@ -74,20 +74,29 @@ public class ModificaProfiloServlet extends HttpServlet {
 		
 		String dataNascitaStr = request.getParameter("dataNascita");
 		java.util.Date dataNascita = null;
-		if (dataNascitaStr != null && !dataNascitaStr.isEmpty()) {
-		    java.time.LocalDate localDate = java.time.LocalDate.parse(dataNascitaStr);
-		    // Converte il LocalDate nel java.util.Date che si aspetta il Bean
-		    dataNascita = java.sql.Date.valueOf(localDate); 
+		try {
+		    if (dataNascitaStr != null && !dataNascitaStr.trim().isEmpty()) {
+		        java.time.LocalDate localDate = java.time.LocalDate.parse(dataNascitaStr);
+		        dataNascita = java.sql.Date.valueOf(localDate); 
+		    }
+		} catch (java.time.format.DateTimeParseException e) {
+		    errori.add("Formato data di nascita non valido. Usa il formato AAAA-MM-GG");
 		}
 		String nazionalita= request.getParameter("nazionalita");
 		
 		String prefisso= request.getParameter("prefisso");
-		if(!ValidazioneUtente.validatePrefisso(prefisso)) {
+		if(prefisso==null || prefisso.trim().isEmpty()) {
+			errori.add("Il campo prefisso non può essere vuoto");
+		}
+		else if(!ValidazioneUtente.validatePrefisso(prefisso)) {
 			errori.add("Prefisso non valido");
 		}
 		
 		String cellulare= request.getParameter("cellulare");
-		if(!ValidazioneUtente.validateCellulare(cellulare)) {
+		if(cellulare==null || cellulare.trim().isEmpty()) {
+			errori.add("Il campo cellulare non può essere valido");
+		}
+		else if(!ValidazioneUtente.validateCellulare(cellulare)) {
 			errori.add("Cellulare non valido");
 		}
 		

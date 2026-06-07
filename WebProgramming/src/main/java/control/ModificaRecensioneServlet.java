@@ -106,7 +106,7 @@ public class ModificaRecensioneServlet extends HttpServlet {
 			recensione.setScoring(scoring);
 			recensione.setDescrizione(descrizione.trim());
 			// Impostiamo la data corrente come data di modifica
-			recensione.setDataRecensione(new java.util.Date()); 
+			recensione.setDataRecensione(new java.sql.Date(System.currentTimeMillis()));
 
 			recensioneDAO.doUpdateRecensione(recensione);
 			response.sendRedirect(request.getContextPath() + "/jsp/profilo.jsp?recensioneModificata=true");
