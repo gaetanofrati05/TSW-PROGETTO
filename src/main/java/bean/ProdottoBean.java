@@ -10,6 +10,8 @@ public class ProdottoBean {
 	private int quantita;
 	private String descrizione;
 	private String immagine;
+	private String stato; //bisogna aggiungere anche lo stato abbiamo detto che ci stava anche la possibilità di tracciare
+	// e vedere lo stato ordine
 	// + getter e setter
 	public ProdottoBean() {
     
