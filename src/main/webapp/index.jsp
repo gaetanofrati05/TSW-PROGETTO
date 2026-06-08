@@ -17,14 +17,13 @@
 	  	<div class="main-goldtext">Est. MDCCCLXXXV · Quiet Luxury for the Throne</div>
 	  	<h1>L'eleganza si siede in <span class="oro">silenzio</span></h1>
 	  	<p>da scrivere</p>
-	  	<a href="#catalogo" class="main-explore">ESPLORA LE DESINAZIONI →</a>
+	  	<a href="catalogo.jsp" class="main-explore">ESPLORA LE DESTINAZIONI →</a>
   	</div>
   	<div class="main-image">
   		<img src="componenti/img/home.png" alt="Royal Rest">
   	</div>
   </section>
  
-	<jsp:include page="catalogo.jsp" />
 	<script src="js/main.js"></script>
 </body>
 </html>
