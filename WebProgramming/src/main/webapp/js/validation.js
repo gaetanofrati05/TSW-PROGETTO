@@ -1,6 +1,3 @@
-
-
-
 function validateEmail(uemail){
 	const regex= /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
 	return regex.test(uemail);
@@ -18,10 +15,10 @@ function validatePrefisso(uprefisso){
 	return regex.test(uprefisso);
 }
 function validateNome(unome){
-	const regex=/^[A-Za-zàèòù\s'-]{4,30}$/;
+	const regex=/^[A-Za-zàèòù\s'-]{2,30}$/;
 	return regex.test(unome);
 }
 function validateCognome(ucognome){
-	const regex=/^[A-Za-zàèòù\s'-]{4,30}$/;
+	const regex=/^[A-Za-zàèòù\s'-]{2,30}$/;
 	return regex.test(ucognome);
 }

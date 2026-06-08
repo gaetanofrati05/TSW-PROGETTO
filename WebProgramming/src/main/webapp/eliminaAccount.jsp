@@ -16,10 +16,10 @@
 </head>
 <body>
 <div class="pagina-eliminaProfilo">
-<form class="form-Profilo" action="${pageContext.request.contextPath}/EliminazioneUtente" method=POST>
-<p>Sei sicuro di voler eliminare il tuo account?</p>
-<button class="btn-eliminaUtente" type="submit">Elimina l'account</button>
-  </form>
+   <form class="form-Profilo" action="${pageContext.request.contextPath}/EliminazioneUtente" method=POST>
+     <p>Sei sicuro di voler eliminare il tuo account?</p>
+     <button class="btn-eliminaUtente" type="submit">Elimina l'account</button>
+    </form>
 </div>
 </body>
 </html>

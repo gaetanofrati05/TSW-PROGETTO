@@ -1,1 +1,129 @@
-@charset "UTF-8";
+body {
+    background: var(--crema); /*crema*/
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    color: var(--nero); /*nero*/
+}
+
+nav ul li a {
+    color: var(--pietra);
+    text-decoration: none; /*rimuovi sottolineatura link*/
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.main-goldtext {
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--oro);
+    margin-bottom: 24px;
+}
+
+.main h1 {
+	font-family: 'Georgia', serif;
+    font-size: 72px;
+    font-weight: 700;
+    line-height: 1.05;
+    margin-bottom: 24px;
+}
+
+.main p {
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--pietra);
+    margin-bottom: 48px;
+}
+
+.main-explore{
+    color: var(--nero);
+    text-decoration: none;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--nero);
+    width: fit-content;
+}
+
+.oro {
+    color: var(--oro);
+}
+:root {
+    --crema: #F6F3ED;
+    --oro: #b89a5a;
+    --nero: #14181B;
+    --pietra: #5A6670;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*navbar*/
+nav {
+    display: flex;
+    justify-content: space-between; /*spingi il primo elemento a sinistra e l'ultimo a destra*/
+    align-items: center;
+    padding: 18px 52px 28px 32px; /*top-right-bottom-left*/
+    
+    position: fixed; /*si fissa in cima alla pagina*/
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100; /*sta sopra a tutto*/
+    
+    
+    background: linear-gradient(
+        to bottom,
+        rgba(246, 243, 237, 0.95),
+        rgba(246, 243, 237, 0)
+    ); /*sfuma dal crema verso trasparente*/
+}
+nav ul {
+    display: flex;
+    gap: 44px; /*spazio tra i link*/
+    list-style: none; /*rimuovi i pallini dalla lista*/
+}
+.nav-logo img {
+    width: 65px;
+    height: auto;
+}
+@media (max-width: 768px) {
+    nav {
+        padding: 20px 24px; /*meno padding su mobile*/
+    }
+    nav ul {
+        gap: 20px; /*meno spazio tra i link su mobile*/
+    }
+}
+
+
+
+
+/*main*/
+.main {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /*dividi in 2 parti uguali*/
+    min-height: 100vh; /*tutto lo spazio verticale disponibile*/
+}
+.main-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 140px 52px 80px 52px;
+}
+
+.main-image img {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+/*responsive*/
+@media (max-width: 768px) {
+        .main-content { padding: 100px 24px 60px 24px; }
+    	.main { grid-template-columns: 1fr;  /*una sola colonna su mobile*/}
+}

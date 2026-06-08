@@ -51,7 +51,7 @@ public class LoginServlet extends HttpServlet {
 		}
 		if(!errori.isEmpty()) {
 			request.setAttribute("errore", errori);
-			request.getRequestDispatcher("/jsp/login.jsp").forward(request, response);
+			request.getRequestDispatcher("/jsp/index.jsp").forward(request, response);
 			return;
 		}
 		email=email.trim();
@@ -72,7 +72,7 @@ public class LoginServlet extends HttpServlet {
 				}
 			}else {
 				request.setAttribute("erroredilogin", "Email o password errate");
-				request.getRequestDispatcher("login.jsp").forward(request, response);
+				request.getRequestDispatcher("index.jsp").forward(request, response);
 			}			
 		}catch(SQLException e) {
 			e.printStackTrace();
