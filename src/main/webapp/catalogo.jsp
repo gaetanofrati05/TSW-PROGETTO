@@ -27,7 +27,7 @@
             for(ProdottoBean p : prodotti) { 
         %>
             <div class="card">
-           
+           		
                 <div class="card-body">
                     <div class="card-location"><%= p.getStile() %></div>
                     <h3><%= p.getNome() %></h3>
