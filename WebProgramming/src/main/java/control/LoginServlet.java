@@ -33,7 +33,7 @@ public class LoginServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/jsp/login.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(request, response);
 	}
 
 	/**
@@ -51,7 +51,7 @@ public class LoginServlet extends HttpServlet {
 		}
 		if(!errori.isEmpty()) {
 			request.setAttribute("errore", errori);
-			request.getRequestDispatcher("/jsp/index.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(request, response);
 			return;
 		}
 		email=email.trim();
@@ -65,14 +65,14 @@ public class LoginServlet extends HttpServlet {
 				//controllo se l'utente è admin oppure no
 				if(utente.getAdmin()) {
 					System.out.println("Benvenuto admin" + utente.getNome());
-					response.sendRedirect(request.getContextPath() +"admin.jsp");				
+					response.sendRedirect(request.getContextPath() +"/admin.jsp"); //da cambiare in base al nome della servlet				
 				}else {
 					System.out.println("Benvenuto"+ utente.getNome());
-					response.sendRedirect(request.getContextPath()+ "index.jsp");
+					response.sendRedirect(request.getContextPath()+ "/index.jsp");
 				}
 			}else {
 				request.setAttribute("erroredilogin", "Email o password errate");
-				request.getRequestDispatcher("index.jsp").forward(request, response);
+				request.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(request, response);
 			}			
 		}catch(SQLException e) {
 			e.printStackTrace();

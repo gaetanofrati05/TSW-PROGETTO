@@ -14,7 +14,15 @@
 <meta charset="UTF-8">
 <title>Modifica-Profilo</title>
 <style>
-  .js-error { color: red; font-size: 0.9em; display: none; margin-top: 5px; }
+  .js-error { 
+            color: var(--oro, #b89a5a);
+            font-size: 0.8rem; 
+            display: none; 
+            margin-top: 8px; 
+            text-align: left;
+            text-transform: uppercase;
+            letter-spacing: 0.08rem;
+        }
 </style>
 </head>
 <body>

@@ -40,12 +40,12 @@ public class EliminaRecensioneServlet extends HttpServlet {
 		//Recuperiamo la recensione da dover eliminare 
 		HttpSession session= request.getSession(false);
 		if(session==null || session.getAttribute("utenteLoggato")==null) {
-			response.sendRedirect(request.getContextPath() + "/jsp/login.jsp");
+			response.sendRedirect(request.getContextPath() + "/LoginServlet");
 			return;
 		}
 		String idStr= request.getParameter("idRecensione");
 		if(idStr==null || idStr.trim().isEmpty()) {
-			response.sendRedirect(request.getContextPath() + "/jsp/profilo.jsp");
+			response.sendRedirect(request.getContextPath() + "/ModificaProfiloServlet");
 			return;
 		}
 		try {
@@ -53,9 +53,9 @@ public class EliminaRecensioneServlet extends HttpServlet {
 			RecensioneBean recensione= recensioneDAO.doRetrieveByKey(idRecensione);
 			if (recensione != null) {
 				request.setAttribute("recensioneEliminare", recensione);
-				request.getRequestDispatcher("/jsp/eliminaRecensione.jsp").forward(request, response);
+				request.getRequestDispatcher("/WEB-INF/jsp/eliminaRecensione.jsp").forward(request, response);
 			} else {
-				response.sendRedirect(request.getContextPath() + "/jsp/profilo.jsp?errore=RecensioneNonTrovata");
+				response.sendRedirect(request.getContextPath() + "/ModificaProfiloServlet?errore=RecensioneNonTrovata");
 			}
 			
 		}catch(SQLException | NumberFormatException e){
@@ -71,7 +71,7 @@ public class EliminaRecensioneServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session= request.getSession(false);
 		if(session==null || session.getAttribute("utenteLoggato")==null) {
-			response.sendRedirect(request.getContextPath() + "/jsp/login.jsp");
+			response.sendRedirect(request.getContextPath() + "/LoginServlet");
 			return;
 		}
 		//Recupero l'id da dover eliminare
@@ -81,7 +81,7 @@ public class EliminaRecensioneServlet extends HttpServlet {
 			RecensioneBean recensione= new RecensioneBean();
 			recensione.setIdRecensione(idRecensione);
 			recensioneDAO.deleteRecensione(recensione);
-			response.sendRedirect(request.getContextPath() + "/jsp/profilo.jsp?recensioneEliminata=true");
+			response.sendRedirect(request.getContextPath() + "/ModificaProfiloServlet?recensioneEliminata=true");
 		}catch(SQLException  | NumberFormatException e) {
 			throw new ServletException("Errore nel daabase durante l'eliminazione della recensione");
 		}

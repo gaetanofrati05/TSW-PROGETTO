@@ -37,13 +37,13 @@ public class ModificaRecensioneServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
 		if(session == null || session.getAttribute("utenteLoggato") == null) {
-			response.sendRedirect(request.getContextPath() + "/jsp/login.jsp");
+			response.sendRedirect(request.getContextPath() + "/LoginServlet");
 			return;
 		}
 
 		String idStr = request.getParameter("id");
 		if (idStr == null || idStr.trim().isEmpty()) {
-			response.sendRedirect(request.getContextPath() + "/jsp/profilo.jsp");
+			response.sendRedirect(request.getContextPath() + "/ModificaProfiloServlet");
 			return;
 		}
 
@@ -53,9 +53,9 @@ public class ModificaRecensioneServlet extends HttpServlet {
 
 			if (recensione != null) {
 				request.setAttribute("recensioneDaModificare", recensione);
-				request.getRequestDispatcher("/jsp/modificaRecensione.jsp").forward(request, response);
+				request.getRequestDispatcher("/WEB-INF/jsp/modificaRecensione.jsp").forward(request, response);
 			} else {
-				response.sendRedirect(request.getContextPath() + "/jsp/profilo.jsp?errore=RecensioneNonTrovata");
+				response.sendRedirect(request.getContextPath() + "/ModificaProfiloServlet?errore=RecensioneNonTrovata");
 			}
 		} catch (SQLException | NumberFormatException e) {
 			e.printStackTrace();
@@ -65,7 +65,7 @@ public class ModificaRecensioneServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
 		if(session == null || session.getAttribute("utenteLoggato") == null) {
-			response.sendRedirect(request.getContextPath() + "/jsp/login.jsp");
+			response.sendRedirect(request.getContextPath() + "/LoginServlet");
 			return;
 		}
 
@@ -109,7 +109,7 @@ public class ModificaRecensioneServlet extends HttpServlet {
 			recensione.setDataRecensione(new java.sql.Date(System.currentTimeMillis()));
 
 			recensioneDAO.doUpdateRecensione(recensione);
-			response.sendRedirect(request.getContextPath() + "/jsp/profilo.jsp?recensioneModificata=true");
+			response.sendRedirect(request.getContextPath() + "/ModificaProfiloServlet?recensioneModificata=true");
 
 		} catch (SQLException | NumberFormatException e) {
 			e.printStackTrace();

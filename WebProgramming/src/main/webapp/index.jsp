@@ -5,7 +5,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Royal Rest</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/componenti.css">
+  
 </head>
 <body>
 
@@ -18,7 +21,7 @@
 	  	<a href="catalogo.jsp" class="main-explore">ESPLORA LE DESTINAZIONI →</a>
   	</div>
   	<div class="main-image">
-  		<img src="componenti/img/home.png" alt="Royal Rest">
+  		<img src="img/home.png" alt="Royal Rest">
   	</div>
   </section>
  

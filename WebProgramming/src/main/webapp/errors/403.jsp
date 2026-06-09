@@ -1,21 +1,44 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <head>
-<meta charset="UTF-8">
-<title>403-error</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>403 - Luxury Non Accessibile</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/base.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/layout.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/componenti.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/pagerror.css">
 </head>
 <body>
-<div class="class-403">
-<h1 class="title-403">Errore 403</h1>
-<h2 class="subtitle-403">Non hai i permessi per accedere</h2>
-<div class="error-action">
-<a href="{pageContext.request.contextPath}" class="btn">Torna alla home</a>
-<a href="{pageContext.request.contextPath}" class="second-btn">Torna alla pagina di login</a>
- </div>
- 
-  </div>
+
+    
+    <jsp:include page="/fragments/navbar.jsp" />
+
+   
+    <main class="error-wrapper">
+        
+        <div class="error-content">
+        <div class="text-block">
+            <span class="error-code">Errore 403</span>
+            <h1 class="error-title">Accesso riservato.</h1>
+            <h2 class="error-subtitle">Fermati, non hai i permessi per accedere a questa lounge!</h2>
+            
+           
+                <p class="error-text">
+                    Le nostre lounge sono riservate agli ospiti con tavoletta attiva. 
+                    Acquista la tua, torna qui e goditi il relax che meriti.
+                </p>
+            </div>
+            
+            <div class="error-action-box">
+            <div class="box-buttons">
+                <a href="${pageContext.request.contextPath}" class="button">Acquista la tua tavoletta</a>
+                <a href="${pageContext.request.contextPath}/LoginServlet" class="second-button">Unisciti alla nostra famiglia</a>
+            </div>
+             </div>
+             </div>
+    </main>
 
 </body>
 </html>

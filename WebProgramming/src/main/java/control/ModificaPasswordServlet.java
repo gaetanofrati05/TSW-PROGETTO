@@ -39,7 +39,7 @@ public class ModificaPasswordServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/jsp/profilo.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/profilo.jsp").forward(request, response);
 	}
 
 	/**
@@ -48,7 +48,7 @@ public class ModificaPasswordServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session= request.getSession(false);
 		if(session==null || session.getAttribute("utenteLoggato")==null) {
-			response.sendRedirect(request.getContextPath()+ "/jsp/login.jsp");
+			response.sendRedirect(request.getContextPath()+ "/LoginServlet");
 			return;
 		}
 		UtenteBean utente = (UtenteBean) session.getAttribute("utenteLoggato");
@@ -68,7 +68,7 @@ public class ModificaPasswordServlet extends HttpServlet {
 	    }
 	    if(!errori.isEmpty()) {
 	        request.setAttribute("errore", errori);
-	        request.getRequestDispatcher("/jsp/profilo.jsp").forward(request, response);
+	        request.getRequestDispatcher("/WEB-INF/jsp/profilo.jsp").forward(request, response);
 	        return;
 	    }
 		try {
@@ -76,7 +76,7 @@ public class ModificaPasswordServlet extends HttpServlet {
 			utenteDAO.doUpdatePassword(utente.getEmail(), passwordCifrata);
 			utente.setHashPassword(passwordCifrata);
 			session.setAttribute("utenteLoggato", utente);
-			response.sendRedirect(request.getContextPath() + "/jsp/profilo.jsp?passwordVariata=true");
+			response.sendRedirect(request.getContextPath() + "/ModificaProfiloServlet?passwordVariata=true");
 		}catch(SQLException e) {
 			e.printStackTrace();
 			throw new ServletException("Errore nel database durante il cambio password", e);

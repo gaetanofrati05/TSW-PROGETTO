@@ -40,7 +40,7 @@ public class EliminazioneUtenteServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
 		if(session == null || session.getAttribute("utenteLoggato") == null) {
-			response.sendRedirect(request.getContextPath() + "/jsp/login.jsp");
+			response.sendRedirect(request.getContextPath() + "/LoginServlet");
 			return;
 		}
 		
@@ -49,10 +49,10 @@ public class EliminazioneUtenteServlet extends HttpServlet {
 			UtenteBean utente= utenteDAO.doRetrieveByEmail(utenteLoggato.getEmail());
 			if(utente!=null) {
 				request.setAttribute("utenteEliminare", utente);
-				request.getRequestDispatcher("/jsp/eliminaUtente.jsp").forward(request, response); //pagina che chiede conferma di voler eliminare l'acocunt
+				request.getRequestDispatcher("/WEB-INF/jsp/eliminaUtente.jsp").forward(request, response); //pagina che chiede conferma di voler eliminare l'acocunt
 			}else {
 				// Se per qualche motivo l'utente in sessione non è nel DB, resettiamo la sessione
-				response.sendRedirect(request.getContextPath() + "/jsp/login.jsp");
+				response.sendRedirect(request.getContextPath() + "/LoginServlet");
 			}
 		}catch(SQLException e) {
 			
@@ -67,7 +67,7 @@ public class EliminazioneUtenteServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
 		if(session == null || session.getAttribute("utenteLoggato") == null) {
-			response.sendRedirect(request.getContextPath() + "/jsp/login.jsp");
+			response.sendRedirect(request.getContextPath() + "/LoginServlet");
 			return;
 		}
 		

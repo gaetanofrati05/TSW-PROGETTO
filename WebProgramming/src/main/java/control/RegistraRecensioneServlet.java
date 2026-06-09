@@ -51,7 +51,7 @@ public class RegistraRecensioneServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
 		if(session == null || session.getAttribute("utenteLoggato") == null) {
-			response.sendRedirect(request.getContextPath() + "/jsp/login.jsp");
+			response.sendRedirect(request.getContextPath() + "/LoginServlet");
 			return;
 		}
 		
@@ -80,7 +80,7 @@ public class RegistraRecensioneServlet extends HttpServlet {
 
 		if (!errori.isEmpty()) {
 			request.setAttribute("errore", errori);
-			request.getRequestDispatcher("/jsp/dettaglioProdotto.jsp?id=" + idStrProdotto).forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/jsp/dettaglioProdotto.jsp?id=" + idStrProdotto).forward(request, response);
 			return;
 		}
 		
@@ -101,7 +101,7 @@ public class RegistraRecensioneServlet extends HttpServlet {
 			recensioneDAO.doSaveRecensione(recensione);
 			
 			//  Redirect di successo alla pagina prodotto
-			response.sendRedirect(request.getContextPath() + "/jsp/dettaglioProdotto.jsp?recensioneSalvata=true");
+			response.sendRedirect(request.getContextPath() + "/jsp/dettaglioProdotto.jsp?recensioneSalvata=true"); //da cambiare in base al nome servlet che avete dato
 			
 		} catch(SQLException | NumberFormatException e) {
 			e.printStackTrace();

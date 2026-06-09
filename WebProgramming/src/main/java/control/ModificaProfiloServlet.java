@@ -40,7 +40,7 @@ public class ModificaProfiloServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/jsp/profilo.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/profilo.jsp").forward(request, response);
 	}
 
 	/**
@@ -50,7 +50,7 @@ public class ModificaProfiloServlet extends HttpServlet {
 		//Verifico la sessione per controllare se l'utente è loggato o no
 		HttpSession session= request.getSession(false);
 		if(session==null || session.getAttribute("utenteLoggato")==null) {
-			response.sendRedirect(request.getContextPath()+ "/jsp/login.jsp");
+			response.sendRedirect(request.getContextPath()+ "/LoginServlet");
 			return;
 		}
 		
@@ -102,7 +102,7 @@ public class ModificaProfiloServlet extends HttpServlet {
 		
 		if(!errori.isEmpty()) {
 			request.setAttribute("errore", errori);
-			request.getRequestDispatcher("/jsp/profilo.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/jsp/profilo.jsp").forward(request, response);
 			return;
 		}
 		try {
@@ -115,7 +115,7 @@ public class ModificaProfiloServlet extends HttpServlet {
 		    utente.setCellulare(cellulare);
 		    utenteDAO.doUpdate(utente);
 		    session.setAttribute("utenteLoggato",utente);
-		response.sendRedirect(request.getContextPath() + "/jsp/profilo.jsp?modifica=true");
+		response.sendRedirect(request.getContextPath() + "/ModificaProfiloServlet?modifica=true");
 		}catch(SQLException e){
 			e.printStackTrace();
 	    	throw new ServletException("Errore nel database durante la modifica del profilo", e);

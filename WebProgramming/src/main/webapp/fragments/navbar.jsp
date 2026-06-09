@@ -2,7 +2,7 @@
 <header>
   <nav>
     <div class="nav-logo">
-      <img src="componenti/img/logo.png" alt="The Royal Rest">
+      <img src="${pageContext.request.contextPath}/img/logo.png" alt="The Royal Rest">
     </div>
     <ul class="nav-links">
       <li><a href="#">Filosofia</a></li>
