@@ -1,11 +1,8 @@
+//da sistemare.
 package dao;
 import bean.ProdottoBean;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.*;
+import java.util.*;
 
 public class ProdottoDAO {
 
@@ -17,7 +14,7 @@ public class ProdottoDAO {
         List<ProdottoBean> prodotti = new ArrayList<>();
         String query = "SELECT * FROM PRODOTTO";
         try {
-            connection = ConnectionPool.getConnection();
+            connection = DriverManagerConnectionPool.getConnection();
             preparedStatement = connection.prepareStatement(query);
             result = preparedStatement.executeQuery();
             while (result.next()) {
