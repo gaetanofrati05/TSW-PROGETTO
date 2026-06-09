@@ -18,6 +18,7 @@ public class ProdottoBean {
     public int getIdProdotto() {
         return idProdotto;
     }
+    
 
     public void setIdProdotto(int idProdotto) {
         this.idProdotto = idProdotto;
