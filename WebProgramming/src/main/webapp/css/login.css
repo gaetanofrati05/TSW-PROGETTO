@@ -1,6 +1,8 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&display=swap');
-
+html{
+	scroll-behavior: smooth;
+}
 .login-page-bg {
     margin: 0;
     padding: 0;
@@ -52,10 +54,7 @@
     font-size: 3.8rem;
     font-weight: 400;
     font-style: italic;
-    
-   
     color: var(--bronzo-brunito, #4A4439); 
-    
     letter-spacing: -0.01rem;
     margin: 0 0 1.2rem 0;
     line-height: 1.2;
@@ -65,8 +64,6 @@
     font-size: 1rem;
     font-weight: 400;
     text-transform: uppercase;
-    
-    
     color: var(--oro, #b89a5a); 
     
     letter-spacing: 0.3rem; 
@@ -76,11 +73,7 @@
 
 .login-card-luxury {
     background-color: #ffffff; 
-    
-   
     border-radius: 24px; 
-    
-   
     box-shadow: 0 20px 50px rgba(90, 102, 112, 0.08), 
                 0 2px 10px rgba(90, 102, 112, 0.03);
     
@@ -101,7 +94,7 @@
 .form-label {
     display: block;
     font-size: 0.75rem;
-    text-transform: uppercase;
+    text-transform: lowercase;
     letter-spacing: 0.18rem;
     color: var(--pietra, #5A6670);
     margin-bottom: 1.2rem;
@@ -131,7 +124,7 @@
     letter-spacing: 0.03rem;
 }
 
-/* Testo segnaposto (Placeholder) */
+
 .custom-input::placeholder {
     color: #c8c3b9;
     font-size: 0.95rem;
@@ -139,7 +132,7 @@
     font-weight: 300;
 }
 
-/* IL BOTTONE DI LOGIN: Angoli smussati in armonia con la Box */
+
 .bottone-login-luxury {
     width: 100%;
     padding: 1.2rem;
@@ -164,7 +157,7 @@
     color: var(--nero, #14181B);
 }
 
-/* Footer silenzioso a fondo pagina */
+
 .login-footer {
     padding: 3rem 2rem;
     text-align: center;
@@ -176,10 +169,10 @@
 }
 
 .login-redirect {
-    margin-top: 2.2rem; /* Ampio spazio dal bottone nero per farlo respirare */
+    margin-top: 2.2rem; 
     text-align: center;
     font-size: 0.85rem;
-    color: var(--pietra, #5A6670); /* Grigio calmo per la domanda */
+    color: var(--pietra, #5A6670); 
     letter-spacing: 0.03rem;
 }
 
@@ -188,7 +181,7 @@
 }
 
 .login-redirect .redirect-link {
-    color: var(--oro, #b89a5a); /* Il link brilla del tuo oro */
+    color: var(--oro, #b89a5a); 
     text-decoration: none;
     font-weight: 400;
     margin-left: 0.4rem;
@@ -197,7 +190,7 @@
     transition: color 0.3s ease;
 }
 
-/* Effetto hover raffinato: una linea sottilissima che appare sotto l'oro */
+
 .login-redirect .redirect-link::after {
     content: '';
     position: absolute;
@@ -217,7 +210,7 @@
     transform-origin: bottom left;
     background-color: var(--bronzo-brunito, #4A4439);
 }
-/* 📱 Ottimizzazione Mobile per schermi piccoli */
+/* Ottimizzazione Mobile per schermi piccoli */
 @media (max-width: 992px) {
     .login-header {
         position: static;

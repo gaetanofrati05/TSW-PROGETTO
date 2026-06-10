@@ -62,6 +62,17 @@ public class LoginServlet extends HttpServlet {
 			if(utente!=null) {
 				HttpSession session = request.getSession(true);
 				session.setAttribute("utenteLoggato", utente);
+				//Inizio della logica dei cookie per non dover fare 300 login
+				javax.servlet.http.Cookie cookieEmail= new javax.servlet.http.Cookie("ricordaEmail", email);
+				javax.servlet.http.Cookie cookiePassword= new javax.servlet.http.Cookie("ricordaPassword", passwordCifrata);
+				int trentaminuti= 30*60;
+				cookieEmail.setMaxAge(trentaminuti);
+				cookiePassword.setMaxAge(trentaminuti);
+				cookieEmail.setPath(request.getContextPath()); //cookie accessibili a tutte le servlet
+				cookiePassword.setPath(request.getContextPath());
+				response.addCookie(cookieEmail);
+				response.addCookie(cookiePassword);
+				
 				//controllo se l'utente è admin oppure no
 				if(utente.getAdmin()) {
 					System.out.println("Benvenuto admin" + utente.getNome());
@@ -71,7 +82,7 @@ public class LoginServlet extends HttpServlet {
 					response.sendRedirect(request.getContextPath()+ "/index.jsp");
 				}
 			}else {
-				request.setAttribute("erroredilogin", "Email o password errate");
+				request.setAttribute("errore", "Email o password errate");
 				request.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(request, response);
 			}			
 		}catch(SQLException e) {

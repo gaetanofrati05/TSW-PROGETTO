@@ -4,7 +4,7 @@
     <%
     UtenteBean utente= (UtenteBean) session.getAttribute("utenteLoggato");
     if(utente==null){
-    	response.sendRedirect(request.getContextPath()+ "/jsp/login.jsp");
+    	response.sendRedirect(request.getContextPath()+ "/LoginServlet");
     	return;
     }
     %>
@@ -41,11 +41,11 @@
    <label>Modifica il prefisso</label>
    <input type="text" name="prefisso" value=<%=utente.getPrefisso() %>>
    <button class="btn-modificaUtente" type="submit">Salva tutte le modifiche</button>
-<a href="${pageContext.request.contextPath}/jsp/modificaPasswordUtente.jsp" class="link-password" style="margin-left: 15px;">Cambia Password</a>
+<a href="${pageContext.request.contextPath}/WEB-INF/jsp/modificaPasswordUtente.jsp" class="link-password" style="margin-left: 15px;">Cambia Password</a>
     </div>
  </form>
     </div>
-    <script src="${pageContext.request.contextPath}/js/validazioni.js"></script>
+    <script src="${pageContext.request.contextPath}/js/validation.js"></script>
     <script src="${pageContext.request.contextPath}/js/modificaProfilo.js"></script>
 </body>
 </html>

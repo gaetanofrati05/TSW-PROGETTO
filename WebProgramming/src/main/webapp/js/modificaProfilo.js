@@ -1,10 +1,11 @@
 document.addEventListener("DOMContentLoaded", function(){
 	const modificaForm=docuement.getElementById("modifica-form");
 	if(modificaForm){
-		const nome=document.getElementById("nome").value;
-		const cognome= document.getElementById("cognome").value;
-		const cellulare= document.getElementById("cellulare").value;
-		const prefisso= documenti.getElementById("prefisso").value;
+		modificaForm.addEventListener("submit", function(event){
+		const nomeInput=document.getElementById("nome").value;
+		const cognomeInput= document.getElementById("cognome").value;
+		const cellulareInput= document.getElementById("cellulare").value;
+		const prefissoInput= documenti.getElementById("prefisso").value;
 		
 		document.querySelectorAll('.js-error').forEach(el => el.style.display = 'none');
 		let isValid=true;
@@ -31,9 +32,10 @@ document.addEventListener("DOMContentLoaded", function(){
 		                isValid = false;
 		            }
 		            
-		            // Se qualcosa non va, fermiamo l'invio delle modifiche
+		            // Se qualcosa non va fermo l'invio delle modifiche
 		            if (!isValid) {
 		                event.preventDefault();
 		            }
-	}
-});
+	});
+  }
+ });

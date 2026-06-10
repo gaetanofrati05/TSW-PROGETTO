@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/layout.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/componenti.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css">
-    <title>The Royal Rest Lounge - Login</title>
+    <title>The Royal Rest - Login</title>
     <style>
         .js-error { 
             color: var(--oro, #b89a5a);
@@ -39,9 +39,9 @@
         <div class="login-card-luxury">
             
             <%-- Errore lato Server (Java) --%>
-            <% if (request.getAttribute("errorMessage") != null) { %>
+            <% if (request.getAttribute("errore") != null) { %>
                 <div class="error-message">
-                    <%= request.getAttribute("errorMessage") %>
+                    <%= request.getAttribute("errore") %>
                 </div>
             <% } %>
             
@@ -79,8 +79,8 @@
         <p>&copy; 2026 The Royal Rest. L'arte del benessere silenzioso.</p>
     </footer>
     
-    <script src="${pageContext.request.contextPath}/js/validazioni.js" defer></script>
-    <script src="${pageContext.request.contextPath}/js/login.js" defer></script>
+    <script src="${pageContext.request.contextPath}/js/validation.js" defer></script>
+   <script src="${pageContext.request.contextPath}/js/login.js" defer></script>
 
 </body>
 </html>

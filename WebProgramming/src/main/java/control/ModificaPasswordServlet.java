@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import bean.UtenteBean;
 import dao.UtenteDAO;
+import utils.ValidazioneUtente;
 
 /**
  * Servlet implementation class ModificaPasswordServlet
@@ -59,6 +60,8 @@ public class ModificaPasswordServlet extends HttpServlet {
 	    // 2. VALIDAZIONE
 	    if(nuovaPassword == null || nuovaPassword.trim().isEmpty()) {
 	        errori.add("La nuova password non può essere vuota");
+	    }else if(!ValidazioneUtente.validatePassword(nuovaPassword)) {
+	    	errori.add("La nuova password non rispecchia i requisiti");
 	    }
 	    if(confermaPassword == null || confermaPassword.trim().isEmpty()) {
 	        errori.add("Il campo di conferma password non può essere vuoto");

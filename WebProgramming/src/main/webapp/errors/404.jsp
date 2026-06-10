@@ -31,11 +31,12 @@
             </div>
             
             <div class="error-action-box">
-               <div class="box-buttons"
-                <a href="${pageContext.request.contextPath}" class="button">Centra la Home</a>
-                ></div>
+               <div class="box-buttons">
+                <a href="${pageContext.request.contextPath}/index.jsp" class="button">Centra la Home</a>
+                </div>
             </div>
         </div>
+        
     </main>
 
 </body>

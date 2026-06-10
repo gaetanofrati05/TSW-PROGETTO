@@ -9,7 +9,22 @@
       <li><a href="#">Storia</a></li>
       <li><a href="#">Concierge</a></li>
       <li><a href="#">Clienti Onorevoli</a></li>
-      <li><a href="#">Profilo</a></li>
+      
+     <%--Verifichiamo se l'utente è loggato o meno per reindizzarlo correttamente --%>
+      <% 
+        if (session.getAttribute("utenteLoggato") != null) { 
+      %>
+          <li><a href="${pageContext.request.contextPath}/VisualizzaProfiloServlet">Mio Profilo</a></li>
+          <li><a href="${pageContext.request.contextPath}/LogoutServlet">Esci dalla lounge</a></li>
+      <% 
+        } else { 
+      %>
+          <li><a href="${pageContext.request.contextPath}/LoginServlet">Accedi/ Registrati</a></li>
+      <% 
+        } 
+      %>
+     
+      
     </ul>
   </nav>
 </header>
