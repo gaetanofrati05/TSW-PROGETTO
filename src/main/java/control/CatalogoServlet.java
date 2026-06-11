@@ -16,7 +16,7 @@ public class CatalogoServlet extends HttpServlet {
     	    ProdottoDAO dao = new ProdottoDAO();
     	    List<ProdottoBean> prodotti = dao.doRetrieveAll();
     	    request.setAttribute("prodotti", prodotti);
-    	    request.getRequestDispatcher("/catalogo.jsp").forward(request, response);
+    	    request.getRequestDispatcher("/WEB-INF/jsp/catalogo.jsp").forward(request, response);
     	} catch (SQLException e) {
     	    e.printStackTrace();
     	    response.sendError(500, "Errore nel caricamento del catalogo");

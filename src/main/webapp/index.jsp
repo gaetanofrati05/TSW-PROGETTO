@@ -11,7 +11,7 @@
 </head>
 <body>
 
-  <jsp:include page="componenti/navbar.jsp" />
+  <jsp:include page="fragments/navbar.jsp" />
   <section class="main">
   	<div class="main-content">
 	  	<div class="main-goldtext">Est. MDCCCLXXXV · Quiet Luxury for the Throne</div>
@@ -20,7 +20,7 @@
 	  	<a href="catalogo.jsp" class="main-explore">ESPLORA LE DESTINAZIONI →</a>
   	</div>
   	<div class="main-image">
-  		<img src="componenti/img/home.png" alt="Royal Rest">
+  		<img src="img/home.png" alt="Royal Rest">
   	</div>
   </section>
  

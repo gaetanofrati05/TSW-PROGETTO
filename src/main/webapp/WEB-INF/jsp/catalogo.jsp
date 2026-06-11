@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="css/componenti.css">
 </head>
 <body>
-  <jsp:include page="componenti/navbar.jsp" />
+  <jsp:include page="../../fragments/navbar.jsp" />
   
   <section class="catalogo">
     <!-- barra ricerca -->
