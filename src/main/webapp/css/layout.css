@@ -68,3 +68,61 @@ nav ul {
         .main-content { padding: 100px 24px 60px 24px; }
     	.main { grid-template-columns: 1fr;  /*una sola colonna su mobile*/}
 }
+
+
+/*catalogo*/
+.catalogo {
+    padding: 160px 52px 120px 52px; /*spazio sopra per non sovrapporsi alla navbar fissa*/
+}
+.catalogo-search {
+    margin-bottom: 64px;
+    display: flex;
+    justify-content: center; /*centra l'input orizzontalmente*/
+}
+.catalogo-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /*4 colonne di larghezza uguale*/
+    gap: 2px; /*spazio minimo tra le card*/
+}
+.catalogo-vuoto {
+    grid-column: 1 / -1; /*occupa tutta la larghezza della griglia*/
+    text-align: center;
+    padding: 80px 0;
+}
+
+.catalogo-search input {
+    width: 100%;
+    max-width: 480px; /*non si allarga troppo su schermi grandi*/
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--oro); /*solo linea inferiore, stile minimale*/
+    padding: 14px 4px;
+    outline: none; /*rimuove il contorno blu di default al focus*/
+    text-align: center;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    color: var(--nero);
+}
+.catalogo-search input::placeholder {
+    color: var(--pietra);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: 10px;
+}
+
+/*responsive*/
+@media (max-width: 1024px) {
+    .catalogo-grid {
+        grid-template-columns: repeat(2, 1fr); /*2 colonne su tablet*/
+    }
+}
+@media (max-width: 768px) {
+    .catalogo {
+        padding: 120px 24px 80px 24px; /*meno spazio su mobile*/
+    }
+    .catalogo-grid {
+        grid-template-columns: 1fr; /*1 colonna su mobile*/
+    }
+}

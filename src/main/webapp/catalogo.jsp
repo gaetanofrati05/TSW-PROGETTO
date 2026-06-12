@@ -7,19 +7,17 @@
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/componenti.css">
+  <link rel="stylesheet" href="css/animazioni.css">
 </head>
 <body>
   <jsp:include page="/fragments/navbar.jsp" />
-  
-  <section class="catalogo">
-    <!-- barra ricerca -->
-    <div class="catalogo-search">
-      <input type="text" placeholder="Cerca la tua tavoletta...">
-    </div>
-    </section>
+
     
     
     <section class="catalogo" id="catalogo">
+    <div class="catalogo-search">
+      <input type="text" placeholder="Cerca la tua tavoletta...">
+    </div>
     <div class="catalogo-grid">
 
         <% 
