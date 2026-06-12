@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import bean.ProdottoBean;
 import dao.ProdottoAdminDAO;
 
-
+//Serve esclusivamente a mostrare all'amministratore il catalogo completo di tutti i prodotti attualmente salvati nel database. 
 @WebServlet("/VisualizzaProdottiServlet")
 public class VisualizzaProdottiServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
