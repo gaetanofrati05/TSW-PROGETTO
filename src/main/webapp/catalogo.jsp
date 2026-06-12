@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="css/componenti.css">
 </head>
 <body>
-  <jsp:include page="../../fragments/navbar.jsp" />
+  <jsp:include page="/fragments/navbar.jsp" />
   
   <section class="catalogo">
     <!-- barra ricerca -->
@@ -24,12 +24,13 @@
 
         <% 
             List<ProdottoBean> prodotti = (List<ProdottoBean>) request.getAttribute("prodotti");
-            for(ProdottoBean p : prodotti) { 
+            if (prodotti != null && !prodotti.isEmpty()) {
+                for(ProdottoBean p : prodotti) { 
         %>
             <div class="card">
-           		<div class="card-img-wrap">
-    				<img src="<%= p.getImmagine() %>" alt="<%= p.getNome() %>">
-				</div>
+                <div class="card-img-wrap">
+                    <img src="<%= p.getImmagine() %>" alt="<%= p.getNome() %>">
+                </div>
                 <div class="card-body">
                     <div class="card-location"><%= p.getStile() %></div>
                     <h3><%= p.getNome() %></h3>
@@ -40,7 +41,13 @@
                     </div>
                 </div>
             </div>
-        <% } %>
+        <%      } 
+            } else { 
+        %>
+            <div class="catalogo-vuoto">
+                <p>Al momento non ci sono prodotti disponibili nel catalogo.</p>
+            </div>
+        <%  } %>
 
 	</div>
 	</section>

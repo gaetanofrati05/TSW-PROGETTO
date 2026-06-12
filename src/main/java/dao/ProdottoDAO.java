@@ -1,5 +1,5 @@
-//da sistemare.
 package dao;
+
 import bean.ProdottoBean;
 import java.sql.*;
 import java.util.*;
@@ -14,7 +14,7 @@ public class ProdottoDAO {
         List<ProdottoBean> prodotti = new ArrayList<>();
         String query = "SELECT * FROM PRODOTTO";
         try {
-            connection = DriverManagerConnectionPool.getConnection();
+            connection = ConnectionPool.getConnection(); 
             preparedStatement = connection.prepareStatement(query);
             result = preparedStatement.executeQuery();
             while (result.next()) {
@@ -27,6 +27,8 @@ public class ProdottoDAO {
                 p.setPrezzo(result.getFloat("prezzo"));
                 p.setQuantita(result.getInt("quantita"));
                 p.setDescrizione(result.getString("descrizione"));
+                p.setImmagine(result.getString("immagine"));
+                prodotti.add(p); 
             }
         } finally {
             if (result != null) result.close();
@@ -65,36 +67,5 @@ public class ProdottoDAO {
             ConnectionPool.releaseConnection(connection);
         }
         return p;
-    }
-
-    // Ricerca per nome (per la barra di ricerca AJAX)
-    public synchronized List<ProdottoBean> doRetrieveByNome(String nome) throws SQLException {
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-        ResultSet result = null;
-        List<ProdottoBean> prodotti = new ArrayList<>();
-        String query = "SELECT * FROM PRODOTTO WHERE nome LIKE ?";
-        try {
-            connection = ConnectionPool.getConnection();
-            preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, "%" + nome + "%");
-            result = preparedStatement.executeQuery();
-            while (result.next()) {
-                ProdottoBean p = new ProdottoBean();
-                p.setIdProdotto(result.getInt("idProdotto"));
-                p.setNome(result.getString("nome"));
-                p.setStile(result.getString("stile"));
-                p.setColore(result.getString("colore"));
-                p.setDimensioni(result.getString("dimensioni"));
-                p.setPrezzo(result.getFloat("prezzo"));
-                p.setQuantita(result.getInt("quantita"));
-                p.setDescrizione(result.getString("descrizione"));
-            }
-        } finally {
-            if (result != null) result.close();
-            if (preparedStatement != null) preparedStatement.close();
-            ConnectionPool.releaseConnection(connection);
-        }
-        return prodotti;
     }
 }

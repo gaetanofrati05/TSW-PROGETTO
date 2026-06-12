@@ -81,5 +81,20 @@ public class ProdottoBean {
     public void setDescrizione(String descrizione) {
         this.descrizione = descrizione;
     }
+    public String getImmagine() {
+        return immagine;
+    }
+
+    public void setImmagine(String immagine) {
+        this.immagine = immagine;
+    }
+
+    public String getStato() {
+        return stato;
+    }
+
+    public void setStato(String stato) {
+        this.stato = stato;
+    }
 }
 
