@@ -1,0 +1,13 @@
+:root {
+    --crema: #F6F3ED;
+    --oro: #b89a5a;
+    --nero: #14181B;
+    --pietra: #5A6670;
+    --seta-grezza: #EFECE4;   /* Un crema leggermente più ombroso, perfetto per staccare dal tuo --crema */
+    --marmo-calacatta: #FAF9F6; /* Un quasi-bianco caldissimo e luminosissimo, per far risaltare elementi speciali */
+    --argilla-chiara: #DFDBCF;  /* Un tono cemento/argilla finissima per linee di separazione o bordi discreti */
+    --bronzo-brunito: #4A4439; /* Un marrone scurissimo con riflessi caldi. Meno aggressivo del nero per i testi lunghi */
+    --ardesia-velata: #3E474F;  /* Una versione più profonda del tuo --pietra, per dare intensità a sottotitoli o hover */
+    --ottone-antico: #8A754B;   /* La versione "ombra" del tuo --oro. Perfetto per i testi dei bottoni o piccoli dettagli */
+    --bg-pure: #FAF9F6;
+}
