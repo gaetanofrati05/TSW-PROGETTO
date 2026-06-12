@@ -1,4 +1,3 @@
-
 -- 1. RESET E CREAZIONE DEL DATABASE
 DROP DATABASE IF EXISTS TheRoyalRest;
 CREATE DATABASE IF NOT EXISTS TheRoyalRest;
@@ -6,15 +5,14 @@ USE TheRoyalRest;
 
 -- Tabella: Utente
 CREATE TABLE Utente (
-    email VARCHAR(255)  PRIMARY KEY,
-    password_hash VARCHAR(255) NOT NULL
+    email VARCHAR(255) PRIMARY KEY,
+    password_hash VARCHAR(255) NOT NULL,
     nome VARCHAR(50) NOT NULL,
     cognome VARCHAR(50) NOT NULL,
-   //rimossa eta perchè ridondante con dataNascita
     dataNascita DATE NOT NULL,
     nazionalita VARCHAR(20) NOT NULL,
-    prefisso VARCHAR(10) NOT NULL,        
-    cellulare VARCHAR(20) NOT NULL,       
+    prefisso VARCHAR(10) NOT NULL,
+    cellulare VARCHAR(20) NOT NULL,
     num_ordinazioni INT DEFAULT 0,
     isAdmin BOOLEAN DEFAULT FALSE
 );
@@ -25,15 +23,14 @@ CREATE TABLE Prodotto (
     nome VARCHAR(50) NOT NULL,
     stile VARCHAR(10) DEFAULT 'neutro' NOT NULL,
     colore VARCHAR(10) DEFAULT '#ffffff' NOT NULL,
-    dimensioni VARCHAR(50) NOT NULL, //passato a VARCHAR perchè altrimenti servirebbe altezza, larghezza, dimensione buco...
+    dimensioni VARCHAR(50) NOT NULL,
     prezzo FLOAT DEFAULT 0.0 NOT NULL,
-    quantita INT DEFAULT 0,               
-    descrizione VARCHAR(250) NOT NULL
+    quantita INT DEFAULT 0,
+    descrizione VARCHAR(250) NOT NULL,
+    immagine VARCHAR(255) DEFAULT NULL
 );
 
-
-
--- Tabella: Ordinazione (Dipende da Utente)
+-- Tabella: Ordinazione
 CREATE TABLE Ordinazione (
     idOrdinazione INT AUTO_INCREMENT PRIMARY KEY,
     citta VARCHAR(20) NOT NULL,
@@ -46,7 +43,7 @@ CREATE TABLE Ordinazione (
     FOREIGN KEY (fk_utente_email) REFERENCES Utente(email) ON DELETE RESTRICT
 );
 
--- Tabella: Recensione (Dipende da Prodotto)
+-- Tabella: Recensione
 CREATE TABLE Recensione (
     idRecensione INT AUTO_INCREMENT PRIMARY KEY,
     data_Recensione DATE NOT NULL,
@@ -56,17 +53,16 @@ CREATE TABLE Recensione (
     FOREIGN KEY (fk_Prodotto_idProdotto) REFERENCES Prodotto(idProdotto) ON DELETE CASCADE
 );
 
-
--- Tabella: Valutazione (Relazione Utente <-> Recensione)
+-- Tabella: Valutazione
 CREATE TABLE Valutazione (
     fk_Valutazione_email VARCHAR(50) NOT NULL,
     fk_Valutazione_idRecensione INT NOT NULL,
     FOREIGN KEY (fk_Valutazione_email) REFERENCES Utente(email) ON DELETE CASCADE,
     FOREIGN KEY (fk_Valutazione_idRecensione) REFERENCES Recensione(idRecensione) ON DELETE CASCADE,
-    PRIMARY KEY (fk_Valutazione_email, fk_Valutazione_idRecensione) 
+    PRIMARY KEY (fk_Valutazione_email, fk_Valutazione_idRecensione)
 );
 
--- Tabella: Composizione (Relazione Ordinazione <-> Prodotto)
+-- Tabella: Composizione
 CREATE TABLE Composizione (
     fk_Composizione_idOrdinazione INT NOT NULL,
     fk_Composizione_idProdotto INT NOT NULL,
