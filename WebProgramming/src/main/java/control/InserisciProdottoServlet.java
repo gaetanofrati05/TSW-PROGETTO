@@ -27,7 +27,7 @@ public class InserisciProdottoServlet extends HttpServlet {
 		float prezzo= Float.parseFloat(request.getParameter("prezzo"));
 		int quantita= Integer.parseInt(request.getParameter("quantita"));
 		String descrizione= request.getParameter("descrizione");
-		
+		String immagine= request.getParameter("immagine");
 		//si impacchetta tutto nel ProdottoBean
 		ProdottoBean nuovoProdotto = new ProdottoBean();
 		nuovoProdotto.setNome(nome);
@@ -37,7 +37,7 @@ public class InserisciProdottoServlet extends HttpServlet {
 		nuovoProdotto.setPrezzo(prezzo);
 		nuovoProdotto.setQuantita(quantita);
 		nuovoProdotto.setDescrizione(descrizione);
-		
+		nuovoProdotto.setImmagine(immagine);
 		ProdottoAdminDAO pad = new ProdottoAdminDAO();
 		
 		try {
