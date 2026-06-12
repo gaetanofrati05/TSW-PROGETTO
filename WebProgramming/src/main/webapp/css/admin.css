@@ -1,0 +1,270 @@
+@charset "UTF-8";
+/*File CSS che conteine le classi utili per le pagine della sezione ADMIN*/
+
+/* 1. Componenti Avanzati del Form */
+.custom-textarea {
+    width: 100%;
+    padding: 0.8rem 0;
+    font-size: 1.05rem;
+    font-family: inherit;
+    color: var(--nero, #14181B);
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(90, 102, 112, 0.2);
+    resize: vertical;
+    transition: border-color 0.4s ease;
+}
+
+.custom-textarea:focus {
+    outline: none;
+    border-bottom: 1px solid var(--oro, #b89a5a);
+}
+
+/* 2. Struttura e Contenitori dell'Area Gestionale */
+.admin-container {
+    max-width: 1200px;
+    margin: 4rem auto;
+    padding: 0 2rem;
+    box-sizing: border-box;
+}
+
+.admin-section-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 2.2rem;
+    color: var(--bronzo-brunito, #4A4439);
+    margin-bottom: 1.5rem;
+    font-style: italic;
+    font-weight: 400;
+}
+
+/* 3. Stilizzazione delle Tabelle (Per Catalogo Prodotti e Gestione Ordini) */
+.admin-table-wrapper {
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(90, 102, 112, 0.04);
+    border: 1px solid var(--argilla-chiara, #DFDBCF);
+    overflow: hidden;
+    margin-top: 2rem;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.95rem;
+}
+
+.admin-table th {
+    background-color: var(--seta-grezza, #EFECE4);
+    color: var(--bronzo-brunito, #4A4439);
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.12rem;
+    padding: 1.2rem 1.5rem;
+    border-bottom: 1px solid var(--argilla-chiara, #DFDBCF);
+}
+
+.admin-table td {
+    padding: 1.2rem 1.5rem;
+    color: var(--pietra, #5A6670);
+    border-bottom: 1px solid rgba(223, 219, 207, 0.4);
+    vertical-align: middle;
+}
+
+/* Rimuove la linea di separazione dall'ultima riga */
+.admin-table tr:last-child td {
+    border-bottom: none;
+}
+
+/* Effetto Hover elegante sulle righe del catalogo */
+.admin-table tr:hover td {
+    background-color: rgba(246, 243, 237, 0.5); /* Sfumatura impercettibile sul crema */
+    color: var(--nero, #14181B);
+}
+
+/* 4. Bottoni di Azione nel Catalogo (Modifica ed Eliminazione) */
+.btn-action {
+    padding: 0.5rem 1rem;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08rem;
+    font-weight: 500;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    margin-right: 0.4rem;
+}
+
+/* Bottone Modifica: Stile Oro/Ottone raffinato */
+.btn-edit {
+    background-color: transparent;
+    color: var(--ottone-antico, #8A754B);
+    border: 1px solid var(--oro, #b89a5a);
+}
+.btn-edit:hover {
+    background-color: var(--oro, #b89a5a);
+    color: #ffffff;
+}
+
+/* Bottone Elimina: Rosso scuro desaturato (non aggressivo, in linea con il luxury) */
+.btn-delete {
+    background-color: transparent;
+    color: #A64444;
+    border: 1px solid #A64444;
+}
+.btn-delete:hover {
+    background-color: #A64444;
+    color: #ffffff;
+}
+
+/* 5. Badge di Stato per le scorte di Magazzino (Utility facoltativa) */
+.badge-stock {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    border-radius: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.04rem;
+    display: inline-block;
+}
+
+.stock-disponibile {
+    background-color: rgba(46, 204, 113, 0.1);
+    color: #27ae60;
+}
+
+.stock-limitato {
+    background-color: rgba(230, 126, 34, 0.1);
+    color: #d35400;
+}
+
+.stock-esaurito {
+    background-color: rgba(231, 76, 60, 0.1);
+    color: #c0392b;
+}
+
+.admin-page-bg {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(135deg, var(--crema, #F6F3ED) 0%, var(--seta-grezza, #EFECE4) 100%);
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+}
+
+.admin-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 6rem 2rem 5rem 2rem;
+    box-sizing: border-box;
+}
+
+.admin-heading-box {
+    text-align: center;
+    margin-bottom: 3.5rem;
+}
+
+.admin-title-luxury {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 3.8rem;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--bronzo-brunito, #4A4439); 
+    margin: 0 0 1.2rem 0;
+    line-height: 1.2;
+}
+
+.admin-subtitle-luxury {
+    font-size: 1rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    color: var(--oro, #b89a5a); 
+    letter-spacing: 0.3rem; 
+    margin: 0;
+}
+
+.admin-card-luxury {
+    background-color: #ffffff; 
+    border-radius: 24px; 
+    box-shadow: 0 20px 50px rgba(90, 102, 112, 0.08);
+    border: 1px solid rgba(223, 219, 207, 0.4);
+    padding: 4.5rem 4rem;
+    width: 100%;
+    max-width: 460px;
+    box-sizing: border-box;
+}
+
+.admin-form-group {
+    margin-bottom: 2.8rem;
+    text-align: left;
+}
+
+.admin-label {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18rem;
+    color: var(--pietra, #5A6670);
+    margin-bottom: 1.2rem;
+    font-weight: 500;
+}
+
+.admin-input {
+    width: 100%;
+    padding: 0.8rem 0;
+    font-size: 1.05rem;
+    font-weight: 300;
+    color: var(--nero, #14181B);
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(90, 102, 112, 0.2);
+    border-radius: 0;
+    box-sizing: border-box;
+    transition: border-color 0.4s ease, letter-spacing 0.4s ease;
+}
+
+.admin-input:focus {
+    outline: none;
+    border-bottom: 1px solid var(--oro, #b89a5a);
+}
+
+.btn-admin-submit {
+    width: 100%;
+    padding: 1.2rem;
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.22rem;
+    font-weight: 500;
+    background-color: var(--nero, #14181B);
+    color: var(--crema, #F6F3ED);
+    border: 1px solid var(--nero, #14181B);
+    border-radius: 12px; 
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.btn-admin-submit:hover {
+    background-color: transparent;
+    color: var(--nero, #14181B);
+}
+
+.admin-redirect-box {
+    margin-top: 2.2rem; 
+    text-align: center;
+    font-size: 0.85rem;
+}
+
+.admin-link {
+    color: var(--oro, #b89a5a); 
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
