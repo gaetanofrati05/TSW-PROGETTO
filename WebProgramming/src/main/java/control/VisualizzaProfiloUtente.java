@@ -38,7 +38,7 @@ public class VisualizzaProfiloUtente extends HttpServlet {
 	 */
 	public void init(ServletConfig config) throws ServletException {
 		ordinazioneDAO= new OrdinazioneDAO();
-		prodottoDAO= new ProdottoDAO();
+		//prodottoDAO= new ProdottoDAO();
 	}
 
 	/**
@@ -56,7 +56,7 @@ public class VisualizzaProfiloUtente extends HttpServlet {
 		String email= utente.getEmail();
 		try {
 			List<OrdinazioneBean> listaOrdinazioni= ordinazioneDAO.doStampaListaOrdinazione(email);
-		List<ProdottoBean> listaProdotti= prodottoDAO.doStampaListaProdotti(email); //metodo che ha creato massimo
+		    List<ProdottoBean> listaProdotti= prodottoDAO.doStampaListaProdotti(email); //metodo che ha creato massimo
 			request.setAttribute("listaOrdinazioni", listaOrdinazioni);
 			request.setAttribute("listaProdotti", listaProdotti);
 			request.getRequestDispatcher("/WEB-INF/jsp/profilo.jsp").forward(request,response);

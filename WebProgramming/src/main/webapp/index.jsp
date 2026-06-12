@@ -18,7 +18,7 @@
 	  	<div class="main-goldtext">Est. MDCCCLXXXV · Quiet Luxury for the Throne</div>
 	  	<h1>L'eleganza si siede in <span class="oro">silenzio</span></h1>
 	  	<p>da scrivere</p>
-	  	<a href="catalogo.jsp" class="main-explore">ESPLORA LE DESTINAZIONI →</a>
+	  	<a href="${pageContext.request.contextPath}/CatalogoServlet" class="main-explore">ESPLORA LE DESTINAZIONI →</a>
   	</div>
   	<div class="main-image">
   		<img src="img/home.png" alt="Royal Rest">

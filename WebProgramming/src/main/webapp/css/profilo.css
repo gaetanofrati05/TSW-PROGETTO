@@ -13,7 +13,7 @@
 
 .profilo{
 	position: absolute;
-	padding: 3.5rem, 2rem, 2.5rem, 8px;
+	padding: 3.5rem 2rem 2.5rem 8px;
 	border-bottom: 0.5px solid var(--argilla-chiara) /*linea sottile che divide le sezioni*/
 	
 }
@@ -39,4 +39,159 @@
 	letter-spacing: 0.2rem;
 	color: var(--pietra);
 	font-weight: 300;
+}
+.lista-prodotti{
+	padding:2.5rem 0 2rem 8%;
+	border-bottom: 0.5px solid var(--argilla-chiara)
+}
+.prodotti-track{
+	display: flex;
+	gap: 1rem; 
+	overflow-x: auto;
+    padding-right: 2rem;
+    scrollbar-width: thin; /*per creare la barra di movimento*/
+    scrollbar-color:  var(--seta-grezza) transparent;
+}
+.prodotto-card{
+	flex: 0  0 180px;
+	border-bottom: 0.5px solid var(--argilla-chiara);
+	padding: 1.25rem 1rem;
+	cursor: pointer;
+	transition: border-color 03s;
+}
+.prodotto-card:hover{
+	 border-color: rgba(201,169,110,0.7);
+}
+.prodotto-name {
+    font-family: 'Georgia', serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--nero);
+    margin-bottom: 4px;
+}
+.prodotto-stile {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--pietra);
+    margin-bottom: 1rem;
+}
+
+.prodotto-prezzo {
+    font-size: 13px;
+    color: var(--oro);
+    font-weight: 500;
+}
+
+.prodotto-quantita {
+    font-size: 11px;
+    color: var(--pietra);
+    margin-top: 4px;
+}
+.storico-ordini {
+    padding: 2.5rem 8%;
+    border-bottom: 0.5px solid rgba(201,169,110,0.35);
+    flex: 1; /* occupa lo spazio rimanente spingendo il footer in fondo */
+}
+
+.section-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: var(--oro);
+    margin-bottom: 1.5rem;
+}
+
+.table-ordini {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+}
+
+.table-ordini thead tr {
+    border-bottom: 0.5px solid rgba(201,169,110,0.3);
+}
+
+.table-ordini th {
+    font-size: 9px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--pietra);
+    padding-bottom: 0.75rem;
+    font-weight: 400;
+    text-align: left;
+}
+
+.table-ordini td {
+    padding: 1rem 0;
+    color: var(--nero);
+    border-bottom: 0.5px solid rgba(0,0,0,0.06);
+}
+
+.ordini-raw:hover td {
+    background: rgba(201,169,110,0.04);
+}
+
+.empty-msg {
+    font-size: 12px;
+    color: var(--pietra);
+    letter-spacing: 0.1em;
+}
+/* MENU A TENDINA */
+.tendina-wrapper {
+    position: relative;
+}
+
+.tendina-wrapper ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    position: absolute;
+    top: 100%;
+    right: 0;
+
+    background: var(--crema);
+    border: 0.5px solid rgba(201,169,110,0.35);
+    min-width: 220px;
+
+    /* nascosto di default */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+
+    z-index: 200;
+}
+
+/* quando il menu è aperto (gestito via JS aggiungendo questa classe) */
+.tendina-wrapper.aperto ul,
+.tendina-wrapper:hover ul {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.tendina-wrapper li {
+    border-bottom: 0.5px solid rgba(201,169,110,0.15);
+}
+
+.tendina-wrapper li:last-child {
+    border-bottom: none;
+}
+
+.tendina-wrapper li a {
+    display: block;
+    padding: 14px 24px;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--nero);
+    transition: color 0.2s, background 0.2s;
+}
+
+.tendina-wrapper li a:hover {
+    color: var(--oro);
+    background: rgba(201,169,110,0.06);
 }

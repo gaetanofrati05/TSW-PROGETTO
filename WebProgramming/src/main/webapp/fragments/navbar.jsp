@@ -14,7 +14,7 @@
       <% 
         if (session.getAttribute("utenteLoggato") != null) { 
       %>
-          <li><a href="${pageContext.request.contextPath}/VisualizzaProfiloServlet">Mio Profilo</a></li>
+          <li><a href="${pageContext.request.contextPath}/VisualizzaProfiloUtente">Mio Profilo</a></li>
           <li><a href="${pageContext.request.contextPath}/LogoutServlet">Esci dalla lounge</a></li>
       <% 
         } else { 
