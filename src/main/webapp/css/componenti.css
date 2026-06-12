@@ -60,7 +60,7 @@ nav ul li a {
 
 .card-img-wrap {
     height: 300px;
-    overflow: hidden;/*l'immagine non esce dai bordi*/'
+    overflow: hidden;/*l'immagine non esce dai bordi*/
     background: var(--crema-scuro);
 }
 
