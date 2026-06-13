@@ -6,7 +6,7 @@ import java.util.*;
 
 public class ProdottoDAO {
 
-    public synchronized List<ProdottoBean> doRetrieveAll() throws SQLException {
+    public List<ProdottoBean> doRetrieveAll() throws SQLException {
         Connection connection = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -42,22 +42,23 @@ public class ProdottoDAO {
         return prodotti;
     }
 
-    public synchronized ProdottoBean doRetrieveById(int id) throws SQLException {
+    public List<ProdottoBean> doRetrieveByName(String nome) throws SQLException {
         Connection connection = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
 
-        ProdottoBean p = null;
-        String query = "SELECT * FROM Prodotto WHERE idProdotto = ?";
+        List<ProdottoBean> prodotti = new ArrayList<>();
+        String query = "SELECT * FROM Prodotto WHERE LOWER(nome) LIKE LOWER(?)";
 
         try {
             connection = ConnectionPool.getConnection();
             ps = connection.prepareStatement(query);
-            ps.setInt(1, id);
+            ps.setString(1, "%" + nome + "%");/* 1 indica la posizione del placeholder i % indicano che il nome deve essere
+            compreso nel nome del risultato*/
             rs = ps.executeQuery();
 
-            if (rs.next()) {
-                p = new ProdottoBean();
+            while (rs.next()) {
+                ProdottoBean p = new ProdottoBean();
                 p.setIdProdotto(rs.getInt("idProdotto"));
                 p.setNome(rs.getString("nome"));
                 p.setStile(rs.getString("stile"));
@@ -67,6 +68,7 @@ public class ProdottoDAO {
                 p.setQuantita(rs.getInt("quantita"));
                 p.setDescrizione(rs.getString("descrizione"));
                 p.setImmagine(rs.getString("immagine"));
+                prodotti.add(p);
             }
 
         } finally {
@@ -75,6 +77,6 @@ public class ProdottoDAO {
             ConnectionPool.releaseConnection(connection);
         }
 
-        return p;
+        return prodotti;
     }
 }
