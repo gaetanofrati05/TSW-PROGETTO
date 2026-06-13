@@ -6,11 +6,11 @@ document.addEventListener("DOMContentLoaded", function(){
 	const confermaPassword= document.getElementById("conferma-password").value;
 	let isValid=true;
 	if (!validatePassword(nuovaPassword)) {
-	    document.getElementById("password-error").style.display = "block";
+	    document.getElementById("password-error-1").style.display = "block";
 	    isValid = false;
 	            }
 	   if(!validatePassword(confermaPassword)) {
-	   document.getElementById("password-error").style.display = "block";
+	   document.getElementById("password-error-2").style.display = "block";
 		isValid = false
 								}
 		if (!isValid){ 

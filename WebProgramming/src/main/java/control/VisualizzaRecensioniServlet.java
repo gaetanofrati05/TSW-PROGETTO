@@ -1,9 +1,7 @@
 package control;
-
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
-
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,9 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import bean.RecensioneBean;
-import bean.UtenteBean;
 import dao.RecensioneDAO;
 
 /**
@@ -41,13 +37,14 @@ public class VisualizzaRecensioniServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+	//servlet che mostra tutte le recensioni
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
 		if(session==null || session.getAttribute("utenteLoggato") == null) {
 			response.sendRedirect(request.getContextPath()+ "/LoginServlet");
 			return;
 		}
-		UtenteBean utente= (UtenteBean) session.getAttribute("utenteLoggato");
+		
 		try {
 			List<RecensioneBean> listaRecensioni= recensioneDAO.doRetrieveByScoring();			
 			request.setAttribute("recensioniUtenti", listaRecensioni);
