@@ -25,10 +25,11 @@ CREATE TABLE Prodotto (
     nome VARCHAR(50) NOT NULL,
     stile VARCHAR(10) DEFAULT 'neutro' NOT NULL,
     colore VARCHAR(10) DEFAULT '#ffffff' NOT NULL,
-    dimensioni VARCHAR(50) NOT NULL, //passato a VARCHAR perchè altrimenti servirebbe altezza, larghezza, dimensione buco...
-    prezzo FLOAT DEFAULT 0.0 NOT NULL,
+    dimensioni VARCHAR(50) NOT NULL, --passato a VARCHAR perchè altrimenti servirebbe altezza, larghezza, dimensione buco...
+    prezzo DECIMAL DEFAULT 0.0 NOT NULL,
     quantita INT DEFAULT 0,               
-    descrizione VARCHAR(250) NOT NULL
+    descrizione VARCHAR(250) NOT NULL,
+    immagine VARCHAR(255)
 );
 
 
