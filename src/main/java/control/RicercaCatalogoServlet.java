@@ -1,3 +1,5 @@
+package control;
+
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -11,6 +13,8 @@ import dao.ProdottoDAO;
 
 @WebServlet("/ricerca/prodotti")
 public class RicercaCatalogoServlet extends HttpServlet {
+
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<ProdottoBean> prodotti=null;
         String nome = request.getParameter("nome");
@@ -27,8 +31,9 @@ public class RicercaCatalogoServlet extends HttpServlet {
             request.setAttribute("prodotti", prodotti);
                  request.getRequestDispatcher("/fragments/catalogo-grid.jsp").forward(request, response);
     }
-    catch(SQLException e){
-        e.printStackTrace();
-    }
+        catch (SQLException e) {
+            e.printStackTrace();
+            throw new ServletException(e);
+        }
     }
 }

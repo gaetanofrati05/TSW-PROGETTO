@@ -23,5 +23,9 @@
 	</div>
 	</section>
 
+  <script>
+    const contextPath = "${pageContext.request.contextPath}";
+  </script>
+  <script src="${pageContext.request.contextPath}/js/catalogo.js"></script>
 </body>
 </html>
