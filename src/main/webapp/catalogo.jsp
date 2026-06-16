@@ -13,42 +13,15 @@
   <jsp:include page="/fragments/navbar.jsp" />
 
     
-    
-    <section class="catalogo" id="catalogo">
+  <section class="catalogo" id="catalogo">
     <div class="catalogo-search">
-      <input type="text" placeholder="Cerca la tua tavoletta...">
+            <input type="text" name="nome" id="barraRicerca" placeholder="Cerca la tua tavoletta...">
     </div>
-    <div class="catalogo-grid">
+    <div class="catalogo-grid" id="catalogoGrid">
 
-        <% 
-            List<ProdottoBean> prodotti = (List<ProdottoBean>) request.getAttribute("prodotti");
-            if (prodotti != null && !prodotti.isEmpty()) {
-                for(ProdottoBean p : prodotti) { 
-        %>
-            <div class="card">
-                <div class="card-img-wrap">
-                    <img src="<%= p.getImmagine() %>" alt="<%= p.getNome() %>">
-                </div>
-                <div class="card-body">
-                    <div class="card-location"><%= p.getStile() %></div>
-                    <h3><%= p.getNome() %></h3>
-                    <p><%= p.getDescrizione() %></p>
-                    <div class="card-footer">
-                        <span class="card-price">€<%= p.getPrezzo() %></span>
-                        <a href="prodotto?id=<%= p.getIdProdotto() %>" class="card-link">Scopri →</a>
-                    </div>
-                </div>
-            </div>
-        <%      } 
-            } else { 
-        %>
-            <div class="catalogo-vuoto">
-                <p>Al momento non ci sono prodotti disponibili nel catalogo.</p>
-            </div>
-        <%  } %>
-
+        <jsp:include page="/fragments/catalogo-grid.jsp" />
 	</div>
 	</section>
-      
+
 </body>
 </html>
