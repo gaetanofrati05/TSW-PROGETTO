@@ -28,13 +28,13 @@ public class ValidazioneUtente {
 	    return matcher.matches();
 	}
      public static boolean validateNome(String nome) {
-    	 String regex= "[A-Za-zàèòù^0-9]+{4,30}";
+    	 String regex= "[A-Za-zàèòù\\s'-]+{4,30}";
     	 Pattern pattern= Pattern.compile(regex);
     	 Matcher matcher= pattern.matcher(nome);
     	 return matcher.matches();
      }
      public static boolean validateCognome(String cognome) {
-    	 String regex= "[A-Za-zàèòù^0-9]+{4,30}";
+    	 String regex= "[A-Za-zàèòù\\s'-]+{4,30}";
     	 Pattern pattern= Pattern.compile(regex);
     	 Matcher matcher= pattern.matcher(cognome);
     	 return matcher.matches();

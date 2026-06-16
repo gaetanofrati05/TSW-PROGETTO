@@ -3,6 +3,7 @@ package control;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -32,7 +33,13 @@ public class LogoutServlet extends HttpServlet {
 			session.invalidate();
 			
 		}
-		response.sendRedirect(request.getContextPath()+ "/jsp/login.jsp");
+		Cookie cookieEmail = new Cookie("rememberMeEmail", ""); //cancelliamo i cookie sovrascrivendoli e settando la loro età a 0
+	    Cookie cookiePassword = new Cookie("rememberMePassword", "");
+	    cookieEmail.setMaxAge(0);
+	    cookiePassword.setMaxAge(0);
+	    cookieEmail.setPath(request.getContextPath());
+	    cookiePassword.setPath(request.getContextPath());
+		response.sendRedirect(request.getContextPath()+ "/LoginServlet");
 	}
 	
 	

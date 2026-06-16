@@ -39,7 +39,7 @@ public class RegistrazioneServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/jsp/registrazione.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/registrazione.jsp").forward(request, response);
 	}
 
 	/**
@@ -67,7 +67,7 @@ public class RegistrazioneServlet extends HttpServlet {
 		
 		String nome= request.getParameter("nome");
 		if(nome==null || nome.trim().isEmpty()) {
-			errori.add("Il campo nome utente non può essere vuoto");
+			errori.add("Il campo nome non può essere vuoto");
 		}
 		else if(!ValidazioneUtente.validateNome(nome)) {
 			errori.add("Nome non valido");
@@ -77,7 +77,7 @@ public class RegistrazioneServlet extends HttpServlet {
 		if(cognome==null || cognome.trim().isEmpty()) {
 			errori.add("Il campo cognome non può essere vuoto");
 		}
-		if(!ValidazioneUtente.validateCognome(cognome)) {
+		else if(!ValidazioneUtente.validateCognome(cognome)) {
 			errori.add("Cognome non valido");
 		}
 		
@@ -85,9 +85,9 @@ public class RegistrazioneServlet extends HttpServlet {
 		java.util.Date dataNascita = null;
 		if (dataNascitaStr != null && !dataNascitaStr.isEmpty()) {
 		    java.time.LocalDate localDate = java.time.LocalDate.parse(dataNascitaStr);
-		    // Converte il LocalDate nel java.util.Date che si aspetta il Bean
 		    dataNascita = java.sql.Date.valueOf(localDate); 
-		}
+		} 
+		
 		String nazionalita= request.getParameter("nazionalita");
 		
 		String prefisso= request.getParameter("prefisso");
@@ -102,7 +102,7 @@ public class RegistrazioneServlet extends HttpServlet {
 		
 		if(!errori.isEmpty()) {
 			request.setAttribute("errore", errori);
-			request.getRequestDispatcher("/jsp/registrazione.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/jsp/registrazione.jsp").forward(request, response);
 			return;
 		}
 		
@@ -122,7 +122,7 @@ public class RegistrazioneServlet extends HttpServlet {
 		response.sendRedirect(request.getContextPath()+ "/LoginServlet?registrato=true");
 	    }catch(SQLException e) {
 	    	e.printStackTrace();
-	    	response.sendError(0); //qui devo creare la pagina di errore con XML
+	    	throw new ServletException("Errore nel database durante la registrazione", e);
 	    }
 		
 	}

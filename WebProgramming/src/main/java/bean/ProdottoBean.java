@@ -1,7 +1,6 @@
 package bean;
-import java.io.Serializable;
-public class ProdottoBean  implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class ProdottoBean {
+	
 	private int idProdotto;
 	private String nome;
 	private String stile;
@@ -10,7 +9,10 @@ public class ProdottoBean  implements Serializable {
 	private float prezzo;
 	private int quantita;
 	private String descrizione;
-	
+	private String immagine;
+	private String stato; //bisogna aggiungere anche lo stato abbiamo detto che ci stava anche la possibilità di tracciare
+	// e vedere lo stato ordine
+	// + getter e setter
 	public ProdottoBean() {
     
 	}
@@ -18,6 +20,7 @@ public class ProdottoBean  implements Serializable {
     public int getIdProdotto() {
         return idProdotto;
     }
+    
 
     public void setIdProdotto(int idProdotto) {
         this.idProdotto = idProdotto;
@@ -77,6 +80,21 @@ public class ProdottoBean  implements Serializable {
 
     public void setDescrizione(String descrizione) {
         this.descrizione = descrizione;
+    }
+    public String getImmagine() {
+        return immagine;
+    }
+
+    public void setImmagine(String immagine) {
+        this.immagine = immagine;
+    }
+
+    public String getStato() {
+        return stato;
+    }
+
+    public void setStato(String stato) {
+        this.stato = stato;
     }
 }
 

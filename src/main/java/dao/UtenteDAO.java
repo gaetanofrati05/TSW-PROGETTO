@@ -7,10 +7,10 @@ import java.sql.SQLException;
 public class UtenteDAO {
 
 	//Metodo per inserire un nuovo utente nel database
-	public synchronized void doSave(UtenteBean utente)throws SQLException {
+	public void doSave(UtenteBean utente)throws SQLException {
 		Connection connection=null;
 	    PreparedStatement preparedStatement=null;
-	    String insertQuery= "INSERT INTO UTENTE (email, password_hash, nome,cognome, dataNascita, nazionalita,"
+	    String insertQuery= "INSERT INTO Utente (email, password_hash, nome,cognome, dataNascita, nazionalita,"
 	    		+ "prefisso,cellulare, num_ordinazioni, isAdmin) VALUES(?,?,?,?,?,?,?,?,?,?)";
 	    try {
 	    	connection= ConnectionPool.getConnection(); //prendo la connessione dal pool
@@ -39,12 +39,12 @@ public class UtenteDAO {
 	    }
 	}
 	//Metodo per il login per cercare un utente se già è registrato o meno nel database
-	public synchronized UtenteBean doRetrieveByEmailAndPassword(String email, String password)throws SQLException {
+	public  UtenteBean doRetrieveByEmailAndPassword(String email, String password)throws SQLException {
 		Connection connection=null;
 		PreparedStatement preparedStatement = null;
 		ResultSet result=null;
 		UtenteBean utente=null;
-		String trovaUtenteSQL= "SELECT * FROM UTENTE WHERE email= ? AND hash_password= ?";
+		String trovaUtenteSQL= "SELECT * FROM Utente WHERE email= ? AND password_hash= ?";
 		try {
 			connection=ConnectionPool.getConnection();
 			preparedStatement= connection.prepareStatement(trovaUtenteSQL);
@@ -54,7 +54,7 @@ public class UtenteDAO {
 			if(result.next()) {
 				utente= new UtenteBean();
 				utente.setEmail(result.getString("email"));
-				utente.setHashPassword(result.getString("hash_password"));
+				utente.setHashPassword(result.getString("password_hash"));
 				utente.setNome(result.getString("nome"));
 				utente.setCognome(result.getString("cognome"));
 				utente.setData(result.getDate("dataNascita"));
@@ -76,10 +76,10 @@ public class UtenteDAO {
 		return utente;
 	}
 	//Metodo che permette all'utente di modificare le proprie informazioni
-	public synchronized void doUpdate(UtenteBean utente)throws SQLException {
+	public void doUpdate(UtenteBean utente)throws SQLException {
 		Connection connection=null;
 		PreparedStatement preparedStatement = null;
-		String updateQuery= "UPDATE UTENTE SET  nome=?, cognome=?, dataNascita=?, nazionalita=?, prefisso=?, cellulare=? WHERE email=?";
+		String updateQuery= "UPDATE Utente SET  nome=?, cognome=?, dataNascita=?, nazionalita=?, prefisso=?, cellulare=? WHERE email=?";
 		try {
 			connection= ConnectionPool.getConnection();
 			preparedStatement= connection.prepareStatement(updateQuery);
@@ -105,10 +105,10 @@ public class UtenteDAO {
 		}
 	}
 	//Metodo specifico per il cambio della password
-	public synchronized void doUpdatePassword(String email, String nuovaPassword)throws SQLException {
+	public void doUpdatePassword(String email, String nuovaPassword)throws SQLException {
 		Connection connection=null;
 		PreparedStatement preparedStatement=null;
-		String updatePassword= "UPDATE UTENTE SET hash_password=? WHERE email=?";
+		String updatePassword= "UPDATE Utente SET password_hash=? WHERE email=?";
 		try {
 		connection= ConnectionPool.getConnection();
 		preparedStatement= connection.prepareStatement(updatePassword);
@@ -120,6 +120,51 @@ public class UtenteDAO {
 	    		preparedStatement.close();
 	    	}
 	    ConnectionPool.releaseConnection(connection);
+		}
+	}
+	public void doDeleteUtente(UtenteBean utente)throws SQLException {
+		Connection connection=null;
+		PreparedStatement  psUtente=null;
+		String deleUtente= "DELETE FROM Utente WHERE email=?";
+		try {
+			connection= ConnectionPool.getConnection();
+			psUtente= connection.prepareStatement(deleUtente);
+			psUtente.setString(1, utente.getEmail());
+			psUtente.executeUpdate();
+		}finally {
+			if(psUtente!=null) {
+				psUtente.close();
+			}
+			ConnectionPool.releaseConnection(connection);
+		}
+	}
+	public UtenteBean doRetrieveByEmail(String email)throws SQLException {
+		Connection connection=null;
+		PreparedStatement psUtente=null;
+		ResultSet result=null;
+		String searchUtente= "SELECT * FROM Utente WHERE email=?";
+		try {
+			connection= ConnectionPool.getConnection();
+			psUtente= connection.prepareStatement(searchUtente);
+			psUtente.setString(1,email);
+			result= psUtente.executeQuery();
+			while(result.next()) {
+				UtenteBean utente= new UtenteBean();
+				utente.setEmail(result.getString("email"));
+				utente.setHashPassword(result.getString("hash_password"));
+				utente.setNome(result.getString("nome"));
+				utente.setCognome(result.getString("cognome"));
+				utente.setData(result.getDate("dataNascita"));
+				utente.setNazionalita(result.getString("nazionalita"));
+				utente.setPrefisso(result.getString("prefisso"));
+				utente.setCellulare(result.getString("cellulare"));
+				return utente;
+			}
+			return null;
+		}finally {
+			if (result != null) result.close();
+	        if (psUtente != null) psUtente.close();
+	        ConnectionPool.releaseConnection(connection);
 		}
 	}
 }

@@ -3,21 +3,19 @@ import java.io.Serializable;
 import java.sql.Date;
 public class OrdinazioneBean implements Serializable {
     private static final long serialVersionUID = 1L;
-
     private int idOrdinazione;
     private String citta;
     private Date dataOrdinazione; 
     private float importo;
     private String indirizzo;
-    private int civico;
+    private String civico;
+    private String statoOrdinazione;
     private String cap;
     private UtenteBean utente;
 
     
     public OrdinazioneBean() {
     }
-
-    
 
     public int getIdOrdinazione() {
         return idOrdinazione;
@@ -59,20 +57,27 @@ public class OrdinazioneBean implements Serializable {
         this.indirizzo = indirizzo;
     }
 
-    public int getCivico() {
+    public String getCivico() {
         return civico;
     }
 
-    public void setCivico(int civico) {
+    public void setCivico(String civico) {
         this.civico = civico;
     }
-
     public String getCap() {
         return cap;
     }
 
     public void setCap(String cap) {
         this.cap = cap;
+    }
+
+    
+    public String getStato() {
+    	return statoOrdinazione;
+    }
+    public void setStato(String statoOrdinazione) {
+    	this.statoOrdinazione=statoOrdinazione;
     }
 
     public UtenteBean getUtente() {
