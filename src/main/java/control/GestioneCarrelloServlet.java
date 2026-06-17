@@ -77,7 +77,7 @@ public class GestioneCarrelloServlet extends HttpServlet {
     private void gestisciAggiunta(HttpServletRequest request, CarrelloBean carrello) {
     	int idProdotto= Integer.parseInt(request.getParameter("idProdotto"));
     	int quantita= request.getParameter("quantita")!=null ? Integer.parseInt(request.getParameter("quantita")):1;
-    	ProdottoBean prodotto= prodottoDAO.doRetriveByKey(prodotto); //Metodo che ha creato massimo
+    	ProdottoBean prodotto= prodottoDAO.doRetrieveById(prodotto); 
     	if(prodotto!=null) {
     		carrello.aggiungiProdotto(prodotto, quantita);
     	}

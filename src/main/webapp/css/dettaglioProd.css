@@ -1,0 +1,140 @@
+/*dettaglio prodotto - layout principale*/
+.dettaglio {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /*immagine a sinistra, info a destra, larghezza uguale*/
+    min-height: 100vh; /*occupa tutta l'altezza visibile, come fa .main nella home*/
+    padding-top: 96px; /*spazio per non sovrapporsi alla navbar fissa*/
+}
+.dettaglio-image {
+    overflow: hidden; /*l'immagine non esce dai bordi del contenitore*/
+    background: var(--seta-grezza); /*colore di sfondo visibile mentre l'immagine carica*/
+}
+.dettaglio-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /*l'immagine riempie tutto lo spazio senza deformarsi*/
+}
+.dettaglio-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /*centra verticalmente le info nella colonna*/
+    padding: 60px 80px; /*spazio interno generoso, dà respiro al testo*/
+}
+/*responsive*/
+@media (max-width: 768px) {
+    .dettaglio {
+        grid-template-columns: 1fr; /*una sola colonna su mobile, immagine sopra e info sotto*/
+        padding-top: 80px;
+    }
+    .dettaglio-image {
+        height: 360px; /*altezza fissa su mobile, altrimenti l'immagine si schiaccerebbe troppo*/
+    }
+    .dettaglio-content {
+        padding: 40px 24px;
+    }
+}
+
+
+
+/*dettaglio prodotto - testi principali*/
+.dettaglio-location {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.22em; /*lettere ben distanziate, stile etichetta come altrove nel sito*/
+    text-transform: uppercase;
+    color: var(--oro); /*colore distintivo dorato, coerente con il resto del sito*/
+    margin-bottom: 20px;
+}
+.dettaglio-nome {
+    font-family: 'Georgia', serif; /*stesso font dei titoli usato in .main h1 e .card h3*/
+    font-size: 52px; /*più grande delle card del catalogo, è il protagonista della pagina*/
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--nero);
+    margin-bottom: 28px;
+}
+.dettaglio-descrizione {
+    font-size: 15px; /*più grande del testo delle card (11px), qui ha più spazio e importanza*/
+    font-weight: 300;
+    line-height: 1.8; /*righe distanziate per leggibilità su un testo più lungo*/
+    color: var(--pietra);
+    letter-spacing: 0.02em;
+    margin-bottom: 48px;
+}
+
+
+
+
+/*dettaglio prodotto - specifiche tecniche*/
+.dettaglio-specifiche {
+    display: flex;
+    flex-direction: column;
+    gap: 14px; /*spazio tra le righe colore/dimensioni/disponibilità*/
+    margin-bottom: 48px;
+    padding: 24px 0;
+    border-top: 1px solid rgba(20, 24, 27, 0.08); /*linea sottile sopra, stessa usata in .card-footer*/
+    border-bottom: 1px solid rgba(20, 24, 27, 0.08); /*linea sottile sotto, racchiude il blocco*/
+}
+.spec-item {
+    display: flex;
+    justify-content: space-between; /*etichetta a sinistra, valore a destra*/
+    align-items: center;
+    max-width: 320px; /*non si allarga troppo, resta una lista compatta*/
+}
+.spec-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--pietra); /*discreto, è solo l'etichetta*/
+}
+.spec-value {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--nero); /*più marcato dell'etichetta, è il dato vero e proprio*/
+    letter-spacing: 0.02em;
+}
+
+/*dettaglio prodotto - prezzo e bottone*/
+.dettaglio-footer {
+    display: flex;
+    align-items: center;
+    gap: 36px; /*spazio tra prezzo e bottone*/
+}
+.dettaglio-prezzo {
+    font-family: 'Georgia', serif; /*stesso font usato per .card-price*/
+    font-size: 32px; /*più grande di .card-price (22px), qui è protagonista*/
+    font-weight: 400;
+    color: var(--nero);
+}
+.dettaglio-btn-carrello {
+    background: var(--oro);
+    color: var(--marmo-calacatta);
+    border: none;
+    padding: 18px 40px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    transition: background 0.25s ease; /* transizione fluida */
+}
+
+.dettaglio-btn-carrello:hover {
+    background: var(--oro-scuro); /* tonalità leggermente più scura */
+}
+
+.dettaglio-btn-carrello:hover {
+    background: var(--ottone-antico); /*tonalità più scura dell'oro, già definita nelle tue variabili*/
+}
+/*responsive*/
+@media (max-width: 480px) {
+    .dettaglio-footer {
+        flex-direction: column; /*prezzo sopra, bottone sotto, impilati su schermi molto piccoli*/
+        align-items: flex-start;
+        gap: 20px;
+    }
+    .dettaglio-btn-carrello {
+        width: 100%; /*bottone a tutta larghezza su mobile, più facile da toccare*/
+        text-align: center;
+    }
+}
