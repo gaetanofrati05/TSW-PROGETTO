@@ -56,7 +56,16 @@ public class RegistrazioneServlet extends HttpServlet {
 		else if(!ValidazioneUtente.validateEmail(email)) {
 			errori.add("Email non valida");
 		}
-		
+		else {
+		    try {
+		        if(utenteDAO.doRetrieveByEmail(email) != null) {
+		            errori.add("Email già in uso");
+		        }
+		    } catch(SQLException e) {
+		        e.printStackTrace();
+		        throw new ServletException("Errore nel controllo email", e);
+		    }
+		}
 		String passwordLeggibile= request.getParameter("password");
 		if(passwordLeggibile==null || passwordLeggibile.trim().isEmpty()) {
 			errori.add("Il campo password non può essere vuoto");

@@ -1,69 +1,93 @@
 document.addEventListener("DOMContentLoaded", function() {
     const formRegistrazione = document.getElementById("formRegistrazione");
-    
+    let emailGiaInUso = false;
+
     if (formRegistrazione) {
-        // Ascoltiamo l'evento 'submit' (quando l'utente preme il bottone invia)
+        const emailField = document.getElementById("email");
+
+        emailField.addEventListener("blur", function() {
+            const emailValue = emailField.value.trim();
+            const err = document.getElementById("email-error");
+
+            if (emailValue === "") {
+                err.style.display = "none";
+                emailGiaInUso = false;
+                return;
+            }
+
+            if (!validateEmail(emailValue)) {
+                err.textContent = "Email non valida";
+                err.style.display = "block";
+                emailGiaInUso = false;
+                return;
+            }
+
+            fetch(contextPath + "/controllo/email?email=" + encodeURIComponent(emailValue))
+                .then(function(risposta) { return risposta.text(); })
+                .then(function(messaggio) {
+                    if (messaggio.trim() !== "") {
+                        err.textContent = messaggio;
+                        err.style.display = "block";
+                        emailGiaInUso = true;
+                    } else {
+                        err.style.display = "none";
+                        emailGiaInUso = false;
+                    }
+                })
+                .catch(function(errore) { console.error(errore); });
+        });
+
         formRegistrazione.addEventListener("submit", function(event) {
-            
-           
             const nomeInput = document.getElementById("nome").value;
             const cognomeInput = document.getElementById("cognome").value;
             const cellulareInput = document.getElementById("cellulare").value;
             const prefissoInput = document.getElementById("prefisso").value;
             const passwordInput = document.getElementById("password").value;
-			const emailInput= document.getElementById("email").value;
-            
+            const emailInput = document.getElementById("email").value;
 
-            // 2. Nascondiamo tutti gli errori precedenti
-            document.querySelectorAll('.js-error').forEach(el => el.style.display = 'none');
-            
+            document.querySelectorAll('.js-error').forEach(function(el) { el.style.display = 'none'; });
+
             let isValid = true;
-            
-            // 3. Eseguiamo le validazioni
-            // Validazione Nome
+
             if (!validateNome(nomeInput)) {
-                const err = document.getElementById("nome-error");
-                if(err) err.style.display = "block";
+                document.getElementById("nome-error").style.display = "block";
                 isValid = false;
             }
-            
-            // Validazione Cognome
+
             if (!validateCognome(cognomeInput)) {
-                const err = document.getElementById("cognome-error");
-                if(err) err.style.display = "block";
+                document.getElementById("cognome-error").style.display = "block";
                 isValid = false;
             }
-            
-            // Validazione Prefisso
+
             if (!validatePrefisso(prefissoInput)) {
-                const err = document.getElementById("prefisso-error");
-                if(err) err.style.display = "block";
+                document.getElementById("prefisso-error").style.display = "block";
                 isValid = false;
             }
-            
-            // Validazione Cellulare
+
             if (!validateCellulare(cellulareInput)) {
-                const err = document.getElementById("cellulare-error");
-                if(err) err.style.display = "block";
+                document.getElementById("cellulare-error").style.display = "block";
                 isValid = false;
             }
-            
-            // Validazione Password
+
             if (!validatePassword(passwordInput)) {
-                const err = document.getElementById("password-error");
-                if(err) err.style.display = "block";
+                document.getElementById("password-error").style.display = "block";
                 isValid = false;
             }
-			
-			if(!validateEmail(emailInput)){
-				const err = document.getElementById("email-error");
-				if(err) err.style.display = "block";
-				isValid = false;
-			}
-            
-            // 4. Se qualcosa non è valido, blocchiamo l'invio alla Servlet Java
+
+            if (!validateEmail(emailInput)) {
+                document.getElementById("email-error").textContent = "Email non valida";
+                document.getElementById("email-error").style.display = "block";
+                isValid = false;
+            }
+
+            if (emailGiaInUso) {
+                document.getElementById("email-error").textContent = "Email già in uso";
+                document.getElementById("email-error").style.display = "block";
+                isValid = false;
+            }
+
             if (!isValid) {
-                event.preventDefault(); // Ora funziona perché 'event' è passato nella funzione!
+                event.preventDefault();
             }
         });
     }

@@ -151,7 +151,7 @@ public class UtenteDAO {
 			while(result.next()) {
 				UtenteBean utente= new UtenteBean();
 				utente.setEmail(result.getString("email"));
-				utente.setHashPassword(result.getString("hash_password"));
+				utente.setHashPassword(result.getString("password_hash"));
 				utente.setNome(result.getString("nome"));
 				utente.setCognome(result.getString("cognome"));
 				utente.setData(result.getDate("dataNascita"));
