@@ -80,9 +80,9 @@ public class RegistraOrdinazioneServlet extends HttpServlet {
 		if(statoOrdinazione==null || statoOrdinazione.trim().isEmpty()) {
 			errori.add("Il campo stato non può essere vuoto");
 		}
-		float importo=0;
+		double importo=0;
 		try {
-			importo= Float.parseFloat(importoStr);
+			importo= Double.parseDouble(importoStr);
 			if(importo<0) {
 				errori.add("L'importo non può essere negativo");
 			}

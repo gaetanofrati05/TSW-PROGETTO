@@ -1,35 +1,45 @@
 @charset "UTF-8";
-/*File CSS che conteine le classi utili per le pagine della sezione ADMIN*/
 
-/* 1. Componenti Avanzati del Form */
+/*
+   Foglio di stile per l'area amministrativa
+   Contiene layout, form, tabelle, badge e componenti condivisi dalle pagine
+   di gestione (catalogo prodotti, ordini, login admin, ecc.). */
+
+/* Campo textarea a tutta larghezza, allineato visivamente agli input admin */
 .custom-textarea {
-    width: 100%;
-    padding: 0.8rem 0;
-    font-size: 1.05rem;
-    font-family: inherit;
-    color: var(--nero, #14181B);
-    background-color: transparent;
-    border: none;
-    border-bottom: 1px solid rgba(90, 102, 112, 0.2);
-    resize: vertical;
-    transition: border-color 0.4s ease;
+    width: 100%;                /* tutta la larghezza del contenitore */
+    padding: 0.8rem 0;          /* spazio sopra e sotto */
+    font-size: 1.05rem;         /* dimensione del testo */
+    font-family: inherit;       /* stesso font dell'elemento genitore */
+    color: var(--nero, #14181B); /* colore del testo */
+    background-color: transparent; /* sfondo trasparente */
+    border: none;                /* nessun bordo */
+    border-bottom: 1px solid rgba(90, 102, 112, 0.2); /* bordo inferiore */
+    resize: vertical;            /* permette di ridimensionare verticalmente */
+    transition: border-color 0.4s ease; /* transizione del  bordo infriore della textarea */
 }
 
-.custom-textarea:focus {
-    outline: none;
-    border-bottom: 1px solid var(--oro, #b89a5a);
+/* Al focus evidenzia il bordo inferiore con il colore oro del tema */
+.custom-textarea:focus { /* al focus della textarea, il bordo inferiore diventa oro */
+    outline: none; /* rimuove il bordo di default */
+    border-bottom: 1px solid var(--oro, #b89a5a); /* il bordo inferiore diventa oro */
 }
 
-/* 2. Struttura e Contenitori dell'Area Gestionale */
+
+/* Struttura e contenitori dell'area gestionale
+   Layout principale delle pagine admin: contenitore centrato e titoli di sezione.*/
+
+/* Wrapper centrale con larghezza massima e margini verticali generosi */
 .admin-container {
-    max-width: 1200px;
-    margin: 4rem auto;
-    padding: 0 2rem;
-    box-sizing: border-box;
+    max-width: 1200px; /* larghezza massima del contenitore */
+    margin: 4rem auto; /* margine verticale 4rem e centrato automaticamente */
+    padding: 0 2rem; /* padding orizzontale 2rem */
+    box-sizing: border-box; /* include il padding nella larghezza e altezza del contenitore */
 }
 
+/* Titolo di sezione in stile editoriale */
 .admin-section-title {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: 'Playfair Display', Georgia, serif; 
     font-size: 2.2rem;
     color: var(--bronzo-brunito, #4A4439);
     margin-bottom: 1.5rem;
@@ -37,23 +47,30 @@
     font-weight: 400;
 }
 
-/* 3. Stilizzazione delle Tabelle (Per Catalogo Prodotti e Gestione Ordini) */
+
+/* Stilizzazione delle tabelle
+   Usate nel catalogo prodotti e nella gestione ordini: card con ombra,
+   intestazioni in maiuscolo e righe con hover leggero. */
+
+/* Contenitore "card" che avvolge la tabella con bordi arrotondati e ombra */
 .admin-table-wrapper {
     background-color: #ffffff;
     border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(90, 102, 112, 0.04);
-    border: 1px solid var(--argilla-chiara, #DFDBCF);
-    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(90, 102, 112, 0.04); /* ombra della card */
+    border: 1px solid var(--argilla-chiara, #DFDBCF); /* bordo della card */
+    overflow: hidden; /* nasconde il contenuto che esce dalla card */
     margin-top: 2rem;
 }
 
+/* Tabella a larghezza piena, senza spazi tra celle (border-collapse) */
 .admin-table {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: collapse; /* rimuove lo spazio tra le celle */
     text-align: left;
     font-size: 0.95rem;
 }
 
+/* Intestazioni colonne: sfondo seta grezza, testo maiuscolo e spaziato */
 .admin-table th {
     background-color: var(--seta-grezza, #EFECE4);
     color: var(--bronzo-brunito, #4A4439);
@@ -65,40 +82,45 @@
     border-bottom: 1px solid var(--argilla-chiara, #DFDBCF);
 }
 
-.admin-table td {
+/* Celle dati: colore pietra, padding uniforme e allineamento verticale centrale */
+.admin-table td { 
     padding: 1.2rem 1.5rem;
     color: var(--pietra, #5A6670);
-    border-bottom: 1px solid rgba(223, 219, 207, 0.4);
+    border-bottom: 1px solid rgba(223, 219, 207, 0.4); /* bordo inferiore delle celle dati */
     vertical-align: middle;
 }
 
-/* Rimuove la linea di separazione dall'ultima riga */
+/* Ultima riga senza bordo inferiore, per un chiusura visiva più pulita */
 .admin-table tr:last-child td {
     border-bottom: none;
 }
 
-/* Effetto Hover elegante sulle righe del catalogo */
+/* Hover sulle righe: leggera sfumatura crema e testo più scuro */
 .admin-table tr:hover td {
-    background-color: rgba(246, 243, 237, 0.5); /* Sfumatura impercettibile sul crema */
+    background-color: rgba(246, 243, 237, 0.5);
     color: var(--nero, #14181B);
 }
 
-/* 4. Bottoni di Azione nel Catalogo (Modifica ed Eliminazione) */
+
+/* Bottoni di azione nel catalogo
+   Pulsanti compatti per modifica ed eliminazione di ogni riga tabella.*/
+
+/* Stile base condiviso: dimensioni ridotte, maiuscolo e transizione fluida */
 .btn-action {
     padding: 0.5rem 1rem;
     font-size: 0.72rem;
     text-transform: uppercase;
-    letter-spacing: 0.08rem;
+    letter-spacing: 0.08rem; /* spaziatura tra le lettere */
     font-weight: 500;
     border-radius: 8px;
-    cursor: pointer;
+    cursor: pointer; /* Quando passi sopra il bottone, il cursore diventa la mano. */
     text-decoration: none;
-    display: inline-block;
+    display: inline-block; /* fa in modo che il bottone sia inline e non un blocco */
     transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     margin-right: 0.4rem;
 }
 
-/* Bottone Modifica: Stile Oro/Ottone raffinato */
+/* Modifica: outline oro, al hover si riempie con sfondo oro e testo bianco */
 .btn-edit {
     background-color: transparent;
     color: var(--ottone-antico, #8A754B);
@@ -109,7 +131,7 @@
     color: #ffffff;
 }
 
-/* Bottone Elimina: Rosso scuro desaturato (non aggressivo, in linea con il luxury) */
+/* Elimina: rosso desaturato, coerente con l'estetica luxury (non troppo aggressivo) */
 .btn-delete {
     background-color: transparent;
     color: #A64444;
@@ -120,7 +142,11 @@
     color: #ffffff;
 }
 
-/* 5. Badge di Stato per le scorte di Magazzino (Utility facoltativa) */
+
+/* Badge di stato magazzino
+   Etichette colorate per indicare disponibilità, scorte limitate o esaurimento.*/
+
+/* Contenitore badge: padding compatto, maiuscolo e bordi arrotondati */
 .badge-stock {
     padding: 0.3rem 0.6rem;
     font-size: 0.7rem;
@@ -128,37 +154,45 @@
     border-radius: 6px;
     text-transform: uppercase;
     letter-spacing: 0.04rem;
-    display: inline-block;
+    display: inline-block; /* fa in modo che il badge sia inline e non un blocco */
 }
 
+/* Prodotto disponibile: verde tenue su sfondo semitrasparente */
 .stock-disponibile {
     background-color: rgba(46, 204, 113, 0.1);
     color: #27ae60;
 }
 
+/* Scorte limitate: arancione per segnalare attenzione moderata */
 .stock-limitato {
     background-color: rgba(230, 126, 34, 0.1);
     color: #d35400;
 }
 
+/* Prodotto esaurito: rosso per indicare indisponibilità */
 .stock-esaurito {
     background-color: rgba(231, 76, 60, 0.1);
     color: #c0392b;
 }
 
+
+/* Layout pagina admin (form centrati)
+   Struttura full-height con gradiente crema/seta e contenuto verticalmente
+   centrato — tipica delle pagine di accesso o form isolati.*/
+
+/* Body/page wrapper: altezza minima viewport, flex column e gradiente di sfondo */
 .admin-page-bg {
     margin: 0;
     padding: 0;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    background: linear-gradient(135deg, var(--crema, #F6F3ED) 0%, var(--seta-grezza, #EFECE4) 100%);
+    min-height: 100vh; /* altezza minima del viewport */
+    display: flex; /* fa in modo che il contenitore sia un flex container */
+    flex-direction: column; /* fa in modo che i figli siano disposti in colonna */
+    background: var(--seta-grezza, #EFECE4);
     box-sizing: border-box;
-    -webkit-font-smoothing: antialiased;
 }
 
+/* Area centrale che occupa lo spazio rimanente e centra il contenuto */
 .admin-wrapper {
-    flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -167,11 +201,13 @@
     box-sizing: border-box;
 }
 
+/* Blocco titolo + sottotitolo sopra la card del form */
 .admin-heading-box {
     text-align: center;
     margin-bottom: 3.5rem;
 }
 
+/* Titolo principale grande, corsivo Playfair, colore bronzo */
 .admin-title-luxury {
     font-family: 'Playfair Display', Georgia, serif;
     font-size: 3.8rem;
@@ -182,6 +218,7 @@
     line-height: 1.2;
 }
 
+/* Sottotitolo in maiuscolo con spaziatura ampia e colore oro */
 .admin-subtitle-luxury {
     font-size: 1rem;
     font-weight: 400;
@@ -191,10 +228,11 @@
     margin: 0;
 }
 
+/* Card bianca che contiene il form: ombra marcata e larghezza massima fissa */
 .admin-card-luxury {
     background-color: #ffffff; 
     border-radius: 24px; 
-    box-shadow: 0 20px 50px rgba(90, 102, 112, 0.08);
+    box-shadow: 0 20px 50px rgba(90, 102, 112, 0.08);  /* ombra della card */
     border: 1px solid rgba(223, 219, 207, 0.4);
     padding: 4.5rem 4rem;
     width: 100%;
@@ -202,11 +240,17 @@
     box-sizing: border-box;
 }
 
+
+/* Form admin Gruppi label + input con 
+    stile sottolineato e pulsante submit full-width. */
+
+/* Spaziatura verticale tra ogni coppia label/campo del form */
 .admin-form-group {
     margin-bottom: 2.8rem;
     text-align: left;
 }
 
+/* Etichetta campo: piccola, maiuscola, colore pietra e spaziatura lettere */
 .admin-label {
     display: block;
     font-size: 0.75rem;
@@ -217,6 +261,7 @@
     font-weight: 500;
 }
 
+/* Input testuale: solo bordo inferiore, senza box classico, transizione al focus */
 .admin-input {
     width: 100%;
     padding: 0.8rem 0;
@@ -231,11 +276,13 @@
     transition: border-color 0.4s ease, letter-spacing 0.4s ease;
 }
 
+/* Al focus il bordo inferiore diventa oro, coerente con .custom-textarea */
 .admin-input:focus {
     outline: none;
     border-bottom: 1px solid var(--oro, #b89a5a);
 }
 
+/* Pulsante invio: nero pieno, full-width; al hover diventa outline invertito */
 .btn-admin-submit {
     width: 100%;
     padding: 1.2rem;
@@ -257,14 +304,49 @@
     color: var(--nero, #14181B);
 }
 
+
+/* Link e redirect
+   Testo secondario sotto il form con link di navigazione (es. torna al sito).*/
+
+/* Box centrato sotto il form per messaggi o link aggiuntivi */
 .admin-redirect-box {
     margin-top: 2.2rem; 
     text-align: center;
     font-size: 0.85rem;
 }
 
+/* Link in colore oro con transizione al passaggio del mouse */
 .admin-link {
     color: var(--oro, #b89a5a); 
     text-decoration: none;
     transition: color 0.3s ease;
 }
+
+/* File input: nasconde l'input file di default del browser e allinea orizzontalmente il finto bottone e il testo del file */
+
+/* Nasconde l'input file di default del browser */
+/* Nasconde l'input visivamente ma lo mantiene "tecnicamente" nel DOM per i controlli required */
+/* 1. Nascondiamo l'input nel modo più breve possibile per non rompere il controllo "required" */
+.hidden-file-input {
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+}
+
+/* 2. Affianchiamo bottone e testo in modo semplice */
+.custom-file-wrapper label {
+    display: inline-block;
+    vertical-align: middle; /* Allinea il bottone al centro rispetto al testo */
+}
+
+/* 3. Stile base per il testo */
+.file-name-text {
+    display: inline-block;
+    vertical-align: middle; /* Allinea il testo al centro rispetto al bottone */
+    margin-left: 0.5rem;     
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: var(--pietra, #5A6670);
+    font-style: italic;
+}
+

@@ -7,9 +7,10 @@ public class ProdottoBean  implements Serializable {
 	private String stile;
 	private String colore;
 	private String dimensioni;
-	private float prezzo;
+	private double prezzo;
 	private int quantita;
 	private String descrizione;
+    private String immagine;
 	
 	public ProdottoBean() {
     
@@ -55,11 +56,11 @@ public class ProdottoBean  implements Serializable {
         this.dimensioni = dimensioni; 
     }
 
-    public float getPrezzo() {
+    public double getPrezzo() {
         return prezzo;
     }
 
-    public void setPrezzo(float prezzo) {
+    public void setPrezzo(double prezzo) {
         this.prezzo = prezzo;
     }
 
@@ -78,5 +79,14 @@ public class ProdottoBean  implements Serializable {
     public void setDescrizione(String descrizione) {
         this.descrizione = descrizione;
     }
+
+    public String getImmagine() {
+        return immagine;
+    }
+
+    public void setImmagine(String immagine){
+        this.immagine = immagine;
+    }
+
 }
 

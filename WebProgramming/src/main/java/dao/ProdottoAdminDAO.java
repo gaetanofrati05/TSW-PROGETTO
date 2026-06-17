@@ -29,9 +29,10 @@ public class ProdottoAdminDAO{
 				prodotto.setStile(rs.getString("stile"));
 				prodotto.setColore(rs.getString("colore"));
 				prodotto.setDimensioni(rs.getString("dimensioni"));
-				prodotto.setPrezzo(rs.getFloat("prezzo"));
+				prodotto.setPrezzo(rs.getDouble("prezzo"));
 				prodotto.setQuantita(rs.getInt("quantita"));
 				prodotto.setDescrizione(rs.getString("descrizione"));
+				prodotto.setImmagine(rs.getString("immagine"));
 				prodotti.add(prodotto);
 			}
 		}finally {
@@ -50,8 +51,8 @@ public class ProdottoAdminDAO{
 	public void doSave(ProdottoBean prodotto) throws SQLException{
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
-		String  insertQuery = "INSERT INTO Prodotto (nome, stile, colore, dimensioni, prezzo, quantita, descrizione)"
-								+ "VALUES (?,?,?,?,?,?,?)";
+		String  insertQuery = "INSERT INTO Prodotto (nome, stile, colore, dimensioni, prezzo, quantita, descrizione, immagine)"
+								+ "VALUES (?,?,?,?,?,?,?,?)";
 		try {
 			connection = ConnectionPool.getConnection();
 			preparedStatement = connection.prepareStatement(insertQuery);
@@ -60,9 +61,10 @@ public class ProdottoAdminDAO{
 			preparedStatement.setString(2, prodotto.getStile());
 			preparedStatement.setString(3, prodotto.getColore());
 			preparedStatement.setString(4, prodotto.getDimensioni());
-			preparedStatement.setFloat(5, prodotto.getPrezzo());
+			preparedStatement.setDouble(5, prodotto.getPrezzo());
 			preparedStatement.setInt(6, prodotto.getQuantita());
 			preparedStatement.setString(7, prodotto.getDescrizione());
+			preparedStatement.setString(8, prodotto.getImmagine());
 			
 			preparedStatement.executeUpdate();
 		}finally {

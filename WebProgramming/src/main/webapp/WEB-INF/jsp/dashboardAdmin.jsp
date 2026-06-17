@@ -1,16 +1,21 @@
+<%-- Direttiva JSP: Configura il linguaggio della pagina e la codifica dei caratteri per evitare problemi con gli accenti --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%-- Pagina JSP utilizzata come dashboard amministrativa--%>
 <!DOCTYPE html>
+
 <html lang="it">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pannello Admin - The Royal Rest</title>
     
+    <title>Pannello Admin - The Royal Rest</title>
+
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/base.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/layout.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/componenti.css">
-    
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/pagerror.css">
 </head>
 
 <body class="admin-page-bg">
@@ -24,43 +29,76 @@
 
         <div class="admin-card-luxury">
          
-            <form action="${pageContext.request.contextPath}/InserisciProdottoServlet" method="POST">
+            <form id="formInserisciProdotto"action="${pageContext.request.contextPath}/WEB-INF/jsp/inserisciProdottoServlet" method="POST" enctype="multipart/form-data">
                 
                 <div class="admin-form-group">
                     <label class="admin-label">Nome Prodotto</label>
-                    <input type="text" class="admin-input" name="nome" placeholder="Es: Cuscino in Memory Foam" required>
+                    
+                    <input type="text" id="nomeProdotto"class="admin-input" name="nome" placeholder="Es: Tavoletta in oro 24K" required>
                 </div>
+
+                <div id="nomeProdotto-error" class="js-error">Nome del prodotto non valido</div>
                 
                 <div class="admin-form-group">
                     <label class="admin-label">Stile</label>
-                    <input type="text" class="admin-input" name="stile" placeholder="Es: Moderno, Classico" required>
+                    <input type="text" id="stileProdotto" class="admin-input" name="stile" placeholder="Es: Moderno, barocco" required>
                 </div>
                 
+                <div id="stileProdotto-error" class="js-error">Stile del prodotto non valido</div>
+
                 <div class="admin-form-group">
                     <label class="admin-label">Colore</label>
-                    <input type="text" class="admin-input" name="colore" placeholder="Es: Bianco Seta" required>
+                    <input type="text" id="coloreProdotto" class="admin-input" name="colore" placeholder="Es: Avorio" required>
                 </div>
+                
+                <div id="coloreProdotto-error" class="js-error">Colore del prodotto non valido</div>
                 
                 <div class="admin-form-group">
                     <label class="admin-label">Dimensioni</label>
-                    <input type="text" class="admin-input" name="dimensioni" placeholder="Es: 50x80 cm" required>
+                    <input type="text" id="dimensioniProdotto" class="admin-input" name="dimensioni" placeholder="Es: 36x24x3 cm" required>
                 </div>
+                
+                <div id="dimensioniProdotto-error" class="js-error">Dimensioni del prodotto non valido</div>
                 
                 <div class="admin-form-group">
                     <label class="admin-label">Prezzo (€)</label>
-                    <input type="number" step="0.01" min="0" class="admin-input" name="prezzo" placeholder="0.00" required>
+                    <input type="number" id="prezzoProdotto" step="0.01" min="0" class="admin-input" name="prezzo" placeholder="0.00" required>
                 </div>
+                
+                <div id="prezzoProdotto-error" class="js-error">Prezzo del prodotto non valido</div>    
                 
                 <div class="admin-form-group">
                     <label class="admin-label">Quantità a magazzino</label>
-                    <input type="number" min="0" class="admin-input" name="quantita" placeholder="0" required>
-                </div>
+                    <input type="number" id="quantitaProdotto" min="0" class="admin-input" name="quantita" placeholder="0" required>
+                </div> 
+                
+                <div id="quantitaProdotto-error" class="js-error">Quantità del prodotto non valida</div>
                 
                 <div class="admin-form-group">
                     <label class="admin-label">Descrizione</label>
-                    <textarea name="descrizione" class="custom-textarea" rows="3" placeholder="Inserisci i dettagli del prodotto..." required></textarea>
+                    <textarea name="descrizione"  id="descrizioneProdotto" class="custom-textarea" rows="3" placeholder="Inserisci i dettagli del prodotto..." required></textarea>
                 </div>
                 
+                <div id="descrizioneProdotto-error" class="js-error">Descrizione del prodotto non valida</div>
+
+                <div class="admin-form-group">
+                    <label class="admin-label">Immagine</label>
+                    <div class="custom-file-wrapper">
+                        <label for="file-upload" class="btn-action btn-edit" style="text-align: center; margin-right: 0;">Seleziona Immagine</label>
+                        
+                        <input type="file" id="immagineProdotto" name="immagine" required class="hidden-file-input">
+                        
+                        <span id="file-name-display" class="file-name-text">Nessun file selezionato</span>
+                    </div>
+                </div>
+                
+                <%-- Errore lato Server (Java) --%>
+                <% if (request.getAttribute("errore") != null) { %>
+                    <div class="error-message">
+                        <%= request.getAttribute("errore") %>
+                    </div>
+                <% } %>
+                           
                 <button type="submit" class="btn-admin-submit">Salva nel Catalogo</button>
                 
             </form>
@@ -72,6 +110,8 @@
         </div>
         
     </main>
-
+    <script src="${pageContext.request.contextPath}/js/hidden-btn.js"></script>
+    <script src="${pageContext.request.contextPath}/js/validazioneProdotti.js" defer></script>
+    <script src="${pageContext.request.contextPath}/js/inserisciProdotto.js" defer></script>
 </body>
 </html>
