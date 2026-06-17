@@ -16,7 +16,7 @@
             <p><%= p.getDescrizione() %></p>
             <div class="card-footer">
                 <span class="card-price">€<%= p.getPrezzo() %></span>
-                <a href="prodotto?id=<%= p.getIdProdotto() %>" class="card-link">Scopri →</a>
+                <a href="${pageContext.request.contextPath}/prodotto?id=<%= p.getIdProdotto() %>" class="card-link">Scopri →</a>
             </div>
         </div>
     </div>

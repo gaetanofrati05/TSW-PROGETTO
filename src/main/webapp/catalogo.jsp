@@ -22,7 +22,7 @@
         <jsp:include page="/fragments/catalogo-grid.jsp" />
 	</div>
 	</section>
-
+	<jsp:include page="/fragments/footer.jsp" />
   <script>
     const contextPath = "${pageContext.request.contextPath}";
   </script>

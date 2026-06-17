@@ -6,9 +6,13 @@ barraRicerca.addEventListener("input", function () {
     clearTimeout(timer);
     timer = setTimeout(() => {
         const nome = barraRicerca.value.trim();
-        const url = nome
-            ? `${contextPath}/ricerca/prodotti?nome=${encodeURIComponent(nome)}`
-            : `${contextPath}/ricerca/prodotti`;
+        let url;
+        if (nome) {
+            url = `${contextPath}/ricerca/prodotti?nome=${encodeURIComponent(nome)}`;
+        } else {
+            url = `${contextPath}/ricerca/prodotti`;
+        }
+        
 
         fetch(url)
             .then(risposta => {

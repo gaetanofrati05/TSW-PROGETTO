@@ -125,3 +125,69 @@ nav ul li a {
     align-items: center;
     gap: 8px; /*spazio tra testo "Scopri" e la freccia*/
 }
+
+
+/*footer - testi e colori*/
+.footer-eyebrow {
+    display: block;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.22em; /*lettere ben distanziate, stile "etichetta" come altrove nel sito*/
+    text-transform: uppercase;
+    color: var(--oro); /*colore distintivo dorato, coerente col resto del sito*/
+    margin-bottom: 20px;
+}
+.footer-titolo {
+    font-family: 'Georgia', serif; /*stesso font dei titoli usato altrove (.main h1, .card h3)*/
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--crema); /*testo chiaro, leggibile sullo sfondo scuro*/
+    margin-bottom: 20px;
+}
+.footer-sottotitolo {
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.8; /*righe distanziate per leggibilità su più righe*/
+    color: rgba(246, 243, 237, 0.6); /*crema semi-trasparente, più discreto del titolo*/
+}
+.footer-contatto-regione {
+    font-family: 'Georgia', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--crema);
+    margin-bottom: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+.footer-contatto-numero {
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(246, 243, 237, 0.75); /*leggermente più tenue del titolo regione*/
+    margin-bottom: 10px;
+}
+.footer-contatto-email {
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--oro); /*email in oro, per distinguerla visivamente come link cliccabile*/
+    text-decoration: underline; /*sottolineata, segnale chiaro che è un link*/
+    letter-spacing: 0.02em;
+}
+.footer-contatto-email:hover {
+    color: var(--crema); /*cambia colore al passaggio del mouse, piccolo feedback interattivo*/
+}
+.footer-meta-item {
+    font-size: 8px;
+    font-weight: 500;
+    letter-spacing: 0.18em; /*lettere distanziate, stile "etichetta" minimale*/
+    text-transform: uppercase;
+    color: rgba(246, 243, 237, 0.35); /*molto discreto, è solo info di chiusura*/
+}
+.footer-sep {
+    width: 4px;
+    height: 4px;
+    background: var(--oro); /*piccolo pallino dorato come separatore visivo*/
+    border-radius: 50%; /*lo rende un cerchio perfetto*/
+    opacity: 0.5; /*discreto, non deve distrarre*/
+    display: inline-block; /*necessario perché width/height funzionino su uno span*/
+}

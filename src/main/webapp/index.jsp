@@ -23,6 +23,7 @@
   		<img src="img/home.png" alt="Royal Rest">
   	</div>
   </section>
+  <jsp:include page="/fragments/footer.jsp" />
  
 	<script src="js/main.js"></script>
 </body>

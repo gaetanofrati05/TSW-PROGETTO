@@ -126,3 +126,44 @@ nav ul {
         grid-template-columns: 1fr; /*1 colonna su mobile*/
     }
 }
+
+
+/*footer*/
+.footer {
+    padding: 100px 52px 60px; /*tanto spazio sopra per dare respiro, meno sotto*/
+    background: var(--bronzo-brunito); /*sfondo scuro caldo, distingue il footer dal resto della pagina*/
+}
+.footer-info {
+    text-align: center; /*titolo e sottotitolo centrati*/
+    max-width: 560px; /*non fa allargare troppo il testo su schermi grandi*/
+    margin: 0 auto 72px; /*centra il blocco orizzontalmente e lascia spazio sotto prima dei contatti*/
+}
+.footer-contatti {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /*3 colonne uguali, una per regione*/
+    gap: 40px; /*spazio tra i blocchi regione*/
+    max-width: 900px; /*non si allarga troppo su schermi molto grandi*/
+    margin: 0 auto 80px; /*centra il blocco e lascia spazio sotto prima della riga meta finale*/
+    text-align: center; /*ogni blocco regione centrato al suo interno*/
+}
+.footer-meta {
+    display: flex;
+    justify-content: center; /*riga meta centrata orizzontalmente*/
+    align-items: center; /*allinea verticalmente testo e separatori a pallino*/
+    gap: 14px; /*spazio tra i singoli elementi e i separatori*/
+    padding-top: 32px; /*distanza dalla riga sopra*/
+    border-top: 1px solid rgba(246, 243, 237, 0.1); /*linea sottile e quasi invisibile, separa la riga meta dai contatti*/
+}
+/*responsive*/
+@media (max-width: 768px) {
+    .footer {
+        padding: 70px 24px 40px; /*meno spazio su mobile*/
+    }
+    .footer-contatti {
+        grid-template-columns: 1fr; /*una colonna su mobile, i blocchi regione si impilano*/
+        gap: 48px; /*più spazio verticale tra blocchi impilati*/
+    }
+    .footer-meta {
+        flex-wrap: wrap; /*va a capo se gli elementi non ci stanno su una riga*/
+    }
+}
