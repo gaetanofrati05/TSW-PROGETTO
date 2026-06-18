@@ -45,13 +45,43 @@
 
       <div class="dettaglio-footer">
         <span class="dettaglio-prezzo">€<%= prod.getPrezzo() %></span>
-        <button class="dettaglio-btn-carrello">Aggiungi al Carrello</button>
+        <button id="aggAlCarrello" class="dettaglio-btn-carrello">Aggiungi al Carrello</button>
       </div>
 
-    </div>
-  </section>
+	</div>
+	</section>
 
-  <jsp:include page="/fragments/footer.jsp" />
+  	<jsp:include page="/fragments/footer.jsp" />
+  	<script>
+    const contextPath = "${pageContext.request.contextPath}";
+    const idprod = "<%= prod.getIdProdotto() %>";
 
+    document.getElementById("aggAlCarrello").addEventListener("click", aggiunta);
+
+    function aggiunta() {
+        fetch(contextPath + "/GestioneCarrelloServlet", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: "action=aggiungi&idProdotto=" + idprod + "&quantita=1"
+        })
+        .then(risposta => {
+            if (risposta.ok) {
+                mostraConferma();
+            } else {
+                console.error("Errore durante l'aggiunta al carrello");
+            }
+        })
+        .catch(errore => console.error(errore));
+    }
+
+    function mostraConferma() {
+        const btn = document.getElementById("aggAlCarrello");
+        const testoOriginale = btn.textContent;
+        btn.textContent = "Aggiunto ✓";
+        setTimeout(() => {
+            btn.textContent = testoOriginale;
+        }, 2000);
+    }
+	</script>
 </body>
 </html>

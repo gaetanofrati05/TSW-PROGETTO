@@ -15,48 +15,37 @@ import bean.CarrelloBean;
 import bean.ProdottoBean;
 import dao.ProdottoDAO;
 
-/**
- * Servlet implementation class GestioneCarrelloServlet
- */
 @WebServlet("/GestioneCarrelloServlet")
 public class GestioneCarrelloServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private ProdottoDAO prodottoDAO;  
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+    private ProdottoDAO prodottoDAO;
+
     public GestioneCarrelloServlet() {
         super();
-        
     }
 
-	/**
-	 * @see Servlet#init(ServletConfig)
-	 */
+	@Override
 	public void init(ServletConfig config) throws ServletException {
-		prodottoDAO= new ProdottoDAO();
+		prodottoDAO = new ProdottoDAO();
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/jsp/carrello.jsp").forward(request, response);
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session= request.getSession(true);
-		CarrelloBean carrello= (CarrelloBean) session.getAttribute("carrello");
+		HttpSession session = request.getSession(true);
+		CarrelloBean carrello = (CarrelloBean) session.getAttribute("carrello");
 		if (carrello == null) {
             carrello = new CarrelloBean();
             session.setAttribute("carrello", carrello);
         }
-		String action= request.getParameter("action"); //recupero l'azione che vuole compiere l'utente nell'url
+
+		String action = request.getParameter("action");
+		if (action == null) {
+			response.sendRedirect(request.getContextPath() + "/CarrelloServlet");
+			return;
+		}
+
 		try {
-		    switch(action) {
+		    switch (action) {
 		    case "aggiungi":
 		    	gestisciAggiunta(request, carrello);
 		    	break;
@@ -66,34 +55,40 @@ public class GestioneCarrelloServlet extends HttpServlet {
 		    case "aggiorna":
 		    	gestisciAggiornamento(request, carrello);
 		    	break;
+		    default:
+		    	break;
 		    }
-			
-		}catch(ServletException |NumberFormatException e) {
-			e.printStackTrace();
-			throw new ServletException ("Errore nella richiesta per il carrello");
+		} catch (NumberFormatException e) {
+			throw new ServletException("Parametri del carrello non validi", e);
+		} catch (SQLException e) {
+			throw new ServletException("Errore nel recupero del prodotto", e);
 		}
-		response.sendRedirect(request.getContextPath()+ "/CarrelloServlet");
+
+		response.sendRedirect(request.getContextPath() + "/CarrelloServlet");
 	}
-    private void gestisciAggiunta(HttpServletRequest request, CarrelloBean carrello) {
-    	int idProdotto= Integer.parseInt(request.getParameter("idProdotto"));
-    	int quantita= request.getParameter("quantita")!=null ? Integer.parseInt(request.getParameter("quantita")):1;
-    	ProdottoBean prodotto= prodottoDAO.doRetrieveById(prodotto); 
-    	if(prodotto!=null) {
+
+    private void gestisciAggiunta(HttpServletRequest request, CarrelloBean carrello) throws SQLException {
+    	int idProdotto = Integer.parseInt(request.getParameter("idProdotto"));
+    	int quantita = request.getParameter("quantita") != null ? Integer.parseInt(request.getParameter("quantita")) : 1;
+    	ProdottoBean prodotto = prodottoDAO.doRetrieveById(idProdotto);
+    	if (prodotto != null) {
     		carrello.aggiungiProdotto(prodotto, quantita);
     	}
     }
+
     private void gestisciRimozione(HttpServletRequest request, CarrelloBean carrello) {
-    	int idProdotto= Integer.parseInt(request.getParameter("idProdotto"));
+    	int idProdotto = Integer.parseInt(request.getParameter("idProdotto"));
     	carrello.eliminaProdotto(idProdotto);
     }
+
     private void gestisciAggiornamento(HttpServletRequest request, CarrelloBean carrello) {
-    	int idProdotto= Integer.parseInt(request.getParameter("idProdotto"));
-    	int nuovaQuantita= Integer.parseInt(request.getParameter("nuovaQuantita"));
-    	if(nuovaQuantita>0) {
-    		carrello.getElementi().stream().
-    		filter(item->item.getProdotto().getIdProdotto()==idProdotto).
-    		findFirst().ifPresent(item->item.setQuantita(nuovaQuantita));
-    	}else {
+    	int idProdotto = Integer.parseInt(request.getParameter("idProdotto"));
+    	int nuovaQuantita = Integer.parseInt(request.getParameter("nuovaQuantita"));
+    	if (nuovaQuantita > 0) {
+    		carrello.getElementi().stream()
+    		.filter(item -> item.getProdotto().getIdProdotto() == idProdotto)
+    		.findFirst().ifPresent(item -> item.setQuantita(nuovaQuantita));
+    	} else {
     		carrello.eliminaProdotto(idProdotto);
     	}
    }

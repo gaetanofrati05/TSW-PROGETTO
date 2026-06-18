@@ -10,13 +10,13 @@
       <li><a href="#">Filosofia</a></li>
       <li><a href="#">Storia</a></li>
       <li><a href="#">Concierge</a></li>
-      <li><a href="#">Catalogo</a></li>
+      <li><a href="${pageContext.request.contextPath}/CatalogoServlet">Catalogo</a></li>
+      <li><a href="${pageContext.request.contextPath}/CarrelloServlet">Carrello</a></li>
       
      <%--Verifichiamo se l'utente è loggato o meno per reindizzarlo correttamente --%>
       <% 
         if (session.getAttribute("utenteLoggato") != null) { 
       %>
-          <li><a href="${pageContext.request.contextPath}/CarrelloServlet">Carrello</a></li>
           <li><a href="${pageContext.request.contextPath}/VisualizzaProfiloUtente">Mio Profilo</a></li>
           <li><a href="${pageContext.request.contextPath}/LogoutServlet">Esci dalla lounge</a></li>
       <% 

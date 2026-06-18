@@ -15,7 +15,12 @@
     
   <section class="catalogo" id="catalogo">
     <div class="catalogo-search">
-            <input type="text" name="nome" id="barraRicerca" placeholder="Cerca la tua tavoletta...">
+      <div class="catalogo-search-wrap">
+        <!-- autocomplete="off" evita che il browser mostri i suoi suggerimenti -->
+        <input type="text" name="nome" id="barraRicerca" placeholder="Cerca la tua tavoletta..." autocomplete="off">
+        <!-- Lista popolata via JavaScript con i suggerimenti JSON -->
+        <ul id="suggerimenti" class="suggerimenti-lista"></ul>
+      </div>
     </div>
     <div class="catalogo-grid" id="catalogoGrid">
 
