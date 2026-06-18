@@ -1,6 +1,6 @@
 <%-- Direttiva JSP: Configura il linguaggio della pagina e la codifica dei caratteri per evitare problemi con gli accenti --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%-- Pagina JSP utilizzata come dashboard amministrativa--%>
+<%-- Pagina JSP utilizzata come inserimeto dei nuovi prodotti (Admin)--%>
 <!DOCTYPE html>
 
 <html lang="it">
@@ -9,7 +9,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>Pannello Admin - The Royal Rest</title>
+    <title>Inserimento Nuovo Prodotto - The Royal Rest</title>
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/base.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/layout.css">
@@ -29,7 +29,7 @@
 
         <div class="admin-card-luxury">
          
-            <form id="formInserisciProdotto"action="${pageContext.request.contextPath}/WEB-INF/jsp/inserisciProdottoServlet" method="POST" enctype="multipart/form-data">
+            <form id="formInserisciProdotto"action="${pageContext.request.contextPath}/InserisciProdottoServlet" method="POST" enctype="multipart/form-data">
                 
                 <div class="admin-form-group">
                     <label class="admin-label">Nome Prodotto</label>
@@ -41,7 +41,7 @@
                 
                 <div class="admin-form-group">
                     <label class="admin-label">Stile</label>
-                    <input type="text" id="stileProdotto" class="admin-input" name="stile" placeholder="Es: Moderno, barocco" required>
+                    <input type="text" id="stileProdotto" class="admin-input" name="stile" placeholder="Es: Moderno" required>
                 </div>
                 
                 <div id="stileProdotto-error" class="js-error">Stile del prodotto non valido</div>
@@ -54,8 +54,8 @@
                 <div id="coloreProdotto-error" class="js-error">Colore del prodotto non valido</div>
                 
                 <div class="admin-form-group">
-                    <label class="admin-label">Dimensioni</label>
-                    <input type="text" id="dimensioniProdotto" class="admin-input" name="dimensioni" placeholder="Es: 36x24x3 cm" required>
+                    <label class="admin-label">Dimensioni (cm)</label>
+                    <input type="text" id="dimensioniProdotto" class="admin-input" name="dimensioni" placeholder="Es: 36x24x3" required>
                 </div>
                 
                 <div id="dimensioniProdotto-error" class="js-error">Dimensioni del prodotto non valido</div>
@@ -88,9 +88,11 @@
                         
                         <input type="file" id="immagineProdotto" name="immagine" required class="hidden-file-input">
                         
-                        <span id="file-name-display" class="file-name-text">Nessun file selezionato</span>
+                        <span id="file-name-display" class="file-name-text">Nessun file selezionato (JPG, JPEG, PNG)</span>
                     </div>
                 </div>
+                
+                <div id="immagineProdotto-error" class="js-error">Immagine del prodotto non valida</div>
                 
                 <%-- Errore lato Server (Java) --%>
                 <% if (request.getAttribute("errore") != null) { %>
@@ -109,6 +111,7 @@
             
         </div>
         
+        <hr></hr
     </main>
     <script src="${pageContext.request.contextPath}/js/hidden-btn.js"></script>
     <script src="${pageContext.request.contextPath}/js/validazioneProdotti.js" defer></script>

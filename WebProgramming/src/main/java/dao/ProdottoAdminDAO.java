@@ -12,12 +12,12 @@ public class ProdottoAdminDAO{
 	//metodo per ottenere la lista di prodotti del catalogo
 	public List<ProdottoBean> doRetriveAll() throws SQLException{
 		
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-		ResultSet rs= null;
-		List<ProdottoBean> prodotti = new ArrayList<>();
+		Connection connection = null; //connessione al database
+		PreparedStatement preparedStatement = null; //istruzione SQL
+		ResultSet rs= null; //risultato della query
+		List<ProdottoBean> prodotti = new ArrayList<>(); //lista di prodotti
 		String selectQuery="SELECT * FROM Prodotto";
-		
+		//query per selezionare tutti i prodotti dal database
 		try {
 			connection = ConnectionPool.getConnection();
 			preparedStatement = connection.prepareStatement(selectQuery);
@@ -35,16 +35,16 @@ public class ProdottoAdminDAO{
 				prodotto.setImmagine(rs.getString("immagine"));
 				prodotti.add(prodotto);
 			}
-		}finally {
-			if(rs != null) {
+		}finally { //chiude la connessione al database
+			if(rs != null) { //chiude il risultato della query
 				rs.close();
 			}
-			if(preparedStatement != null) {
+			if(preparedStatement != null) { //chiude l'istruzione SQL
 				preparedStatement.close();
 			}
-			ConnectionPool.releaseConnection(connection);
+			ConnectionPool.releaseConnection(connection); //chiude la connessione al database
 		}
-		return prodotti;
+		return prodotti; //restituisce la lista di prodotti
 	}
 	
 	//Metodo per salvare un nuovo prodotto inserito dall'Admin
@@ -75,6 +75,34 @@ public class ProdottoAdminDAO{
 		}
 	}
 	
+	//Metodo per modificare un prodotto già esistente
+	public void doUpdate(ProdottoBean prodotto) throws SQLException{
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		String updateQuery = "UPDATE Prodotto SET nome=?, stile=?, colore=?, dimensioni=?, prezzo=?, quantita=?, descrizione=?, immagine=? WHERE idProdotto=?";
+
+		try{
+			connection = ConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(updateQuery);
+
+			PreparedStatement.setString(1, prodotto.getNome());
+			PreparedStatement.setString(2, prodotto.getStile());
+			PreparedStatement.setString(3, prodotto.getColore());
+			PreparedStatement.setString(4, prodotto.getDimensioni());
+			PreparedStatement.setDouble(5, prodotto.getPrezzo());
+			PreparedStatement.setInt(6, prodotto.getQuantita());
+			PreparedStatement.setString(7, prodotto.getDescrizione());
+			PreparedStatement.setString(8, prodotto.getImmagine());
+			PreparedStatement.setInt(9, prodotto.getIdProdotto());
+			PreparedStatement.executeUpdate();
+		}finally {
+			if(preparedStatement != null) {
+				preparedStatement.close();
+			}
+			ConnectionPool.releaseConnection(connection);
+		}
+	}
 	//Metodo per "eliminare"  un prodotto
 	void doDelete(int idProdotto) throws SQLException{
 		Connection connection = null;

@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function() { //controllo che il fo
             const prezzoInput=document.getElementById("prezzoProdotto").value; //recupero il valore dell'input prezzoProdotto
             const quantitaInput=document.getElementById("quantitaProdotto").value; //recupero il valore dell'input quantitaProdotto
             const descrizioneInput=document.getElementById("descrizioneProdotto").value; //recupero il valore dell'input descrizioneProdotto
+            const immagineInput=document.getElementById("immagineProdotto");
 
             document.querySelectorAll('.js-error').forEach(el => el.style.display = 'none'); //nascondo tutti gli errori precedenti
 
@@ -46,6 +47,11 @@ document.addEventListener("DOMContentLoaded", function() { //controllo che il fo
 
             if(!validateDescrizione(descrizioneInput)){
                 document.getElementById("descrizioneProdotto-error").style.display = "block";
+                isValid = false;
+            }
+
+            if(!validateImmagine(immagineInput)){
+                document.getElementById("immagineProdotto-error").style.display = "block";
                 isValid = false;
             }
 
