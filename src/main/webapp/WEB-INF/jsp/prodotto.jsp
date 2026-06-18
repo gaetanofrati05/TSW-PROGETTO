@@ -20,7 +20,7 @@
 
   <section class="dettaglio">
     <div class="dettaglio-image">
-      <img src="<%= prod.getImmagine() %>" alt="<%= prod.getNome() %>">
+      <img src="${pageContext.request.contextPath}/<%= prod.getImmagine() %>" alt="<%= prod.getNome() %>">
     </div>
     <div class="dettaglio-content">
 
