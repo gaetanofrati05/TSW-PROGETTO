@@ -21,7 +21,7 @@ CREATE TABLE Utente (
 CREATE TABLE Prodotto (
     idProdotto INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(50) NOT NULL,
-    stile VARCHAR(10) DEFAULT 'neutro' NOT NULL,
+    stile VARCHAR(30) DEFAULT 'neutro' NOT NULL,
     colore VARCHAR(10) DEFAULT '#ffffff' NOT NULL,
     dimensioni VARCHAR(50) NOT NULL, 
     prezzo FLOAT DEFAULT 0.0 NOT NULL,
