@@ -2,7 +2,6 @@ package control;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,7 +9,7 @@ import dao.ProdottoAdminDAO;
 import bean.ProdottoBean;
 import java.util.List;
 import java.sql.SQLException;
-import javax.servlet.RequestDispatcher;
+import javax.servlet.annotation.WebServlet;
 
 /**
  * Servlet che funge da controller del catalogo dei prodotti lato admin.
@@ -27,8 +26,7 @@ public class CatalogoAdminServlet extends HttpServlet {
 		try {
 			List<ProdottoBean> listaProdotti = pad.doRetriveAll();
 			request.setAttribute("listaProdotti", listaProdotti); //si mette la lista nella request per portarla alla grafica.
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/catalogoAdmin.jsp"); //si richiede un dispatcher per raggiungere la jsp
-			dispatcher.forward(request, response); //si passa request e response
+			request.getRequestDispatcher("/WEB-INF/jsp/catalogoAdmin.jsp").forward(request, response);
 		} catch (SQLException e) {
 			// Se il database ha un problema, stampiamo l'errore nella console di Eclipse
 			e.printStackTrace();

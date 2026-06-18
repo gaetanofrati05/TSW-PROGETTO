@@ -104,7 +104,7 @@ public class RegistraOrdinazioneServlet extends HttpServlet {
 			ordinazione.setCitta(citta);
 			ordinazione.setCap(cap);
 			ordinazione.setIdOrdinazione(idOrdinazione);
-			ordinazione.setImporto(importo);
+			ordinazione.setImporto((float) importo);
 			ordinazione.setIndirizzo(indirizzo);
 			ordinazione.setStato(statoOrdinazione);
 			ordinazione.setCivico(civico);

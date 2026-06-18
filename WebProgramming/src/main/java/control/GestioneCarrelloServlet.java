@@ -68,16 +68,16 @@ public class GestioneCarrelloServlet extends HttpServlet {
 		    	break;
 		    }
 			
-		}catch(ServletException |NumberFormatException e) {
+		}catch(SQLException | NumberFormatException e) {
 			e.printStackTrace();
-			throw new ServletException ("Errore nella richiesta per il carrello");
+			throw new ServletException ("Errore nella richiesta per il carrello", e);
 		}
 		response.sendRedirect(request.getContextPath()+ "/CarrelloServlet");
 	}
-    private void gestisciAggiunta(HttpServletRequest request, CarrelloBean carrello) {
+    private void gestisciAggiunta(HttpServletRequest request, CarrelloBean carrello) throws SQLException {
     	int idProdotto= Integer.parseInt(request.getParameter("idProdotto"));
     	int quantita= request.getParameter("quantita")!=null ? Integer.parseInt(request.getParameter("quantita")):1;
-    	ProdottoBean prodotto= prodottoDAO.doRetriveByKey(idProdotto); //Metodo che ha creato massimo per recuperare il prodotto dalla chiave
+    	ProdottoBean prodotto= prodottoDAO.doRetrieveById(idProdotto);
     	if(prodotto!=null) {
     		carrello.aggiungiProdotto(prodotto, quantita);
     	}
