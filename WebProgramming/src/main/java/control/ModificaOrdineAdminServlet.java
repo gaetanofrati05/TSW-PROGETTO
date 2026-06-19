@@ -57,7 +57,7 @@ public class ModificaOrdineAdminServlet extends HttpServlet {
                     "\"cap\": \"%s\"," +
                     "\"stato\": \"%s\"," +
                     "\"dataOrdinazione\": \"%s\"," +
-                    "\"importo\": %.2f" +
+                    "\"importo\": %s" +
                     "}",
                     ordine.getIdOrdinazione(),
                     escapeJson((ordine.getUtente() != null && ordine.getUtente().getEmail() != null) ? ordine.getUtente().getEmail() : ""),
@@ -67,7 +67,7 @@ public class ModificaOrdineAdminServlet extends HttpServlet {
                     escapeJson(ordine.getCap()),
                     escapeJson(ordine.getStato()),
                     dataPulita,
-                    ordine.getImporto()
+                    String.valueOf(ordine.getImporto())
                 );
 
                 response.getWriter().write(jsonResponse);
@@ -115,7 +115,7 @@ public class ModificaOrdineAdminServlet extends HttpServlet {
         try {
             // conversione sicura dei dati numerici
             int idOrdinazione = Integer.parseInt(idStr);
-            double importo = Double.parseDouble(importoStr.trim().replace(",", "."));
+            float importo = Float.parseFloat(importoStr.trim().replace(",", "."));
 
             OrdineAdminDAO ordineAdminDAO = new OrdineAdminDAO();
             OrdinazioneBean ordineAggiornato = ordineAdminDAO.doRetrieveByKey(idOrdinazione);
