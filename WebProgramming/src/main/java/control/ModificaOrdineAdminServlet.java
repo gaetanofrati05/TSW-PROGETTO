@@ -112,7 +112,7 @@ public class ModificaOrdineAdminServlet extends HttpServlet {
             return;
         }
 
-        try {
+        try { //ciao
             // conversione sicura dei dati numerici
             int idOrdinazione = Integer.parseInt(idStr);
             float importo = Float.parseFloat(importoStr.trim().replace(",", "."));
