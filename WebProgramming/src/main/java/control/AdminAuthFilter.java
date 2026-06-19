@@ -15,7 +15,7 @@ import bean.UtenteBean;
 import javax.servlet.http.HttpServletResponse;
 
 /* Servlet per verificare che l'utente sia loggato e sia admin*/
-@WebFilter(urlPatterns = {"/DashboardAdminServlet", "/InserisciProdottoServlet"})
+@WebFilter(urlPatterns = {})
 public class AdminAuthFilter extends HttpFilter implements Filter {
     private static final long serialVersionUID = 1L;
 

@@ -1,11 +1,11 @@
 package dao;
-import bean.ProdottoBean;
-import java.util.List;
-import java.util.ArrayList;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import bean.ProdottoBean;
 
 public class ProdottoAdminDAO{
 	
@@ -83,6 +83,7 @@ public class ProdottoAdminDAO{
 		}
 		return prodotto;
 	}
+
 	//Metodo per salvare un nuovo prodotto inserito dall'Admin
 	public void doSave(ProdottoBean prodotto) throws SQLException{
 		Connection connection = null;
@@ -140,7 +141,7 @@ public class ProdottoAdminDAO{
 		}
 	}
 	//Metodo per "eliminare"  un prodotto
-	void doDelete(int idProdotto) throws SQLException{
+	public void doDelete(int idProdotto) throws SQLException{
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		

@@ -350,3 +350,39 @@
     font-style: italic;
 }
 
+/* Form di modifica ordine */
+.form-modifica-ordine-admin {
+    background-color: #ffffff;
+    border-radius: 24px;
+    box-shadow: 0 20px 50px rgba(90, 102, 112, 0.08);
+    border: 1px solid rgba(223, 219, 207, 0.4);
+    padding: 4.5rem 4rem;
+    width: 100%;
+    max-width: 460px;
+    box-sizing: border-box;
+}
+
+/*responsive*/
+@media (max-width: 992px) {
+    .admin-wrapper {
+        padding: 3rem 2rem 4rem 2rem;
+    }
+    .admin-title-luxury {
+        font-size: 2.6rem;
+    }
+    .admin-subtitle-luxury {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .admin-wrapper {
+        padding: 2rem 1rem 3rem 1rem;
+    }
+    .admin-title-luxury {
+        font-size: 2.2rem;
+    }
+    .admin-subtitle-luxury {
+        font-size: 0.75rem;
+    }
+}
