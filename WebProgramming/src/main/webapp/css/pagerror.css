@@ -138,6 +138,21 @@
     display: block;
 }
 
+/*error media 403*/
+.error-media-403 { 
+    flex: 10; 
+    position: relative;
+    overflow: hidden;
+}
+
+.error-media-403 .left-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
 
 @media (max-width: 992px) { /*media query per mobile*/
     .error-wrapper {

@@ -21,13 +21,12 @@
         <div class="error-content">
         <div class="text-block">
             <span class="error-code">Errore 403</span>
-            <h1 class="error-title">Accesso riservato.</h1>
-            <h2 class="error-subtitle">Fermati, non hai i permessi per accedere a questa lounge!</h2>
+            <h1 class="error-title">Il trono è attualmente occupato</h1>
+            <h2 class="error-subtitle">O forse, semplicemente, non possiedi l'invito per sederti.</h2>
             
            
                 <p class="error-text">
-                    Le nostre lounge sono riservate agli ospiti con tavoletta attiva. 
-                    Acquista la tua, torna qui e goditi il relax che meriti.
+                    L'eleganza richiede regole ferree e assoluta privacy. Hai appena tentato di varcare la soglia di un'area riservata esclusivamente alla nostra élite. Ti invitiamo a fare un passo indietro con la dovuta compostezza, prima che intervenga il nostro concierge.
                 </p>
             </div>
             
@@ -38,6 +37,9 @@
             </div>
              </div>
              </div>
+        <div class="error-media error-media-403">
+            <img class="left-image" src="${pageContext.request.contextPath}/img/403.jpeg" alt="Accesso riservato">
+        </div>
     </main>
 
 </body>

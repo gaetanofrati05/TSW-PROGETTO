@@ -26,12 +26,14 @@ public class CatalogoAdminServlet extends HttpServlet {
 		try {
 			List<ProdottoBean> listaProdotti = pad.doRetriveAll();
 			request.setAttribute("listaProdotti", listaProdotti); //si mette la lista nella request per portarla alla grafica.
-			request.getRequestDispatcher("/WEB-INF/jsp/catalogoAdmin.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/jsp/dashboardAdmin.jsp").forward(request, response); //reindirizzamento alla pagina di dashboard
+			return;
 		} catch (SQLException e) {
 			// Se il database ha un problema, stampiamo l'errore nella console di Eclipse
 			e.printStackTrace();
 			// E mostriamo una pagina di errore all'utente
 			response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Errore di connessione al database");
+			return;
 		}
 	}
 	
