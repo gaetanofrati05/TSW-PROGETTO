@@ -1,4 +1,5 @@
-// 1. FUNZIONE PER CARICARE I DATI NEL MINI-FORM
+// file js per la modifica dell'ordine
+// FUNZIONE PER CARICARE I DATI NEL MINI-FORM
 function caricaModificaOrdine(idOrdinazione) {
     fetch(`${contextPath}/ModificaOrdineAdminServlet?idOrdinazione=${idOrdinazione}`)
     .then(response => {
@@ -79,6 +80,10 @@ function salvaModificaOrdine(event) {
         console.error('Errore nella modifica dell\'ordine:', error);
         alert('Errore di rete durante il salvataggio.');
     });
+}
+
+function resetFiltriOrdini() {
+    window.location.href = contextPath + "/GestioneOrdiniAdminServlet";
 }
 
 // 3. FUNZIONE PER CHIUDERE IL MINI-FORM

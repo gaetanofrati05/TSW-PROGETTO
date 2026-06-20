@@ -21,14 +21,14 @@ public class ModificaOrdineAdminServlet extends HttpServlet {
         if (data == null) {
             return "";
         }
-        return data.replace("\\", "\\\\")
-                   .replace("\"", "\\\"")
+        return data.replace("\\", "\\\\") //backslash per escape del backslash
+                   .replace("\"", "\\\"") //backslash per escape del backslash
                    .replace("\b", "\\b")
-                   .replace("\f", "\\f")
+                   .replace("\f", "\\f") //backslash per escape del backslash
                    .replace("\n", "\\n")
-                   .replace("\r", "\\r")
-                   .replace("\t", "\\t");
-    }
+                   .replace("\r", "\\r") //backslash per escape del backslash
+                   .replace("\t", "\\t"); //backslash per escape del backslash
+    } //metodo per escpae le stringhe json
 
     // GET: carica i dati dell'ordine specifico
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -69,7 +69,7 @@ public class ModificaOrdineAdminServlet extends HttpServlet {
                     dataPulita,
                     String.valueOf(ordine.getImporto())
                 );
-
+                // si invia la risposta JSON
                 response.getWriter().write(jsonResponse);
             } else {
                 response.setStatus(HttpServletResponse.SC_NOT_FOUND);

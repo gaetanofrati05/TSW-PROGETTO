@@ -29,7 +29,7 @@
 
         <div class="admin-card-luxury">
          
-            <form id="formInserisciProdotto"action="${pageContext.request.contextPath}/InserisciProdottoServlet" method="POST" enctype="multipart/form-data">
+            <form id="formInserisciProdotto" action="${pageContext.request.contextPath}/InserisciProdottoServlet" method="POST" enctype="multipart/form-data">
                 
                 <div class="admin-form-group">
                     <label class="admin-label">Nome Prodotto</label>
@@ -84,10 +84,10 @@
                 <div class="admin-form-group">
                     <label class="admin-label">Immagine</label>
                     <div class="custom-file-wrapper">
-                        <label for="file-upload" class="btn-action btn-edit" style="text-align: center; margin-right: 0;">Seleziona Immagine</label>
-                        
-                        <input type="file" id="immagineProdotto" name="immagine" required class="hidden-file-input">
-                        
+                        <label for="immagineProdotto" class="btn-action btn-edit" style="text-align: center; margin-right: 0;">Seleziona Immagine</label>
+
+                        <input type="file" id="immagineProdotto" name="immagine" required class="hidden-file-input" accept="image/jpeg,image/png,image/jpg" onchange="aggiornaNomeFileImmagine(this)">
+
                         <span id="file-name-display" class="file-name-text">Nessun file selezionato (JPG, JPEG, PNG)</span>
                     </div>
                 </div>
@@ -106,15 +106,15 @@
             </form>
             
             <div class="admin-redirect-box">
-                <a href="${pageContext.request.contextPath}/" class="admin-link">&larr; Torna alla Home</a>
+                <a href="${pageContext.request.contextPath}/" class="admin-link">&larr; Torna alla Home</a> &nbsp; &nbsp; &nbsp; &nbsp;
+                <a href="${pageContext.request.contextPath}/CatalogoAdminServlet" class="admin-link">Vai al Catalogo &rarr;</a>
             </div>
             
         </div>
         
-        <hr></hr
+        <hr>
     </main>
-    <script src="${pageContext.request.contextPath}/js/hidden-btn.js"></script>
-    <script src="${pageContext.request.contextPath}/js/validazioneProdotti.js" defer></script>
-    <script src="${pageContext.request.contextPath}/js/inserisciProdotto.js" defer></script>
+    <script src="${pageContext.request.contextPath}/js/validazioneProdotti.js"></script>
+    <script src="${pageContext.request.contextPath}/js/inserisciProdotto.js"></script>
 </body>
 </html>

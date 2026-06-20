@@ -24,7 +24,7 @@
             
             <div class="admin-card-luxury admin-table-wrapper" style="max-width: 90%;">
                 <p class="admin-subtitle-luxury">Filtra ordini</p><br>
-                <form id="formFiltriOrdini" class="admin-form-group-ordini" action="${pageContext.request.contextPath}/GestioneOrdiniAdminServlet" method="get">
+                <form id="formFiltriOrdini" class="admin-form-group-prodotti" action="${pageContext.request.contextPath}/GestioneOrdiniAdminServlet" method="get">
                     <div>
                         <label class="admin-label-ordini" for="filtro-idOrdinazione">ID Ordine</label>
                         <input class="admin-input-ordini" type="text" name="idOrdinazione" id="filtro-idOrdinazione" placeholder="Inserisci ID Ordine">
@@ -47,10 +47,11 @@
                             <option value="">Seleziona Stato</option>
                             <option value="Consegnato">Consegnato</option>
                             <option value="In transito">In transito</option>
-                            <option value="Accettato">Accettato</option>
+                            <option value="In elaborazione">In elaborazione</option>
                         </select>
                     </div>
                     <button type="submit" class="btn-action btn-filtra-ordini">Filtra</button>
+                    <button type="button" class="btn-action btn-filtra-ordini" onclick="resetFiltriOrdini()">Reset</button>
                 </form><br>
                 <p class="admin-subtitle-luxury">Ordini</p><br>
                 <table class="admin-table">
@@ -94,7 +95,6 @@
                 <h3 class="admin-section-title">Modifica Ordine</h3>
                 <form id="modificaOrdineForm" action="${pageContext.request.contextPath}/ModificaOrdineAdminServlet" method="post">
                     <input type="hidden" name="idOrdinazione" id="idOrdinazione">
-                    
                     <div class="admin-form-group">
                         <label class="admin-label">Email Utente</label>
                         <input type="text" class="admin-input" name="email" id="email" readonly>
@@ -141,7 +141,7 @@
             </div>
             
             <div class="admin-redirect-box">
-                <a href="${pageContext.request.contextPath}/DashboardAdminServlet" class="admin-link">&larr; Torna al pannello admin</a>
+                <a href="${pageContext.request.contextPath}/index.jsp" class="admin-link">&larr; Torna alla home</a>
             </div>
             
         </main>
