@@ -1,5 +1,8 @@
 eclipse.preferences.version=1
+<<<<<<< HEAD
 org.eclipse.jdt.core.compiler.codegen.inlineJsrBytecode=enabled
+=======
+>>>>>>> refs/remotes/origin/massimo
 org.eclipse.jdt.core.compiler.codegen.targetPlatform=11
 org.eclipse.jdt.core.compiler.compliance=11
 org.eclipse.jdt.core.compiler.problem.assertIdentifier=error
