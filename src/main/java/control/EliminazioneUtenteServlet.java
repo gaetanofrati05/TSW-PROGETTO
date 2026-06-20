@@ -49,7 +49,7 @@ public class EliminazioneUtenteServlet extends HttpServlet {
 			UtenteBean utente= utenteDAO.doRetrieveByEmail(utenteLoggato.getEmail());
 			if(utente!=null) {
 				request.setAttribute("utenteEliminare", utente);
-				request.getRequestDispatcher("/WEB-INF/jsp/eliminaUtente.jsp").forward(request, response); //pagina che chiede conferma di voler eliminare l'acocunt
+				request.getRequestDispatcher("/WEB-INF/jsp/eliminaAccount.jsp").forward(request, response);
 			}else {
 				// Se per qualche motivo l'utente in sessione non è nel DB, resettiamo la sessione
 				response.sendRedirect(request.getContextPath() + "/LoginServlet");
@@ -77,7 +77,7 @@ public class EliminazioneUtenteServlet extends HttpServlet {
 			utente.setEmail(utenteLoggato.getEmail());
 			utenteDAO.doDeleteUtente(utente);
 			session.invalidate();
-			response.sendRedirect(request.getContextPath() + "/jsp/login.jsp?utenteEliminato=true");
+			response.sendRedirect(request.getContextPath() + "/LoginServlet?utenteEliminato=true");
 			
 		}catch(SQLException e) {
 			e.printStackTrace();

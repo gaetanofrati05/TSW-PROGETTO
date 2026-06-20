@@ -43,8 +43,9 @@ document.addEventListener("DOMContentLoaded", function() {
             const cellulareInput = document.getElementById("cellulare").value;
             const prefissoInput = document.getElementById("prefisso").value;
             const passwordInput = document.getElementById("password").value;
+			const confermaPasswordInput= document.getElementById("confermaPassword").value;
             const emailInput = document.getElementById("email").value;
-
+  
             document.querySelectorAll('.js-error').forEach(function(el) { el.style.display = 'none'; });
 
             let isValid = true;
@@ -70,10 +71,17 @@ document.addEventListener("DOMContentLoaded", function() {
             }
 
             if (!validatePassword(passwordInput)) {
-                document.getElementById("password-error").style.display = "block";
+                document.getElementById("password-error1").style.display = "block";
                 isValid = false;
             }
-
+			if(!validatePassword(confermaPasswordInput)){
+				document.getElementById("password-error2");
+				isValid=false;
+			}
+            if(passwordInput!=confermaPasswordInput){
+				document.getElementById("password-error2").style.display="block";
+				isValid=false;
+			}
             if (!validateEmail(emailInput)) {
                 document.getElementById("email-error").textContent = "Email non valida";
                 document.getElementById("email-error").style.display = "block";

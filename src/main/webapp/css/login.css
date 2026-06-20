@@ -65,7 +65,6 @@ html{
     font-weight: 400;
     text-transform: uppercase;
     color: var(--oro, #b89a5a); 
-    
     letter-spacing: 0.3rem; 
     margin: 0;
 }
@@ -101,6 +100,12 @@ html{
     font-weight: 500;
 }
 
+.form-label.required-label::after{
+	content: "*";
+	color: var(--oro);
+	font-weight: bold; /*aggiunta dei campi asterisco nei form*/
+}
+
 /* CAMPATO INPUT: Linea inferiore fine che si raccorda con lo stile */
 .custom-input {
     width: 100%;
@@ -109,8 +114,8 @@ html{
     font-weight: 300;
     color: var(--nero, #14181B);
     background-color: transparent;
-    border: none;
-    border-bottom: 1px solid rgba(90, 102, 112, 0.2); /* Sottile e rilassante */
+    border: none; /*rimuoviamo i bordi predefiniti*/
+    border-bottom: 1px solid rgba(90, 102, 112, 0.2); /* Sottile e rilassante aggiungi il bordo sul lato inferiore*/
     border-radius: 0;
     box-sizing: border-box;
     transition: border-color 0.4s ease, letter-spacing 0.4s ease;
@@ -158,15 +163,7 @@ html{
 }
 
 
-.login-footer {
-    padding: 3rem 2rem;
-    text-align: center;
-    font-size: 0.75rem;
-    font-weight: 400;
-    color: var(--pietra, #5A6670);
-    opacity: 0.6;
-    letter-spacing: 0.1rem;
-}
+
 
 .login-redirect {
     margin-top: 2.2rem; 
@@ -182,7 +179,7 @@ html{
 
 .login-redirect .redirect-link {
     color: var(--oro, #b89a5a); 
-    text-decoration: none;
+    text-decoration: none; /*toglio la linea blu sotto il link*/
     font-weight: 400;
     margin-left: 0.4rem;
     display: inline-block;
@@ -195,7 +192,7 @@ html{
     content: '';
     position: absolute;
     width: 100%;
-    transform: scaleX(0);
+    transform: scaleX(0); 
     height: 1px;
     bottom: -2px;
     left: 0;
@@ -210,6 +207,57 @@ html{
     transform-origin: bottom left;
     background-color: var(--bronzo-brunito, #4A4439);
 }
+
+/* Footer condiviso (fragments/footer.jsp) nelle pagine login */
+.login-page-bg .footer {
+    margin-top: auto;
+    width: 100%;
+    flex-shrink: 0;
+    box-sizing: border-box;
+    border-top: 1px solid rgba(90, 102, 112, 0.12);
+}
+
+
+
+.input-password-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-password-wrapper .custom-input {
+    padding-right: 2.5rem;
+}
+
+.toggle-pwd-btn {
+    position: absolute;
+    right: 0;
+    bottom: 0.7rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    color: var(--pietra, #5A6670);
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+
+.toggle-pwd-btn:hover {
+    color: var(--oro, #b89a5a);
+}
+
+/* Messaggi di errore JS (usati in registrazione, ordine, ecc.) */
+.js-error {
+    color: var(--oro);
+    font-size: 0.8rem;
+    display: none; /* nascosto di default, JS lo mostra */
+    margin-top: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.08rem;
+}
+
 /* Ottimizzazione Mobile per schermi piccoli */
 @media (max-width: 992px) {
     .login-header {

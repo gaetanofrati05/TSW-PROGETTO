@@ -22,3 +22,16 @@ function validateCognome(ucognome){
 	const regex=/^[A-Za-zàèòù\s'-]{2,30}$/;
 	return regex.test(ucognome);
 }
+function validateNazione(unazione){
+	const regex=/^\D\S{2,}$/;
+	return regex.test(unazione);
+}
+function validateCap(cap){
+	const regex=/^\d{5}$/;
+	return regex.test(cap);
+}
+function validateCivico(civico){
+	const regex=/^\d{1,5}$/;
+	return regex.test(civico);
+}
+

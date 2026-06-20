@@ -1,0 +1,36 @@
+@charset "UTF-8";
+
+.js-error {
+    display: none;
+    margin-top: 8px;
+    color: var(--oro, #b89a5a);
+    font-size: 0.8rem;
+    text-align: left;
+    text-transform: uppercase;
+    letter-spacing: 0.08rem;
+}
+
+.elimina-avviso {
+	font-style: italic;
+    margin: 0 0 2.5rem 0;
+    color: var(--pietra, #5A6670);
+    font-size: 0.85rem;
+    font-weight: 300;
+    line-height: 1.8;
+    text-align: left;
+    letter-spacing: 0.03rem;
+}
+
+.elimina-avviso strong {
+    color: var(--bronzo-brunito, #4A4439);
+    font-weight: 500;
+}
+
+.error-message {
+    margin-bottom: 2rem;
+    color: var(--oro, #b89a5a);
+    font-size: 0.8rem;
+    text-align: left;
+    text-transform: uppercase;
+    letter-spacing: 0.08rem;
+}

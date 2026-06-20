@@ -21,6 +21,16 @@
     margin-bottom: 3.5rem;          /* Distanza zen tra testo e azioni */
 }
 
+.js-error { 						
+            color: var(--oro, #b89a5a);
+            font-size: 0.8rem; 
+            display: none; 
+            margin-top: 8px; 
+            text-align: left;
+            text-transform: uppercase;
+            letter-spacing: 0.08rem;
+        }
+
 .error-code {
     display: block;
     font-size: 0.85rem;
@@ -121,6 +131,21 @@
     background-color: var(--seta-grezza); 
 }
 .error-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+/*error media 403*/
+.error-media-403 { 
+    flex: 10; 
+    position: relative;
+    overflow: hidden;
+}
+
+.error-media-403 .left-image {
     width: 100%;
     height: 100%;
     object-fit: cover;

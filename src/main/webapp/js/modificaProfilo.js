@@ -1,11 +1,11 @@
 document.addEventListener("DOMContentLoaded", function(){
-	const modificaForm=docuement.getElementById("modifica-form");
+	const modificaForm=document.getElementById("form-modifica");
 	if(modificaForm){
 		modificaForm.addEventListener("submit", function(event){
 		const nomeInput=document.getElementById("nome").value;
 		const cognomeInput= document.getElementById("cognome").value;
 		const cellulareInput= document.getElementById("cellulare").value;
-		const prefissoInput= documenti.getElementById("prefisso").value;
+		const prefissoInput= document.getElementById("prefisso").value;
 		
 		document.querySelectorAll('.js-error').forEach(el => el.style.display = 'none');
 		let isValid=true;

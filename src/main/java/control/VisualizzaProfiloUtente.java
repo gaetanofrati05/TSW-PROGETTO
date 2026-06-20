@@ -2,8 +2,10 @@ package control;
 import bean.ProdottoBean;
 import bean.OrdinazioneBean;
 import bean.UtenteBean;
+import bean.RecensioneBean;
 import dao.OrdinazioneDAO;
 import dao.ProdottoDAO;
+import dao.RecensioneDAO;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -25,6 +27,7 @@ public class VisualizzaProfiloUtente extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private OrdinazioneDAO ordinazioneDAO;
     private ProdottoDAO prodottoDAO;
+    private RecensioneDAO recensioneDAO;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -39,6 +42,7 @@ public class VisualizzaProfiloUtente extends HttpServlet {
 	public void init(ServletConfig config) throws ServletException {
 		ordinazioneDAO= new OrdinazioneDAO();
 		prodottoDAO= new ProdottoDAO();
+		recensioneDAO= new RecensioneDAO();
 	}
 
 	/**
@@ -56,9 +60,11 @@ public class VisualizzaProfiloUtente extends HttpServlet {
 		String email= utente.getEmail();
 		try {
 			List<OrdinazioneBean> listaOrdinazioni= ordinazioneDAO.doStampaListaOrdinazione(email);
-		List<ProdottoBean> listaProdotti= prodottoDAO.doStampaListaProdotti(email); //metodo che ha creato massimo
+			List<ProdottoBean> listaProdotti= prodottoDAO.doStampaListaProdotti(email);
+			List<RecensioneBean> listaRecensioni= recensioneDAO.doRetrieveByEmailWithOrder(email, null);
 			request.setAttribute("listaOrdinazioni", listaOrdinazioni);
 			request.setAttribute("listaProdotti", listaProdotti);
+			request.setAttribute("listaRecensioni", listaRecensioni);
 			request.getRequestDispatcher("/WEB-INF/jsp/profilo.jsp").forward(request,response);
 		} catch (SQLException e) {
             e.printStackTrace();

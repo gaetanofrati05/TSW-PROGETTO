@@ -115,4 +115,57 @@ public class ProdottoDAO {
 
         return prod;
     }
+
+    public List<ProdottoBean> doStampaListaProdotti(String emailUtente) throws SQLException {
+        Connection connection = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        List<ProdottoBean> prodotti = new ArrayList<>();
+        String query = "SELECT DISTINCT P.* FROM Prodotto P "
+                + "INNER JOIN Recensione R ON P.idProdotto = R.fk_Prodotto_idProdotto "
+                + "INNER JOIN Valutazione V ON R.idRecensione = V.fk_Valutazione_idRecensione "
+                + "WHERE V.fk_Valutazione_email = ?";
+
+        try {
+            connection = ConnectionPool.getConnection();
+            ps = connection.prepareStatement(query);
+            ps.setString(1, emailUtente);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                ProdottoBean p = new ProdottoBean();
+                p.setIdProdotto(rs.getInt("idProdotto"));
+                p.setNome(rs.getString("nome"));
+                p.setStile(rs.getString("stile"));
+                p.setColore(rs.getString("colore"));
+                p.setDimensioni(rs.getString("dimensioni"));
+                p.setPrezzo(rs.getFloat("prezzo"));
+                p.setQuantita(rs.getInt("quantita"));
+                p.setDescrizione(rs.getString("descrizione"));
+                p.setImmagine(rs.getString("immagine"));
+                prodotti.add(p);
+            }
+        } finally {
+            if (rs != null) rs.close();
+            if (ps != null) ps.close();
+            ConnectionPool.releaseConnection(connection);
+        }
+
+        return prodotti;
+    }
+
+    public boolean doDecrementQuantita(int idProdotto, int quantita, Connection connection) throws SQLException {
+        PreparedStatement ps = null;
+        try {
+            ps = connection.prepareStatement(
+                "UPDATE Prodotto SET quantita = quantita - ? WHERE idProdotto = ? AND quantita >= ?");
+            ps.setInt(1, quantita);
+            ps.setInt(2, idProdotto);
+            ps.setInt(3, quantita);
+            return ps.executeUpdate() > 0;
+        } finally {
+            if (ps != null) ps.close();
+        }
+    }
 }

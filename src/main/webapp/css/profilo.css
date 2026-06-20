@@ -1,42 +1,420 @@
-@charset "UTF-8";
-.profilo-page-bg{
-	min-height: 100vh;
-	margin:0;
-	padding:0;
-	display: flex;
-	flex-direction: column;
-	background: var(--crema);
-	box-sizing: border-box;
-	padding-top: 80px; /*circa l'altezza della navbar*/
-	
+
+
+/* 1. IMPOSTAZIONI GENERALI DELLA PAGINA */
+.profilo-page-bg {
+    background-color: var(--crema);      
+    color: var(--bronzo-brunito);        /* Testo principale scuro e morbido (meno aggressivo del nero) */
+    font-family: 'Times New Roman', Times, serif; 
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
 }
 
-.profilo{
-	position: absolute;
-	padding: 3.5rem, 2rem, 2.5rem, 8px;
-	border-bottom: 0.5px solid var(--argilla-chiara) /*linea sottile che divide le sezioni*/
-	
+/* 2. HEADER - AREA PERSONALE */
+header.profilo {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 40px 30px 40px; 
+    border-bottom: 1px solid var(--argilla-chiara); /* Separatore discreto per base chiara */
 }
-.utente-titolo{
-	font-size: 0.75rem;
-	letter-spacing: 0.4px;
-	text-transform: uppercase;
-	color: var(--oro);
-	margin-bottom: 1rem;
-	
+
+.utente-titolo {
+    color: var(--oro);
+    font-size: 0.75rem; /*0.75 rispetto alla radice della pagina così è centrata per il 75%*/
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    margin-bottom: 15px;  
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 500;
+    transition: text-shadow 0.4s ease, color 0.4s ease; 
+    cursor: default;
 }
-.utente-intestazione{
-	font-family: 'Georgia', serif;
-	font-size: 52px;
-	font-weight: 300;
-	color: var(--nero);
-	 margin: 0 0 0.5rem 0;
-    line-height: 1.05;
-    
+
+/* Effetto interattivo separato per farlo funzionare solo al passaggio del mouse */
+.utente-titolo:hover {
+    color: var(--ottone-antico); 
+    text-shadow: 0 0 15px rgba(184, 154, 90, 0.4), 0 0 25px rgba(184, 154, 90, 0.2); 
 }
-.utente-informazioni{
-	font-size: 0.75rem;
-	letter-spacing: 0.2rem;
-	color: var(--pietra);
-	font-weight: 300;
+
+.utente-intestazione {
+    font-size: 3.5rem;
+    font-weight: 300;
+    line-height: 1.1;
+    margin: 0 0 15px 0;
+    letter-spacing: -0.02em;
+    color: var(--nero); 
+}
+
+.utente-informazioni {
+    font-size: 0.9rem;
+    color: var(--pietra); /* Grigio pietra per i dettagli secondari */
+    letter-spacing: 0.05em;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* 3. WRAPPER PRINCIPALE (LAYOUT) */
+.profilo-wrapper {
+    max-width: 1200px; 
+    margin: 0 auto;
+    padding: 40px;
+    display: flex;
+    flex-direction: column; /*disponi in colonna per dividere il profilo in sezioni*/
+    gap: 60px;
+}
+
+/* 4. SEZIONE COLLEZIONE / PRODOTTI DISPONIBILI */
+.lista-prodotti {
+    width: 100%;
+}
+
+.lista-prodotti::before {
+    content: "COLLEZIONE";
+    display: block;
+    color: var(--oro);
+    font-size: 0.8rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    transition: text-shadow 0.4s ease, color 0.4s ease;
+    cursor: default;
+    text-shadow: 0 0 12px rgba(184, 154, 90, 0.25), 0 0 20px rgba(184, 154, 90, 0.15);
+}
+
+.lista-prodotti:hover::before {
+    color: var(--ottone-antico);
+    text-shadow: 0 0 15px rgba(184, 154, 90, 0.4), 0 0 25px rgba(184, 154, 90, 0.2);
+}
+
+.prodotti-track {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.prodotto-card {
+    background-color: var(--marmo-calacatta); /* Quasi-bianco caldissimo che stacca dal crema */
+    border: 1px solid var(--argilla-chiara);   /* Bordo sottile e pulito */
+    padding: 30px 25px;
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    position: relative;
+}
+
+.prodotto-card:hover {
+    border-color: var(--oro);
+    background-color: #ffffff; /* Diventa totalmente candido all'hover */
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03); /* Ombra impercettibile e sofisticata */
+}
+
+.prodotto-name {
+    font-size: 1.4rem;
+    margin: 0 0 5px 0;
+    font-weight: 400;
+    color: var(--nero);
+}
+
+.prodotto-stile {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: var(--pietra);
+    letter-spacing: 0.1em;
+    margin: 0 0 25px 0;
+}
+
+.prodotto-prezzo {
+    font-size: 1.1rem;
+    color: var(--bronzo-brunito);
+    margin: 0;
+    font-weight: 600;
+}
+
+.prodotto-quantita {
+    position: absolute; /*stacchiamo l'elemento dal flusso del documento*/
+    bottom: 30px;
+    right: 25px;
+    font-size: 0.8rem;
+    color: var(--ottone-antico);
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* 5. TITOLI SEZIONE (profilo, recensioni, ordini) */
+.section-label {
+    color: var(--oro);
+    font-size: 0.8rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    transition: text-shadow 0.4s ease, color 0.4s ease;
+    cursor: default;
+    display: inline-block;
+    text-shadow: 0 0 12px rgba(184, 154, 90, 0.25), 0 0 20px rgba(184, 154, 90, 0.15);
+}
+
+.section-label:hover {
+    color: var(--ottone-antico);
+    text-shadow: 0 0 15px rgba(184, 154, 90, 0.4), 0 0 25px rgba(184, 154, 90, 0.2);
+}
+
+/* 6. INTESTAZIONE SEZIONE CON FILTRI AFFIANCO */
+.section-header {
+    display: flex;
+    justify-content: space-between; /*blocca tutti gli elementi sull'asse orizzontale il primo tutto a sinistra l'ultimo a detsra*/
+    align-items: center;
+    flex-wrap: wrap; /*permette di andare a capo elegantemente*/
+    gap: 20px; /*spazio fra una sezione e l'altra*/
+    margin-bottom: 20px;
+}
+
+.section-header .section-label {
+    margin-bottom: 0;
+}
+
+.filtri-ordini,
+.filtri-recensioni {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--pietra);
+}
+
+.filtri-ordini select,
+.filtri-recensioni select {
+    padding: 8px 14px;
+    border: 1px solid var(--argilla-chiara);
+    background-color: var(--marmo-calacatta);
+    color: var(--bronzo-brunito);
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+}
+
+.filtri-ordini select:hover,
+.filtri-recensioni select:hover,
+.filtri-ordini select:focus,
+.filtri-recensioni select:focus {
+    border-color: var(--oro);
+    outline: none;
+}
+
+/* 7. TABELLA STORICO ORDINI */
+.storico-ordini {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.table-ordini {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.table-ordini th {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--pietra);
+    padding: 15px 0;
+    font-weight: 400;
+    border-bottom: 1px solid var(--argilla-chiara);
+    text-align: left;
+}
+
+.ordini-row td,
+.ordini-raw td {
+    padding: 25px 0;
+    border-bottom: 1px solid var(--seta-grezza);
+    font-size: 1.05rem;
+    vertical-align: middle;
+    color: var(--bronzo-brunito);
+}
+
+.ordini-row:hover,
+.ordini-raw:hover {
+    background-color: rgba(250, 249, 246, 0.6);
+}
+
+.ordini-row td:first-child,
+.ordini-raw td:first-child {
+    font-size: 0.9rem;
+    color: var(--ottone-antico);
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 500;
+}
+
+.ordini-row td:nth-child(2),
+.ordini-raw td:nth-child(2) {
+    font-family: 'Times New Roman', Times, serif;
+    color: var(--nero);
+}
+
+.table-ordini .text-right,
+.ordini-row .text-right,
+.ordini-raw .text-right {
+    text-align: right;
+}
+
+/* Il Badge rettangolare dell'ordine coordinato */
+.badge-stato {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    display: inline-block;
+    padding: 6px 14px;
+    border: 1px solid var(--oro);
+    color: var(--ottone-antico);
+    font-weight: 500;
+    background-color: transparent;
+}
+
+/* 8. SEZIONE RECENSIONI - CARD IN STILE COLLEZIONE */
+.storico-recensioni {
+    width: 100%;
+}
+
+.recensioni-track {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.recensione-card {
+    background-color: var(--marmo-calacatta);
+    border: 1px solid var(--argilla-chiara);
+    padding: 30px 25px;
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    position: relative;
+}
+
+.recensione-card:hover {
+    border-color: var(--oro);
+    background-color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+}
+
+.recensione-valutazione {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 0.85rem;
+    color: var(--oro);
+    letter-spacing: 0.05em;
+    margin: 0 0 15px 0;
+}
+
+.recensione-valutazione strong {
+    color: var(--ottone-antico);
+    font-weight: 600;
+}
+
+.recensione-descrizione {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1rem;
+    font-style: italic;
+    line-height: 1.7;
+    color: var(--bronzo-brunito);
+    margin: 0 0 20px 0;
+}
+
+.recensione-data {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--pietra);
+    margin: 0;
+}
+
+.recensione-autore {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 0.75rem;                /* Leggermente più piccolo per bilanciare il maiuscolo */
+    font-weight: 500;                  /* Un tocco di spessore in più */
+    text-transform: uppercase;         
+    letter-spacing: 0.15em;            /* Spaziatura elegante ma leggibile */
+    color: var(--ottone-antico);       /* Usiamo l'ottone anziché il nero puro per renderlo sofisticato */
+    margin: 0 0 15px 0;
+}
+
+/* 9. MENU IN TENDINA / AZIONI AZIENDALI */
+.tendina-wrapper {
+    border-top: 1px solid var(--argilla-chiara);
+    padding-top: 40px;
+    margin-top: 40px;
+}
+
+.tendina-wrapper ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: flex-start;
+    gap: 35px;
+    flex-wrap: wrap;
+}
+
+.tendina-wrapper li a {
+    color: var(--bronzo-brunito);
+    text-decoration: none;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    transition: color 0.3s ease;
+}
+
+.tendina-wrapper li a:hover {
+    color: var(--oro);
+}
+
+/* Messaggi di lista vuota */
+.empty-msg, .lista-prodotti p {
+    color: var(--pietra);
+    font-style: italic;
+    font-size: 1rem;
+    padding: 20px 0;
+}
+/*Sezione media query per mobile*/
+@media (max-width: 768px){
+	.utente-intestazione {
+	    font-size: 2.2rem;
+	}
+	.profilo-wrapper {
+        gap: 40px; /* Riduciamo lo spazio verticale tra le sezioni */
+    }
+
+    /* Rendiamo la tabella degli ordini scorrevole in orizzontale. 
+       Questo evita che i testi si sovrappongano o che la pagina si allarghi rompendo il layout */
+    .storico-ordini {
+        width: 100%;
+        overflow-x: auto; /* Attiva lo scroll orizzontale solo sulla tabella se serve */
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .table-ordini {
+        min-width: 500px;
+    }
+
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .recensioni-track {
+        grid-template-columns: 1fr;
+    }
+
+    /* Adattiamo il menu in fondo (le azioni) per i telefoni */
+    .tendina-wrapper ul {
+        flex-direction: column; /* I link si dispongono uno sotto l'altro */
+        gap: 15px;              /* Spazio comodo per cliccarli con il dito */
+    }
 }

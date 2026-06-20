@@ -158,6 +158,8 @@ public class UtenteDAO {
 				utente.setNazionalita(result.getString("nazionalita"));
 				utente.setPrefisso(result.getString("prefisso"));
 				utente.setCellulare(result.getString("cellulare"));
+				utente.setNumeroOrdinazioni(result.getInt("num_ordinazioni"));
+				utente.setAdmin(result.getBoolean("isAdmin"));
 				return utente;
 			}
 			return null;

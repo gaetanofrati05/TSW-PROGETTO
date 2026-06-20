@@ -220,5 +220,99 @@ public class RecensioneDAO {
          ConnectionPool.releaseConnection(connection);
      }
    }
+
+   public List<RecensioneBean> doRetrieveByEmailWithOrder(String email, String orderBy) throws SQLException {
+	   String orderClause = " ORDER BY R.data_Recensione DESC";
+	   if ("date_asc".equals(orderBy)) {
+		   orderClause = " ORDER BY R.data_Recensione ASC";
+	   } else if ("scoring_desc".equals(orderBy)) {
+		   orderClause = " ORDER BY R.Scoring DESC";
+	   } else if ("scoring_asc".equals(orderBy)) {
+		   orderClause = " ORDER BY R.Scoring ASC";
+	   }
+
+	   Connection connection = null;
+	   PreparedStatement ps = null;
+	   ResultSet result = null;
+	   String query = "SELECT R.*, P.nome AS nomeProdotto, U.nome AS nomeUtente, U.cognome AS cognomeUtente "
+			   + "FROM Recensione R "
+			   + "JOIN Valutazione V ON R.idRecensione = V.fk_Valutazione_idRecensione "
+			   + "LEFT JOIN Prodotto P ON R.fk_Prodotto_idProdotto = P.idProdotto "
+			   + "LEFT JOIN Utente U ON V.fk_Valutazione_email = U.email "
+			   + "WHERE V.fk_Valutazione_email = ?" + orderClause;
+
+	   try {
+		   connection = ConnectionPool.getConnection();
+		   ps = connection.prepareStatement(query);
+		   ps.setString(1, email);
+		   result = ps.executeQuery();
+
+		   List<RecensioneBean> listaRecensioni = new ArrayList<>();
+		   while (result.next()) {
+			   listaRecensioni.add(mapRecensione(result));
+		   }
+		   return listaRecensioni;
+	   } finally {
+		   if (result != null) result.close();
+		   if (ps != null) ps.close();
+		   ConnectionPool.releaseConnection(connection);
+	   }
+   }
+
+   public List<RecensioneBean> doRetrieveGlobalWithOrder(String orderBy) throws SQLException {
+	   String orderClause = " ORDER BY R.data_Recensione DESC";
+	   if ("date_asc".equals(orderBy)) {
+		   orderClause = " ORDER BY R.data_Recensione ASC";
+	   } else if ("scoring_desc".equals(orderBy)) {
+		   orderClause = " ORDER BY R.Scoring DESC";
+	   } else if ("scoring_asc".equals(orderBy)) {
+		   orderClause = " ORDER BY R.Scoring ASC";
+	   }
+
+	   Connection connection = null;
+	   PreparedStatement ps = null;
+	   ResultSet result = null;
+	   String query = "SELECT R.*, P.nome AS nomeProdotto, U.nome AS nomeUtente, U.cognome AS cognomeUtente "
+			   + "FROM Recensione R "
+			   + "LEFT JOIN Prodotto P ON R.fk_Prodotto_idProdotto = P.idProdotto "
+			   + "LEFT JOIN Valutazione V ON R.idRecensione = V.fk_Valutazione_idRecensione "
+			   + "LEFT JOIN Utente U ON V.fk_Valutazione_email = U.email "
+			   + orderClause;
+
+	   try {
+		   connection = ConnectionPool.getConnection();
+		   ps = connection.prepareStatement(query);
+		   result = ps.executeQuery();
+
+		   List<RecensioneBean> listaRecensioni = new ArrayList<>();
+		   while (result.next()) {
+			   listaRecensioni.add(mapRecensione(result));
+		   }
+		   return listaRecensioni;
+	   } finally {
+		   if (result != null) result.close();
+		   if (ps != null) ps.close();
+		   ConnectionPool.releaseConnection(connection);
+	   }
+   }
+
+   private RecensioneBean mapRecensione(ResultSet result) throws SQLException {
+	   RecensioneBean recensione = new RecensioneBean();
+	   recensione.setIdRecensione(result.getInt("idRecensione"));
+	   recensione.setDataRecensione(result.getDate("data_Recensione"));
+	   recensione.setScoring(result.getInt("Scoring"));
+	   recensione.setDescrizione(result.getString("descrizione"));
+
+	   bean.ProdottoBean prodotto = new bean.ProdottoBean();
+	   prodotto.setIdProdotto(result.getInt("fk_Prodotto_idProdotto"));
+	   prodotto.setNome(result.getString("nomeProdotto"));
+	   recensione.setProdotto(prodotto);
+
+	   bean.UtenteBean utente = new bean.UtenteBean();
+	   utente.setNome(result.getString("nomeUtente"));
+	   utente.setCognome(result.getString("cognomeUtente"));
+	   recensione.setUtente(utente);
+	   return recensione;
+   }
    
 }

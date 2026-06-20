@@ -53,7 +53,7 @@ public class VisualizzaOrdiniServlet extends HttpServlet {
             request.setAttribute("ordiniUtente", listaOrdini);
 
            
-            request.getRequestDispatcher("/WEB-INF/jsp/tracciamento.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/jsp/visualizzaOrdiniUtente.jsp").forward(request, response);
 
         } catch (SQLException e) {
             e.printStackTrace();

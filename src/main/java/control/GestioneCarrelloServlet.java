@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import bean.CarrelloBean;
 import bean.ProdottoBean;
+import bean.ProdottoCarrello;
 import dao.ProdottoDAO;
 
 @WebServlet("/GestioneCarrelloServlet")
@@ -71,8 +72,17 @@ public class GestioneCarrelloServlet extends HttpServlet {
     	int idProdotto = Integer.parseInt(request.getParameter("idProdotto"));
     	int quantita = request.getParameter("quantita") != null ? Integer.parseInt(request.getParameter("quantita")) : 1;
     	ProdottoBean prodotto = prodottoDAO.doRetrieveById(idProdotto);
-    	if (prodotto != null) {
-    		carrello.aggiungiProdotto(prodotto, quantita);
+    	if (prodotto != null && prodotto.getQuantita() > 0) {
+    		int quantitaRichiesta = quantita;
+    		for (ProdottoCarrello item : carrello.getElementi()) {
+    			if (item.getProdotto().getIdProdotto() == idProdotto) {
+    				quantitaRichiesta += item.getQuantita();
+    				break;
+    			}
+    		}
+    		if (quantitaRichiesta <= prodotto.getQuantita()) {
+    			carrello.aggiungiProdotto(prodotto, quantita);
+    		}
     	}
     }
 
@@ -81,13 +91,16 @@ public class GestioneCarrelloServlet extends HttpServlet {
     	carrello.eliminaProdotto(idProdotto);
     }
 
-    private void gestisciAggiornamento(HttpServletRequest request, CarrelloBean carrello) {
+    private void gestisciAggiornamento(HttpServletRequest request, CarrelloBean carrello) throws SQLException {
     	int idProdotto = Integer.parseInt(request.getParameter("idProdotto"));
     	int nuovaQuantita = Integer.parseInt(request.getParameter("nuovaQuantita"));
     	if (nuovaQuantita > 0) {
-    		carrello.getElementi().stream()
-    		.filter(item -> item.getProdotto().getIdProdotto() == idProdotto)
-    		.findFirst().ifPresent(item -> item.setQuantita(nuovaQuantita));
+    		ProdottoBean prodotto = prodottoDAO.doRetrieveById(idProdotto);
+    		if (prodotto != null && nuovaQuantita <= prodotto.getQuantita()) {
+    			carrello.getElementi().stream()
+    			.filter(item -> item.getProdotto().getIdProdotto() == idProdotto)
+    			.findFirst().ifPresent(item -> item.setQuantita(nuovaQuantita));
+    		}
     	} else {
     		carrello.eliminaProdotto(idProdotto);
     	}

@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/layout.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/componenti.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
     <title>The Royal Rest - Login</title>
     <style>
         .js-error { 
@@ -29,6 +30,7 @@
         </a>
     </header>
 
+    
     <main class="login-wrapper">
         
         <div class="welcome-heading-box">
@@ -60,6 +62,9 @@
                     <label class="form-label" for="password">Password</label>
                     <div class="input-password-wrapper">
                         <input type="password" id="password" name="password" placeholder="Inserisci la tua password segreta" required class="custom-input">
+                        <button type="button" class="toggle-pwd-btn" aria-label="Mostra password">
+                            <i class="ti ti-eye toggle-pwd-icon" aria-hidden="true"></i>
+                        </button>
                     </div>
                     <div id="password-error" class="js-error">La password non rispetta i requisiti.</div>
                 </div>
@@ -75,12 +80,10 @@
         
     </main>
 
-    <footer class="login-footer">
-        <p>&copy; 2026 The Royal Rest. L'arte del benessere silenzioso.</p>
-    </footer>
-    
+     <jsp:include page="/fragments/footer.jsp" />
     <script src="${pageContext.request.contextPath}/js/validation.js" defer></script>
    <script src="${pageContext.request.contextPath}/js/login.js" defer></script>
+   <script src="${pageContext.request.contextPath}/js/mostraNascondiPwd.js" defer></script>
 
 </body>
 </html>
