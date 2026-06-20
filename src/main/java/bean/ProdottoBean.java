@@ -1,31 +1,24 @@
 package bean;
+
 public class ProdottoBean {
-	
-	private int idProdotto;
-	private String nome;
-	private String stile;
-	private String colore;
-	private String dimensioni;
-	private double prezzo;
-	private int quantita;
-	private String descrizione;
-<<<<<<< HEAD:src/main/java/bean/ProdottoBean.java
-	private String immagine;
-	private String stato; //bisogna aggiungere anche lo stato abbiamo detto che ci stava anche la possibilità di tracciare
-	// e vedere lo stato ordine
-	// + getter e setter
-=======
-    private String immagine;
-	
->>>>>>> origin/massimo:WebProgramming/src/main/java/bean/ProdottoBean.java
-	public ProdottoBean() {
     
-	}
+    private int idProdotto;
+    private String nome;
+    private String stile;
+    private String colore;
+    private String dimensioni;
+    private double prezzo;
+    private int quantita;
+    private String descrizione;
+    private String immagine;
+    private String stato; // stato dell'ordine
+
+    public ProdottoBean() {
+    }
 
     public int getIdProdotto() {
         return idProdotto;
     }
-    
 
     public void setIdProdotto(int idProdotto) {
         this.idProdotto = idProdotto;
@@ -60,7 +53,7 @@ public class ProdottoBean {
     }
 
     public void setDimensioni(String dimensioni) {
-        this.dimensioni = dimensioni; 
+        this.dimensioni = dimensioni;
     }
 
     public double getPrezzo() {
@@ -86,15 +79,11 @@ public class ProdottoBean {
     public void setDescrizione(String descrizione) {
         this.descrizione = descrizione;
     }
-<<<<<<< HEAD:src/main/java/bean/ProdottoBean.java
-=======
 
->>>>>>> origin/massimo:WebProgramming/src/main/java/bean/ProdottoBean.java
     public String getImmagine() {
         return immagine;
     }
 
-<<<<<<< HEAD:src/main/java/bean/ProdottoBean.java
     public void setImmagine(String immagine) {
         this.immagine = immagine;
     }
@@ -106,11 +95,4 @@ public class ProdottoBean {
     public void setStato(String stato) {
         this.stato = stato;
     }
-=======
-    public void setImmagine(String immagine){
-        this.immagine = immagine;
-    }
-
->>>>>>> origin/massimo:WebProgramming/src/main/java/bean/ProdottoBean.java
 }
-

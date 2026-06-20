@@ -15,45 +15,41 @@ import bean.UtenteBean;
 import javax.servlet.http.HttpServletResponse;
 
 /* Servlet per verificare che l'utente sia loggato e sia admin*/
-<<<<<<< HEAD:src/main/java/control/AdminAuthFilter.java
 @WebFilter(urlPatterns = {
-	"/CatalogoAdminServlet",
-	"/OrdiniAdminServlet",
-	"/GestioneOrdiniAdminServlet",
-	"/ModificaOrdineAdminServlet",
-	"/EliminaOrdineAdminServlet",
-	"/InserisciProdottoServlet",
-	"/ModificaProdottoServlet",
-	"/EliminaProdottoServlet",
-	"/VisualizzaProdottiServlet",
-	"/GetOrderAjaxServlet",
-	"/DashboardAdminServlet"
+    "/CatalogoAdminServlet",
+    "/OrdiniAdminServlet",
+    "/GestioneOrdiniAdminServlet",
+    "/ModificaOrdineAdminServlet",
+    "/EliminaOrdineAdminServlet",
+    "/InserisciProdottoServlet",
+    "/ModificaProdottoServlet",
+    "/EliminaProdottoServlet",
+    "/VisualizzaProdottiServlet",
+    "/GetOrderAjaxServlet",
+    "/DashboardAdminServlet"
 })
-=======
-@WebFilter(urlPatterns = {})
->>>>>>> origin/massimo:WebProgramming/src/main/java/control/AdminAuthFilter.java
 public class AdminAuthFilter extends HttpFilter implements Filter {
     private static final long serialVersionUID = 1L;
 
-	public void init(FilterConfig config) throws ServletException {
-        
+    public void init(FilterConfig config) throws ServletException {
     }
 
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) 
+            throws IOException, ServletException {
     
-    HttpServletRequest req=(HttpServletRequest) request;
-    HttpServletResponse res=(HttpServletResponse) response;
-    HttpSession session = req.getSession(false);
+        HttpServletRequest req = (HttpServletRequest) request;
+        HttpServletResponse res = (HttpServletResponse) response;
+        HttpSession session = req.getSession(false);
 
-    if(session ==  null || session.getAttribute("utenteLoggato") == null || !((UtenteBean) session.getAttribute("utenteLoggato")).getAdmin()){
-        res.sendRedirect(req.getContextPath()+"/LoginServlet");
-        return;
+        if (session == null || session.getAttribute("utenteLoggato") == null 
+                || !((UtenteBean) session.getAttribute("utenteLoggato")).getAdmin()) {
+            res.sendRedirect(req.getContextPath() + "/LoginServlet");
+            return;
+        }
+
+        chain.doFilter(request, response);
     }
 
-    chain.doFilter(request, response);
-    }
-
-    public void destroy(){
-
+    public void destroy() {
     }
 }

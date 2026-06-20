@@ -1,4 +1,5 @@
 package dao;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,373 +8,248 @@ import java.util.ArrayList;
 import java.util.List;
 import bean.ProdottoBean;
 
-public class ProdottoAdminDAO{
-	
-	//metodo per ottenere la lista di prodotti del catalogo
-	public List<ProdottoBean> doRetriveAll() throws SQLException{
-		
-		Connection connection = null; //connessione al database
-		PreparedStatement preparedStatement = null; //istruzione SQL
-		ResultSet rs= null; //risultato della query
-		List<ProdottoBean> prodotti = new ArrayList<>(); //lista di prodotti
-		String selectQuery="SELECT * FROM Prodotto";
-		//query per selezionare tutti i prodotti dal database
-		try {
-			connection = ConnectionPool.getConnection();
-			preparedStatement = connection.prepareStatement(selectQuery);
-			rs = preparedStatement.executeQuery();
-			while(rs.next()) {
-				ProdottoBean prodotto = new ProdottoBean();
-				prodotto.setIdProdotto(rs.getInt("idProdotto"));
-				prodotto.setNome(rs.getString("nome"));
-				prodotto.setStile(rs.getString("stile"));
-				prodotto.setColore(rs.getString("colore"));
-				prodotto.setDimensioni(rs.getString("dimensioni"));
-<<<<<<< HEAD:src/main/java/dao/ProdottoAdminDAO.java
-				prodotto.setPrezzo(rs.getFloat("prezzo"));
-=======
-				prodotto.setPrezzo(rs.getDouble("prezzo"));
->>>>>>> origin/massimo:WebProgramming/src/main/java/dao/ProdottoAdminDAO.java
-				prodotto.setQuantita(rs.getInt("quantita"));
-				prodotto.setDescrizione(rs.getString("descrizione"));
-				prodotto.setImmagine(rs.getString("immagine"));
-				prodotti.add(prodotto);
-			}
-		}finally { //chiude la connessione al database
-			if(rs != null) { //chiude il risultato della query
-				rs.close();
-			}
-			if(preparedStatement != null) { //chiude l'istruzione SQL
-				preparedStatement.close();
-			}
-			ConnectionPool.releaseConnection(connection); //chiude la connessione al database
-		}
-		return prodotti; //restituisce la lista di prodotti
-	}
+public class ProdottoAdminDAO {
 
-	//Metodo per ottenere un prodotto specifico dal database
-	public ProdottoBean doRetrieveByKey(int idProdotto) throws SQLException{
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-		ResultSet rs = null;
-		ProdottoBean prodotto = null;
-		String selectQuery = "SELECT * FROM Prodotto WHERE idProdotto = ?";
-		try {
-			connection = ConnectionPool.getConnection();
-			preparedStatement = connection.prepareStatement(selectQuery);
-			preparedStatement.setInt(1, idProdotto);
-			rs = preparedStatement.executeQuery();
-			if(rs.next()) {
-				prodotto = new ProdottoBean();
-				prodotto.setIdProdotto(rs.getInt("idProdotto"));
-				prodotto.setNome(rs.getString("nome"));
-				prodotto.setStile(rs.getString("stile"));
-	
-				prodotto.setColore(rs.getString("colore"));
-				prodotto.setDimensioni(rs.getString("dimensioni"));
-<<<<<<< HEAD:src/main/java/dao/ProdottoAdminDAO.java
-				prodotto.setPrezzo(rs.getFloat("prezzo"));
-=======
-				prodotto.setPrezzo(rs.getDouble("prezzo"));
->>>>>>> origin/massimo:WebProgramming/src/main/java/dao/ProdottoAdminDAO.java
-				prodotto.setQuantita(rs.getInt("quantita"));
-				prodotto.setDescrizione(rs.getString("descrizione"));
-				prodotto.setImmagine(rs.getString("immagine"));
-			}
-		}finally {
-			if(rs != null) {
-				rs.close();
-			}
-			if(preparedStatement != null) {
-				preparedStatement.close();
-			}
-			ConnectionPool.releaseConnection(connection);
-		}
-		return prodotto;
-	}
+    // metodo di supporto: popola un ProdottoBean da una riga del ResultSet
+    // evita di ripetere le stesse righe in ogni metodo
+    private ProdottoBean mappaProdotto(ResultSet rs) throws SQLException {
+        ProdottoBean prodotto = new ProdottoBean();
+        prodotto.setIdProdotto(rs.getInt("idProdotto"));
+        prodotto.setNome(rs.getString("nome"));
+        prodotto.setStile(rs.getString("stile"));
+        prodotto.setColore(rs.getString("colore"));
+        prodotto.setDimensioni(rs.getString("dimensioni"));
+        prodotto.setPrezzo(rs.getDouble("prezzo")); // double, più preciso di float per i prezzi
+        prodotto.setQuantita(rs.getInt("quantita"));
+        prodotto.setDescrizione(rs.getString("descrizione"));
+        prodotto.setImmagine(rs.getString("immagine"));
+        return prodotto;
+    }
 
-<<<<<<< HEAD:src/main/java/dao/ProdottoAdminDAO.java
-=======
-	//Metodo per otternere un prodotto in base al nome
+    // restituisce tutti i prodotti del catalogo
+    public List<ProdottoBean> doRetriveAll() throws SQLException {
+        Connection connection = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        List<ProdottoBean> prodotti = new ArrayList<>();
+        String query = "SELECT * FROM Prodotto";
+        try {
+            connection = ConnectionPool.getConnection();
+            ps = connection.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                prodotti.add(mappaProdotto(rs));
+            }
+        } finally {
+            if (rs != null) rs.close();
+            if (ps != null) ps.close();
+            ConnectionPool.releaseConnection(connection);
+        }
+        return prodotti;
+    }
 
-	public List<ProdottoBean> doRetriveByName(String nome) throws SQLException{
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-		ResultSet rs = null;
-		List<ProdottoBean> prodotti = new ArrayList<>();
-		String selectQuery = "SELECT * FROM Prodotto WHERE nome LIKE ?";
-		try {
-			connection = ConnectionPool.getConnection();
-			preparedStatement = connection.prepareStatement(selectQuery);
-			preparedStatement.setString(1, "%" + nome + "%");
-			rs = preparedStatement.executeQuery();
-			while(rs.next()) {
-				ProdottoBean prodotto = new ProdottoBean();
-				prodotto.setIdProdotto(rs.getInt("idProdotto"));
-				prodotto.setNome(rs.getString("nome"));
-				prodotto.setStile(rs.getString("stile"));
-				prodotto.setColore(rs.getString("colore"));
-				prodotto.setDimensioni(rs.getString("dimensioni"));
-				prodotto.setPrezzo(rs.getDouble("prezzo"));
-				prodotto.setQuantita(rs.getInt("quantita"));
-				prodotto.setDescrizione(rs.getString("descrizione"));
-				prodotto.setImmagine(rs.getString("immagine"));
-				prodotti.add(prodotto);
-			}
-		}finally {
-			if(rs != null) {
-				rs.close();
-			}
-			if(preparedStatement != null) {
-				preparedStatement.close();
-			}
-			ConnectionPool.releaseConnection(connection);
-		}
-		return prodotti;
-	}
+    // restituisce un singolo prodotto dato il suo id
+    public ProdottoBean doRetrieveByKey(int idProdotto) throws SQLException {
+        Connection connection = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        ProdottoBean prodotto = null;
+        String query = "SELECT * FROM Prodotto WHERE idProdotto = ?";
+        try {
+            connection = ConnectionPool.getConnection();
+            ps = connection.prepareStatement(query);
+            ps.setInt(1, idProdotto);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                prodotto = mappaProdotto(rs);
+            }
+        } finally {
+            if (rs != null) rs.close();
+            if (ps != null) ps.close();
+            ConnectionPool.releaseConnection(connection);
+        }
+        return prodotto;
+    }
 
-		//Metodo per ottenere un prodotto in base allo stile
-	public List<ProdottoBean> doRetriveByStyle(String stile) throws SQLException{
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-		ResultSet rs = null;
-		List<ProdottoBean> prodotti = new ArrayList<>();
-		String selectQuery = "SELECT * FROM Prodotto WHERE stile LIKE ?";
-		try {
-			connection = ConnectionPool.getConnection();
-			preparedStatement = connection.prepareStatement(selectQuery);
-			preparedStatement.setString(1, "%" + stile + "%");
-			rs = preparedStatement.executeQuery();
-			while(rs.next()) {
-				ProdottoBean prodotto = new ProdottoBean();
-				prodotto.setIdProdotto(rs.getInt("idProdotto"));
-				prodotto.setNome(rs.getString("nome"));
-				prodotto.setStile(rs.getString("stile"));
-				prodotto.setColore(rs.getString("colore"));
-				prodotto.setDimensioni(rs.getString("dimensioni"));
-				prodotto.setPrezzo(rs.getDouble("prezzo"));
-				prodotto.setQuantita(rs.getInt("quantita"));
-				prodotto.setDescrizione(rs.getString("descrizione"));
-				prodotto.setImmagine(rs.getString("immagine"));
-				prodotti.add(prodotto);
-			}
-		}finally {
-			if(rs != null) {
-				rs.close();
-			}
-			if(preparedStatement != null) {
-				preparedStatement.close();
-			}
-			ConnectionPool.releaseConnection(connection);
-		}
-		return prodotti;
-	}
+    // restituisce i prodotti il cui nome contiene la stringa cercata
+    public List<ProdottoBean> doRetriveByName(String nome) throws SQLException {
+        Connection connection = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        List<ProdottoBean> prodotti = new ArrayList<>();
+        String query = "SELECT * FROM Prodotto WHERE nome LIKE ?";
+        try {
+            connection = ConnectionPool.getConnection();
+            ps = connection.prepareStatement(query);
+            ps.setString(1, "%" + nome + "%");
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                prodotti.add(mappaProdotto(rs));
+            }
+        } finally {
+            if (rs != null) rs.close();
+            if (ps != null) ps.close();
+            ConnectionPool.releaseConnection(connection);
+        }
+        return prodotti;
+    }
 
-	//Metodo per ottenere un prodotto in base al colore
-	public List<ProdottoBean> doRetriveByColor(String colore) throws SQLException{
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-		ResultSet rs = null;
-		List<ProdottoBean> prodotti = new ArrayList<>();
-		String selectQuery = "SELECT * FROM Prodotto WHERE colore LIKE ?";
-		try {
-			connection = ConnectionPool.getConnection();
-			preparedStatement = connection.prepareStatement(selectQuery);
-			preparedStatement.setString(1, "%" + colore + "%");
-			rs = preparedStatement.executeQuery();
-			while(rs.next()) {
-				ProdottoBean prodotto = new ProdottoBean();
-				prodotto.setIdProdotto(rs.getInt("idProdotto"));
-				prodotto.setNome(rs.getString("nome"));
-				prodotto.setStile(rs.getString("stile"));
-				prodotto.setColore(rs.getString("colore"));
-				prodotto.setDimensioni(rs.getString("dimensioni"));
-				prodotto.setPrezzo(rs.getDouble("prezzo"));
-				prodotto.setQuantita(rs.getInt("quantita"));
-				prodotto.setDescrizione(rs.getString("descrizione"));
-				prodotto.setImmagine(rs.getString("immagine"));
-				prodotti.add(prodotto);
-			}
-		}finally {
-			if(rs != null) {
-				rs.close();
-			}
-			if(preparedStatement != null) {
-				preparedStatement.close();
-			}
-			ConnectionPool.releaseConnection(connection);
-		}
-		return prodotti;
-	}
+    // restituisce i prodotti il cui stile contiene la stringa cercata
+    public List<ProdottoBean> doRetriveByStyle(String stile) throws SQLException {
+        Connection connection = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        List<ProdottoBean> prodotti = new ArrayList<>();
+        String query = "SELECT * FROM Prodotto WHERE stile LIKE ?";
+        try {
+            connection = ConnectionPool.getConnection();
+            ps = connection.prepareStatement(query);
+            ps.setString(1, "%" + stile + "%");
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                prodotti.add(mappaProdotto(rs));
+            }
+        } finally {
+            if (rs != null) rs.close();
+            if (ps != null) ps.close();
+            ConnectionPool.releaseConnection(connection);
+        }
+        return prodotti;
+    }
 
-	public List<ProdottoBean> doRetriveBySize(String dimensioni) throws SQLException{
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-		ResultSet rs = null;
-		List<ProdottoBean> prodotti = new ArrayList<>();
-		String selectQuery = "SELECT * FROM Prodotto WHERE dimensioni = ?";
-		try {
-			connection = ConnectionPool.getConnection();
-			preparedStatement = connection.prepareStatement(selectQuery);
-			preparedStatement.setString(1, dimensioni);
-			rs = preparedStatement.executeQuery();
-			while(rs.next()) {
-				ProdottoBean prodotto = new ProdottoBean();
-				prodotto.setIdProdotto(rs.getInt("idProdotto"));
-				prodotto.setNome(rs.getString("nome"));
-				prodotto.setStile(rs.getString("stile"));
-				prodotto.setColore(rs.getString("colore"));
-				prodotto.setDimensioni(rs.getString("dimensioni"));
-				prodotto.setPrezzo(rs.getDouble("prezzo"));
-				prodotto.setQuantita(rs.getInt("quantita"));
-				prodotto.setDescrizione(rs.getString("descrizione"));
-				prodotto.setImmagine(rs.getString("immagine"));
-				prodotti.add(prodotto);
-			}
-		}finally {
-			if(rs != null) {
-				rs.close();
-			}
-			if(preparedStatement != null) {
-				preparedStatement.close();
-			}
-			ConnectionPool.releaseConnection(connection);
-		}
-		return prodotti;
-	}
+    // restituisce i prodotti il cui colore contiene la stringa cercata
+    public List<ProdottoBean> doRetriveByColor(String colore) throws SQLException {
+        Connection connection = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        List<ProdottoBean> prodotti = new ArrayList<>();
+        String query = "SELECT * FROM Prodotto WHERE colore LIKE ?";
+        try {
+            connection = ConnectionPool.getConnection();
+            ps = connection.prepareStatement(query);
+            ps.setString(1, "%" + colore + "%");
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                prodotti.add(mappaProdotto(rs));
+            }
+        } finally {
+            if (rs != null) rs.close();
+            if (ps != null) ps.close();
+            ConnectionPool.releaseConnection(connection);
+        }
+        return prodotti;
+    }
 
-	//Metodo per ottenere un prodotto in base al prezzo
-	public List<ProdottoBean> doRetriveByPrice(double prezzo) throws SQLException{
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-		ResultSet rs = null;
-		List<ProdottoBean> prodotti = new ArrayList<>();
-		String selectQuery = "SELECT * FROM Prodotto WHERE prezzo >= ?";
-		try {
-			connection = ConnectionPool.getConnection();
-			preparedStatement = connection.prepareStatement(selectQuery);
-			preparedStatement.setDouble(1, prezzo);
-			rs = preparedStatement.executeQuery();
-			while(rs.next()) {
-				ProdottoBean prodotto = new ProdottoBean();
-				prodotto.setIdProdotto(rs.getInt("idProdotto"));
-				prodotto.setNome(rs.getString("nome"));
-				prodotto.setStile(rs.getString("stile"));
-				prodotto.setColore(rs.getString("colore"));
-				prodotto.setDimensioni(rs.getString("dimensioni"));
-				prodotto.setPrezzo(rs.getDouble("prezzo"));
-				prodotto.setQuantita(rs.getInt("quantita"));
-				prodotto.setDescrizione(rs.getString("descrizione"));
-				prodotto.setImmagine(rs.getString("immagine"));
-				prodotti.add(prodotto);
-			}
-		}finally {
-			if(rs != null) {
-				rs.close();
-			}
-			if(preparedStatement != null) {
-				preparedStatement.close();
-			}
-			ConnectionPool.releaseConnection(connection);
-		}
-		return prodotti;
-	}
+    // restituisce i prodotti con dimensioni esatte
+    public List<ProdottoBean> doRetriveBySize(String dimensioni) throws SQLException {
+        Connection connection = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        List<ProdottoBean> prodotti = new ArrayList<>();
+        String query = "SELECT * FROM Prodotto WHERE dimensioni = ?";
+        try {
+            connection = ConnectionPool.getConnection();
+            ps = connection.prepareStatement(query);
+            ps.setString(1, dimensioni);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                prodotti.add(mappaProdotto(rs));
+            }
+        } finally {
+            if (rs != null) rs.close();
+            if (ps != null) ps.close();
+            ConnectionPool.releaseConnection(connection);
+        }
+        return prodotti;
+    }
 
->>>>>>> origin/massimo:WebProgramming/src/main/java/dao/ProdottoAdminDAO.java
-	//Metodo per salvare un nuovo prodotto inserito dall'Admin
-	public void doSave(ProdottoBean prodotto) throws SQLException{
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-		String  insertQuery = "INSERT INTO Prodotto (nome, stile, colore, dimensioni, prezzo, quantita, descrizione, immagine)"
-								+ "VALUES (?,?,?,?,?,?,?,?)";
-		try {
-			connection = ConnectionPool.getConnection();
-			preparedStatement = connection.prepareStatement(insertQuery);
-			
-			preparedStatement.setString(1, prodotto.getNome());
-			preparedStatement.setString(2, prodotto.getStile());
-			preparedStatement.setString(3, prodotto.getColore());
-			preparedStatement.setString(4, prodotto.getDimensioni());
-			preparedStatement.setDouble(5, prodotto.getPrezzo());
-			preparedStatement.setInt(6, prodotto.getQuantita());
-			preparedStatement.setString(7, prodotto.getDescrizione());
-			preparedStatement.setString(8, prodotto.getImmagine());
-			
-			preparedStatement.executeUpdate();
-		}finally {
-			if(preparedStatement != null) {
-				preparedStatement.close();
-			}
-			ConnectionPool.releaseConnection(connection);
-		}
-	}
-	
-	//Metodo per modificare un prodotto già esistente
-	public void doUpdate(ProdottoBean prodotto) throws SQLException{
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
+    // restituisce i prodotti con prezzo maggiore o uguale al valore indicato
+    public List<ProdottoBean> doRetriveByPrice(double prezzo) throws SQLException {
+        Connection connection = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        List<ProdottoBean> prodotti = new ArrayList<>();
+        String query = "SELECT * FROM Prodotto WHERE prezzo >= ?";
+        try {
+            connection = ConnectionPool.getConnection();
+            ps = connection.prepareStatement(query);
+            ps.setDouble(1, prezzo);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                prodotti.add(mappaProdotto(rs));
+            }
+        } finally {
+            if (rs != null) rs.close();
+            if (ps != null) ps.close();
+            ConnectionPool.releaseConnection(connection);
+        }
+        return prodotti;
+    }
 
-		String updateQuery = "UPDATE Prodotto SET nome=?, stile=?, colore=?, dimensioni=?, prezzo=?, quantita=?, descrizione=?, immagine=? WHERE idProdotto=?";
+    // salva un nuovo prodotto nel DB
+    public void doSave(ProdottoBean prodotto) throws SQLException {
+        Connection connection = null;
+        PreparedStatement ps = null;
+        String query = "INSERT INTO Prodotto (nome, stile, colore, dimensioni, prezzo, quantita, descrizione, immagine) "
+                     + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        try {
+            connection = ConnectionPool.getConnection();
+            ps = connection.prepareStatement(query);
+            ps.setString(1, prodotto.getNome());
+            ps.setString(2, prodotto.getStile());
+            ps.setString(3, prodotto.getColore());
+            ps.setString(4, prodotto.getDimensioni());
+            ps.setDouble(5, prodotto.getPrezzo());
+            ps.setInt(6, prodotto.getQuantita());
+            ps.setString(7, prodotto.getDescrizione());
+            ps.setString(8, prodotto.getImmagine());
+            ps.executeUpdate();
+        } finally {
+            if (ps != null) ps.close();
+            ConnectionPool.releaseConnection(connection);
+        }
+    }
 
-		try{
-			connection = ConnectionPool.getConnection();
-			preparedStatement = connection.prepareStatement(updateQuery);
+    // aggiorna un prodotto già esistente
+    public void doUpdate(ProdottoBean prodotto) throws SQLException {
+        Connection connection = null;
+        PreparedStatement ps = null;
+        String query = "UPDATE Prodotto SET nome=?, stile=?, colore=?, dimensioni=?, prezzo=?, quantita=?, descrizione=?, immagine=? "
+                     + "WHERE idProdotto=?";
+        try {
+            connection = ConnectionPool.getConnection();
+            ps = connection.prepareStatement(query);
+            ps.setString(1, prodotto.getNome());
+            ps.setString(2, prodotto.getStile());
+            ps.setString(3, prodotto.getColore());
+            ps.setString(4, prodotto.getDimensioni());
+            ps.setDouble(5, prodotto.getPrezzo());
+            ps.setInt(6, prodotto.getQuantita());
+            ps.setString(7, prodotto.getDescrizione());
+            ps.setString(8, prodotto.getImmagine());
+            ps.setInt(9, prodotto.getIdProdotto());
+            ps.executeUpdate();
+        } finally {
+            if (ps != null) ps.close();
+            ConnectionPool.releaseConnection(connection);
+        }
+    }
 
-			preparedStatement.setString(1, prodotto.getNome());
-			preparedStatement.setString(2, prodotto.getStile());
-			preparedStatement.setString(3, prodotto.getColore());
-			preparedStatement.setString(4, prodotto.getDimensioni());
-			preparedStatement.setDouble(5, prodotto.getPrezzo());
-			preparedStatement.setInt(6, prodotto.getQuantita());
-			preparedStatement.setString(7, prodotto.getDescrizione());
-			preparedStatement.setString(8, prodotto.getImmagine());
-			preparedStatement.setInt(9, prodotto.getIdProdotto());
-			preparedStatement.executeUpdate();
-		}finally {
-			if(preparedStatement != null) {
-				preparedStatement.close();
-			}
-			ConnectionPool.releaseConnection(connection);
-		}
-	}
-<<<<<<< HEAD:src/main/java/dao/ProdottoAdminDAO.java
-	//Metodo per "eliminare"  un prodotto
-	public void doDelete(int idProdotto) throws SQLException{
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-		
-		//non si cancellerà propriamente il prodotto ma verrà impostata a 0 la sua quantità
-		String deleteQuery = "UPDATE Prodotto SET quantita = 0 WHERE idProdotto = ?";
-		
-		try {
-			
-			connection = ConnectionPool.getConnection();
-			preparedStatement = connection.prepareStatement(deleteQuery);
-			
-			preparedStatement.setInt(1, idProdotto);
-			preparedStatement.executeUpdate();
-			
-		}finally {
-=======
-	//Metodo per eliminare un prodotto dal database
-	public void doDelete(int idProdotto) throws SQLException{
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-
-		String deleteQuery = "DELETE FROM Prodotto WHERE idProdotto = ?";
-
-		try {
-			connection = ConnectionPool.getConnection();
-			preparedStatement = connection.prepareStatement(deleteQuery);
-			preparedStatement.setInt(1, idProdotto);
-			preparedStatement.executeUpdate();
-		} finally {
->>>>>>> origin/massimo:WebProgramming/src/main/java/dao/ProdottoAdminDAO.java
-			if (preparedStatement != null) {
-				preparedStatement.close();
-			}
-			ConnectionPool.releaseConnection(connection);
-		}
-	}
-	
+    // "elimina" un prodotto impostando la quantità a 0 (soft delete).
+    // non cancelliamo dal DB perché la tabella Composizione ha ON DELETE RESTRICT
+    // sulla FK del prodotto: un DELETE vero fallirebbe se il prodotto è in qualche ordine.
+    public void doDelete(int idProdotto) throws SQLException {
+        Connection connection = null;
+        PreparedStatement ps = null;
+        String query = "UPDATE Prodotto SET quantita = 0 WHERE idProdotto = ?";
+        try {
+            connection = ConnectionPool.getConnection();
+            ps = connection.prepareStatement(query);
+            ps.setInt(1, idProdotto);
+            ps.executeUpdate();
+        } finally {
+            if (ps != null) ps.close();
+            ConnectionPool.releaseConnection(connection);
+        }
+    }
 }

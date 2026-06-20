@@ -292,8 +292,4 @@ public class OrdineAdminDAO{
         ConnectionPool.releaseConnection(connection);
     }
     }
-<<<<<<< HEAD:src/main/java/dao/OrdineAdminDAO.java
 }
-=======
-}
->>>>>>> origin/massimo:WebProgramming/src/main/java/dao/OrdineAdminDAO.java
