@@ -16,7 +16,8 @@
   	<div class="main-content">
 	  	<div class="main-goldtext">Est. MDCCCLXXXV · Quiet Luxury for the Throne</div>
 	  	<h1>L'eleganza si siede in <span class="oro">silenzio</span></h1>
-	  	<p>da scrivere</p>
+	  	<p>Non vendiamo utilità: custodiamo esperienze.<br>
+Ogni pezzo è un viaggio privato nelle destinazioni più desiderate.</p>
 	  	<a href="${pageContext.request.contextPath}/CatalogoServlet" class="main-explore">ESPLORA LE DESTINAZIONI →</a>
   	</div>
   	<div class="main-image">

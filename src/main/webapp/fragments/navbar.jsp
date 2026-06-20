@@ -7,9 +7,8 @@
   	</a>
     </div>
     <ul class="nav-links">
-      <li><a href="#">Filosofia</a></li>
+      <li><a href="#">Storia e Filosofia</a></li>
       <li><a href="${pageContext.request.contextPath}/storia.jsp">Storia</a></li>
-      <li><a href="#">Concierge</a></li>
       <li><a href="${pageContext.request.contextPath}/CatalogoServlet">Catalogo</a></li>
       <li><a href="${pageContext.request.contextPath}/CarrelloServlet">Carrello</a></li>
       
