@@ -7,9 +7,9 @@ import java.util.List;
 
 public class ConnectionPool {
    private static List<Connection> freeDbConnections;
-   private static final String url= "jdbc:mysql://localhost:3306/TheRoyalRest?serverTimezone=Europe/Rome"; 
+   private static final String url= "jdbc:mysql://localhost:3306/theRoyalRest?serverTimezone=UTC&useSSL=false";
    private static final String user= "root";
-   private static final String password= "root";
+   private static final String password= "";
    private static int initial_pool_size=20;
    private static int max_pool_size=100;
    private static int current_pool_size=0;

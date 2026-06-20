@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.OrdinazioneBean;
-import dao.OrdineAdminDAO; // <-- IMPORTANTE: Aggiunto l'import del DAO
+import dao.OrdineAdminDAO;
 
 @WebServlet("/ModificaOrdineAdminServlet")
 public class ModificaOrdineAdminServlet extends HttpServlet {
@@ -39,14 +39,14 @@ public class ModificaOrdineAdminServlet extends HttpServlet {
         try {
             int idOrdinazione = Integer.parseInt(request.getParameter("idOrdinazione"));
             
-            // CORREZIONE: Inizializzazione corretta del DAO
+            // recupero l'ordine specifico dal DAO
             OrdineAdminDAO ordineAdminDAO = new OrdineAdminDAO(); 
             OrdinazioneBean ordine = ordineAdminDAO.doRetrieveByKey(idOrdinazione);
             
             if (ordine != null) {
                 String dataPulita = (ordine.getDataOrdinazione() != null) ? ordine.getDataOrdinazione().toString().split(" ")[0] : "";
                 
-                // CORREZIONE: Stringa JSON ricostruita correttamente
+                // costruiamo la stringa JSON con i dati dell'ordine   
                 String jsonResponse = String.format(
                     "{" +
                     "\"idOrdinazione\": %d," +
@@ -79,7 +79,7 @@ public class ModificaOrdineAdminServlet extends HttpServlet {
         } catch (NumberFormatException e) {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             response.getWriter().write("{\"errore\": \"ID Formato non valido\"}");
-        } catch (SQLException e) { // CORREZIONE: Decommentato il blocco SQL obbligatorio
+        } catch (SQLException e) {
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             response.getWriter().write("{\"errore\": \"Errore database\"}");
         } 
@@ -112,7 +112,7 @@ public class ModificaOrdineAdminServlet extends HttpServlet {
             return;
         }
 
-        try { //ciao
+        try {
             // conversione sicura dei dati numerici
             int idOrdinazione = Integer.parseInt(idStr);
             float importo = Float.parseFloat(importoStr.trim().replace(",", "."));
@@ -120,7 +120,7 @@ public class ModificaOrdineAdminServlet extends HttpServlet {
             OrdineAdminDAO ordineAdminDAO = new OrdineAdminDAO();
             OrdinazioneBean ordineAggiornato = ordineAdminDAO.doRetrieveByKey(idOrdinazione);
             
-            // CORREZIONE: Controllo che l'ordine esista davvero nel DB prima di aggiornarlo
+            // controllo che l'ordine esista davvero nel DB prima di aggiornarlo
             if(ordineAggiornato != null) {
                 ordineAggiornato.setCitta(citta.trim());
                 ordineAggiornato.setIndirizzo(indirizzo.trim());
@@ -129,7 +129,7 @@ public class ModificaOrdineAdminServlet extends HttpServlet {
                 ordineAggiornato.setStato(stato.trim());
                 ordineAggiornato.setImporto(importo);
                 
-                // CORREZIONE: Controllo sulla data prima del parsing
+                // controllo sulla data prima del parsing
                 if(dataStr != null && !dataStr.trim().isEmpty()) {
                     ordineAggiornato.setDataOrdinazione(java.sql.Date.valueOf(dataStr.trim()));
                 }
@@ -144,7 +144,7 @@ public class ModificaOrdineAdminServlet extends HttpServlet {
             response.getWriter().write("{\"successo\": false, \"messaggio\": \"Formato del prezzo o dell'ID non valido.\"}");
         } catch (SQLException e) {
             response.getWriter().write("{\"successo\": false, \"messaggio\": \"Errore durante l'aggiornamento nel DB.\"}");
-        } catch (IllegalArgumentException e) { // Aggiunto in caso di formato data non valido
+        } catch (IllegalArgumentException e) {
             response.getWriter().write("{\"successo\": false, \"messaggio\": \"Formato data non valido.\"}");
         }
     }

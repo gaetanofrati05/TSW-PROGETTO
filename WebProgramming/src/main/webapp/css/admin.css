@@ -250,6 +250,61 @@
     text-align: left;
 }
 
+.admin-form-group-ordini {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 1.2rem 1.5rem;
+    align-items: end;
+    margin-bottom: 1.5rem;
+    padding: 1.5rem 1.5rem 0.5rem;
+    text-align: left;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.admin-form-group-ordini > div {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+
+
+.admin-label-ordini {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12rem;
+    color: var(--pietra, #5A6670);
+    margin-bottom: 0.6rem;
+    font-weight: 500;
+}
+
+.admin-input-ordini {
+    width: 100%;
+    padding: 0.6rem 0;
+    font-size: 0.95rem;
+    font-weight: 300;
+    color: var(--nero, #14181B);
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(90, 102, 112, 0.2);
+    border-radius: 0;
+    box-sizing: border-box;
+    transition: border-color 0.4s ease;
+}
+
+.btn-filtra-ordini {
+    background-color: transparent;
+    color: var(--ottone-antico, #8A754B);
+    border: 1px solid var(--oro, #b89a5a);
+}
+
+.btn-filtra-ordini:hover {
+    background-color: var(--oro, #b89a5a);
+    color: #ffffff;
+}
+
 /* Etichetta campo: piccola, maiuscola, colore pietra e spaziatura lettere */
 .admin-label {
     display: block;
@@ -351,14 +406,24 @@
 }
 
 /* Form di modifica ordine */
+
+/* Popup centrato e adattivo */
 .form-modifica-ordine-admin {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+
+    width: min(92vw, 520px);     /* si adatta allo schermo */
+    max-height: 90vh;            /* non esce dall'altezza viewport */
+    overflow-y: auto;            /* scroll interno se serve */
+
     background-color: #ffffff;
     border-radius: 24px;
     box-shadow: 0 20px 50px rgba(90, 102, 112, 0.08);
     border: 1px solid rgba(223, 219, 207, 0.4);
-    padding: 4.5rem 4rem;
-    width: 100%;
-    max-width: 460px;
+    padding: 2rem;
     box-sizing: border-box;
 }
 
@@ -373,6 +438,9 @@
     .admin-subtitle-luxury {
         font-size: 0.85rem;
     }
+    .admin-form-group-ordini {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 }
 
 @media (max-width: 768px) {
@@ -384,5 +452,19 @@
     }
     .admin-subtitle-luxury {
         font-size: 0.75rem;
+    }
+    .admin-form-group-ordini {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+    .form-modifica-ordine-admin {
+        width: 95vw;
+        max-height: 95vh;
+        padding: 1.5rem 1.2rem;
+        border-radius: 16px;
+    }
+
+    .form-modifica-ordine-admin .admin-form-group {
+        margin-bottom: 1.5rem;
     }
 }

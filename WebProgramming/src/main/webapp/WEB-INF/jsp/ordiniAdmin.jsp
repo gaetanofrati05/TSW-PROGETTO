@@ -15,14 +15,44 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/pagerror.css">
     </head>
-    <body class="admin-page-bg">
+    <body class="admin-page-bg main-con">
         <main class="admin-wrapper">
             <div class="admin-heading-box">
                 <h1 class="admin-title-luxury">Gestione Ordini</h1>
-                <p class="admin-subtitle-luxury">Visualizza tutti gli ordini attualmente salvati nel database</p>
+                <p class="admin-subtitle-luxury">Gestisci e modifica tutti gli ordini attualmente salvati nel database</p>
             </div>
-
+            
             <div class="admin-card-luxury admin-table-wrapper" style="max-width: 90%;">
+                <p class="admin-subtitle-luxury">Filtra ordini</p><br>
+                <form id="formFiltriOrdini" class="admin-form-group-ordini" action="${pageContext.request.contextPath}/GestioneOrdiniAdminServlet" method="get">
+                    <div>
+                        <label class="admin-label-ordini" for="filtro-idOrdinazione">ID Ordine</label>
+                        <input class="admin-input-ordini" type="text" name="idOrdinazione" id="filtro-idOrdinazione" placeholder="Inserisci ID Ordine">
+                    </div>
+                    <div>
+                        <label class="admin-label-ordini" for="filtro-email">Email</label>
+                        <input class="admin-input-ordini" type="email" name="email" id="filtro-email" placeholder="Inserisci Email Utente">
+                    </div>
+                    <div>
+                        <label class="admin-label-ordini" for="filtro-dataInizio">Data Inizio</label>
+                        <input class="admin-input-ordini" type="date" name="dataInizio" id="filtro-dataInizio" placeholder="Inserisci Data Inizio">
+                    </div>
+                    <div>
+                        <label class="admin-label-ordini" for="filtro-dataFine">Data Fine</label>
+                        <input class="admin-input-ordini" type="date" name="dataFine" id="filtro-dataFine" placeholder="Inserisci Data Fine">
+                    </div>
+                    <div>
+                        <label class="admin-label-ordini" for="filtro-stato">Stato</label>
+                        <select class="admin-input-ordini" name="status" id="filtro-stato">
+                            <option value="">Seleziona Stato</option>
+                            <option value="Consegnato">Consegnato</option>
+                            <option value="In transito">In transito</option>
+                            <option value="Accettato">Accettato</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-action btn-filtra-ordini">Filtra</button>
+                </form><br>
+                <p class="admin-subtitle-luxury">Ordini</p><br>
                 <table class="admin-table">
                     <thead>
                         <tr>
@@ -36,17 +66,17 @@
                         </tr>
                     </thead>
                     <tbody>
-                    <% if(listaOrdinazioni != null && !listaOrdinazioni.isEmpty()) { %>
-                        <% for(OrdinazioneBean ordine : listaOrdinazioni) { %>
+                    <% if(listaOrdinazioni != null && !listaOrdinazioni.isEmpty()) { %> <!-- se la lista non è nulla e non è vuota, allora mostro le ordinazioni -->
+                        <% for(OrdinazioneBean ordine : listaOrdinazioni) { %> <!-- per ogni ordinazione, mostro i dati -->
                             <tr>
                                 <td><%= ordine.getIdOrdinazione() %></td>
                                 <td><%= ordine.getUtente() != null ? ordine.getUtente().getEmail() : "N/D" %></td>
-                                <td><%= ordine.getIndirizzo() + ", " + ordine.getCivico() + ", " + ordine.getCap() + ", " + ordine.getCitta()%></td>
-                                <td><%= ordine.getDataOrdinazione() != null ? ordine.getDataOrdinazione().toString().split(" ")[0] : "N/D" %></td>
+                                <td><%= ordine.getIndirizzo() + ", " + ordine.getCivico() + ", " + ordine.getCap() + ", " + ordine.getCitta()%></td> <!-- mostro indirizzo, civico, cap e città -->
+                                <td><%= ordine.getDataOrdinazione() != null ? ordine.getDataOrdinazione().toString().split(" ")[0] : "N/D" %></td> <!-- mostro solo la data, senza l'ora -->
                                 <td><%= ordine.getImporto() %></td>
                                 <td><%= ordine.getStato() %></td>
                                 <td>
-                                    <a href="#" class="btn-action btn-edit js-modifica-ordine" data-id-ordinazione="<%= ordine.getIdOrdinazione() %>">Modifica</a>
+                                    <a href="#" class="btn-action btn-edit js-modifica-ordine" data-id-ordinazione="<%= ordine.getIdOrdinazione() %>">Modifica</a> <!-- link per la modifica dell'ordine -->
                                     <a href="${pageContext.request.contextPath}/EliminaOrdineAdminServlet?idOrdinazione=<%= ordine.getIdOrdinazione() %>" class="btn-action btn-delete" onclick="return confirm('Sei sicuro di voler eliminare questo ordine?');">Elimina</a>
                                 </td>
                             </tr>
@@ -71,7 +101,7 @@
                     </div>
                     
                     <div class="admin-form-group">
-                        <label class="admin-label">Citt�</label>
+                        <label class="admin-label">Citta</label>
                         <input type="text" class="admin-input" name="citta" id="citta">
                     </div>
                     
@@ -119,5 +149,6 @@
             const contextPath = "${pageContext.request.contextPath}";
         </script>
         <script src="${pageContext.request.contextPath}/js/modificaOrdine.js"></script>
+        <script src="${pageContext.request.contextPath}/js/validazioneFiltriOrdini.js"></script>
     </body>
 </html>
