@@ -15,6 +15,7 @@ import bean.UtenteBean;
 import javax.servlet.http.HttpServletResponse;
 
 /* Servlet per verificare che l'utente sia loggato e sia admin*/
+<<<<<<< HEAD:src/main/java/control/AdminAuthFilter.java
 @WebFilter(urlPatterns = {
 	"/CatalogoAdminServlet",
 	"/OrdiniAdminServlet",
@@ -28,6 +29,9 @@ import javax.servlet.http.HttpServletResponse;
 	"/GetOrderAjaxServlet",
 	"/DashboardAdminServlet"
 })
+=======
+@WebFilter(urlPatterns = {})
+>>>>>>> origin/massimo:WebProgramming/src/main/java/control/AdminAuthFilter.java
 public class AdminAuthFilter extends HttpFilter implements Filter {
     private static final long serialVersionUID = 1L;
 

@@ -16,6 +16,7 @@ public class EliminaProdottoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+<<<<<<< HEAD:src/main/java/control/EliminaProdottoServlet.java
 		String idProdottoStr = request.getParameter("id");
 		
 		if(idProdottoStr != null && !idProdottoStr.trim().isEmpty()) {
@@ -35,6 +36,22 @@ public class EliminaProdottoServlet extends HttpServlet {
 			}
 		}
 		
+=======
+		String idProdottoStr = request.getParameter("idProdotto");
+
+		if (idProdottoStr != null && !idProdottoStr.trim().isEmpty()) {
+			try {
+				int idProdotto = Integer.parseInt(idProdottoStr.trim());
+				ProdottoAdminDAO prodottoAdminDAO = new ProdottoAdminDAO();
+				prodottoAdminDAO.doDelete(idProdotto);
+			} catch (NumberFormatException e) {
+				e.printStackTrace();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+>>>>>>> origin/massimo:WebProgramming/src/main/java/control/EliminaProdottoServlet.java
 		response.sendRedirect(request.getContextPath() + "/CatalogoAdminServlet");
 	}
 

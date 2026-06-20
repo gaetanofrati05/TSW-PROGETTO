@@ -127,4 +127,8 @@ public class GestioneOrdiniAdminServlet extends HttpServlet {
 			throw new ServletException("Errore durante il caricamento degli ordini.", e);
 		}
 	}
+<<<<<<< HEAD:src/main/java/control/GestioneOrdiniAdminServlet.java
 }
+=======
+}
+>>>>>>> origin/massimo:WebProgramming/src/main/java/control/GestioneOrdiniAdminServlet.java

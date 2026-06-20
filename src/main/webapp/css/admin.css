@@ -101,7 +101,10 @@
     color: var(--nero, #14181B);
 }
 
+<<<<<<< HEAD:src/main/webapp/css/admin.css
 
+=======
+>>>>>>> origin/massimo:WebProgramming/src/main/webapp/css/admin.css
 /* Bottoni di azione nel catalogo
    Pulsanti compatti per modifica ed eliminazione di ogni riga tabella.*/
 
@@ -250,6 +253,119 @@
     text-align: left;
 }
 
+<<<<<<< HEAD:src/main/webapp/css/admin.css
+=======
+/* Form admin Gruppi label + input con 
+    stile sottolineato e pulsante submit full-width. */
+/* Form admin Gruppi label + input con  stile sottolineato e pulsante submit full-width. 
+    stile sottolineato e pulsante submit full-width. per i prodotti */
+/* Form admin Gruppi label + input con 
+    stile sottolineato e pulsante submit full-width. */
+/* Form admin Gruppi label + input con  stile sottolineato e pulsante submit full-width. */
+.admin-form-group-prodotti {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 1.2rem 1.5rem;
+    align-items: end;
+    margin-bottom: 1.5rem;
+    padding: 1.5rem 1.5rem 0.5rem;
+    text-align: left;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.admin-form-group-prodotti > div {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.admin-label-prodotti {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12rem;
+    color: var(--pietra, #5A6670);
+    margin-bottom: 0.6rem;
+    font-weight: 500;
+}
+
+.admin-input-prodotti {
+    width: 100%;
+    max-width: 100%;
+    padding: 0.6rem 0;
+    font-size: 0.95rem;
+    font-weight: 300;
+    color: var(--nero, #14181B);
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(90, 102, 112, 0.2);
+    border-radius: 0;
+    box-sizing: border-box;
+    transition: border-color 0.4s ease;
+}
+
+.admin-input-prodotti:focus {
+    outline: none;
+    border-bottom: 1px solid var(--oro, #b89a5a);
+}
+
+.admin-form-group-ordini {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr)); /* 6 colonne */
+    gap: 1.2rem 1.5rem; /* spazio tra le colonne */
+    align-items: end; /* allinea gli elementi al fondo */
+    margin-bottom: 1.5rem; /* spazio tra le righe */
+    padding: 1.5rem 1.5rem 0.5rem;
+    text-align: left; /* allinea il testo a sinistra */
+    box-sizing: border-box; /* include il padding nella larghezza e altezza del contenitore */
+    width: 100%; /* larghezza del contenitore */
+}
+/* utilizzato per i prodotti */
+.admin-form-group-ordini > div {
+    display: flex; /* fa in modo che il contenitore sia un flex container */
+    flex-direction: column; /* fa in modo che i figli siano disposti in colonna */
+    min-width: 0; /* fa in modo che il contenitore sia il più piccolo possibile */
+}
+
+
+
+.admin-label-ordini {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12rem;
+    color: var(--pietra, #5A6670);
+    margin-bottom: 0.6rem;
+    font-weight: 500;
+}
+
+.admin-input-ordini {
+    width: 100%;
+    padding: 0.6rem 0;
+    font-size: 0.95rem;
+    font-weight: 300;
+    color: var(--nero, #14181B);
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(90, 102, 112, 0.2);
+    border-radius: 0;
+    box-sizing: border-box;
+    transition: border-color 0.4s ease;
+}
+
+.btn-filtra-ordini {
+    background-color: transparent;
+    color: var(--ottone-antico, #8A754B);
+    border: 1px solid var(--oro, #b89a5a);
+}
+
+.btn-filtra-ordini:hover {
+    background-color: var(--oro, #b89a5a);
+    color: #ffffff;
+}
+
+>>>>>>> origin/massimo:WebProgramming/src/main/webapp/css/admin.css
 /* Etichetta campo: piccola, maiuscola, colore pietra e spaziatura lettere */
 .admin-label {
     display: block;
@@ -261,6 +377,11 @@
     font-weight: 500;
 }
 
+<<<<<<< HEAD:src/main/webapp/css/admin.css
+=======
+/* Input per i filtri dei prodotti - regole consolidate sopra con .admin-form-group-prodotti */
+
+>>>>>>> origin/massimo:WebProgramming/src/main/webapp/css/admin.css
 /* Input testuale: solo bordo inferiore, senza box classico, transizione al focus */
 .admin-input {
     width: 100%;
@@ -351,14 +472,34 @@
 }
 
 /* Form di modifica ordine */
+<<<<<<< HEAD:src/main/webapp/css/admin.css
 .form-modifica-ordine-admin {
+=======
+
+/* Popup centrato e adattivo */
+.form-modifica-ordine-admin {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+
+    width: min(92vw, 520px);     /* si adatta allo schermo */
+    max-height: 90vh;            /* non esce dall'altezza viewport */
+    overflow-y: auto;            /* scroll interno se serve */
+
+>>>>>>> origin/massimo:WebProgramming/src/main/webapp/css/admin.css
     background-color: #ffffff;
     border-radius: 24px;
     box-shadow: 0 20px 50px rgba(90, 102, 112, 0.08);
     border: 1px solid rgba(223, 219, 207, 0.4);
+<<<<<<< HEAD:src/main/webapp/css/admin.css
     padding: 4.5rem 4rem;
     width: 100%;
     max-width: 460px;
+=======
+    padding: 2rem;
+>>>>>>> origin/massimo:WebProgramming/src/main/webapp/css/admin.css
     box-sizing: border-box;
 }
 
@@ -373,6 +514,15 @@
     .admin-subtitle-luxury {
         font-size: 0.85rem;
     }
+<<<<<<< HEAD:src/main/webapp/css/admin.css
+=======
+    .admin-form-group-ordini {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .admin-form-group-prodotti {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+>>>>>>> origin/massimo:WebProgramming/src/main/webapp/css/admin.css
 }
 
 @media (max-width: 768px) {
@@ -385,4 +535,25 @@
     .admin-subtitle-luxury {
         font-size: 0.75rem;
     }
+<<<<<<< HEAD:src/main/webapp/css/admin.css
+=======
+    .admin-form-group-ordini {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+    .admin-form-group-prodotti {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+    .form-modifica-ordine-admin {
+        width: 95vw;
+        max-height: 95vh;
+        padding: 1.5rem 1.2rem;
+        border-radius: 16px;
+    }
+
+    .form-modifica-ordine-admin .admin-form-group {
+        margin-bottom: 1.5rem;
+    }
+>>>>>>> origin/massimo:WebProgramming/src/main/webapp/css/admin.css
 }

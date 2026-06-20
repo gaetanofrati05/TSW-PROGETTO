@@ -6,13 +6,18 @@ public class ProdottoBean {
 	private String stile;
 	private String colore;
 	private String dimensioni;
-	private float prezzo;
+	private double prezzo;
 	private int quantita;
 	private String descrizione;
+<<<<<<< HEAD:src/main/java/bean/ProdottoBean.java
 	private String immagine;
 	private String stato; //bisogna aggiungere anche lo stato abbiamo detto che ci stava anche la possibilità di tracciare
 	// e vedere lo stato ordine
 	// + getter e setter
+=======
+    private String immagine;
+	
+>>>>>>> origin/massimo:WebProgramming/src/main/java/bean/ProdottoBean.java
 	public ProdottoBean() {
     
 	}
@@ -58,11 +63,11 @@ public class ProdottoBean {
         this.dimensioni = dimensioni; 
     }
 
-    public float getPrezzo() {
+    public double getPrezzo() {
         return prezzo;
     }
 
-    public void setPrezzo(float prezzo) {
+    public void setPrezzo(double prezzo) {
         this.prezzo = prezzo;
     }
 
@@ -81,10 +86,15 @@ public class ProdottoBean {
     public void setDescrizione(String descrizione) {
         this.descrizione = descrizione;
     }
+<<<<<<< HEAD:src/main/java/bean/ProdottoBean.java
+=======
+
+>>>>>>> origin/massimo:WebProgramming/src/main/java/bean/ProdottoBean.java
     public String getImmagine() {
         return immagine;
     }
 
+<<<<<<< HEAD:src/main/java/bean/ProdottoBean.java
     public void setImmagine(String immagine) {
         this.immagine = immagine;
     }
@@ -96,5 +106,11 @@ public class ProdottoBean {
     public void setStato(String stato) {
         this.stato = stato;
     }
+=======
+    public void setImmagine(String immagine){
+        this.immagine = immagine;
+    }
+
+>>>>>>> origin/massimo:WebProgramming/src/main/java/bean/ProdottoBean.java
 }
 

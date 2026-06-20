@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import bean.RecensioneBean;
-import bean.UtenteBean;
 import dao.RecensioneDAO;
 
 /**
@@ -47,7 +46,6 @@ public class VisualizzaRecensioniServlet extends HttpServlet {
 			response.sendRedirect(request.getContextPath()+ "/LoginServlet");
 			return;
 		}
-		UtenteBean utente= (UtenteBean) session.getAttribute("utenteLoggato");
 		try {
 			List<RecensioneBean> listaRecensioni= recensioneDAO.doRetrieveByScoring();			
 			request.setAttribute("recensioniUtenti", listaRecensioni);

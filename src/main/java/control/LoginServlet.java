@@ -65,7 +65,11 @@ public class LoginServlet extends HttpServlet {
 				//controllo se l'utente è admin oppure no
 				if(utente.getAdmin()) {
 					System.out.println("Benvenuto admin" + utente.getNome());
+<<<<<<< HEAD:src/main/java/control/LoginServlet.java
 					response.sendRedirect(request.getContextPath() + "/index.jsp");/*qui bisogna reindirizzare alla pagina admin.jsp*/
+=======
+					response.sendRedirect(request.getContextPath() + "/index.jsp");				
+>>>>>>> origin/massimo:WebProgramming/src/main/java/control/LoginServlet.java
 				}else {
 					System.out.println("Benvenuto"+ utente.getNome());
 					response.sendRedirect(request.getContextPath() + "/index.jsp");

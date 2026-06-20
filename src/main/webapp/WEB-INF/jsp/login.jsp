@@ -8,19 +8,12 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/layout.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/componenti.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css">
+<<<<<<< HEAD:src/main/webapp/WEB-INF/jsp/login.jsp
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
+=======
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/pagerror.css">
+>>>>>>> origin/massimo:WebProgramming/src/main/webapp/WEB-INF/jsp/login.jsp
     <title>The Royal Rest - Login</title>
-    <style>
-        .js-error { 
-            color: var(--oro, #b89a5a);
-            font-size: 0.8rem; 
-            display: none; 
-            margin-top: 8px; 
-            text-align: left;
-            text-transform: uppercase;
-            letter-spacing: 0.08rem;
-        }
-    </style>
 </head>
 <body class="login-page-bg">
 

@@ -7,7 +7,11 @@ import java.util.List;
 
 public class ConnectionPool {
    private static List<Connection> freeDbConnections;
+<<<<<<< HEAD:src/main/java/dao/ConnectionPool.java
    private static final String url= "jdbc:mysql://localhost:3306/TheRoyalRest?serverTimezone=UTC&useSSL=false";
+=======
+   private static final String url= "jdbc:mysql://localhost:3306/theRoyalRest?serverTimezone=UTC&useSSL=false";
+>>>>>>> origin/massimo:WebProgramming/src/main/java/dao/ConnectionPool.java
    private static final String user= "root";
    private static final String password= "";
    private static int initial_pool_size=20;

@@ -10,7 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.OrdinazioneBean;
+<<<<<<< HEAD:src/main/java/control/ModificaOrdineAdminServlet.java
 import dao.OrdineAdminDAO; // <-- IMPORTANTE: Aggiunto l'import del DAO
+=======
+import dao.OrdineAdminDAO;
+>>>>>>> origin/massimo:WebProgramming/src/main/java/control/ModificaOrdineAdminServlet.java
 
 @WebServlet("/ModificaOrdineAdminServlet")
 public class ModificaOrdineAdminServlet extends HttpServlet {
@@ -21,6 +25,7 @@ public class ModificaOrdineAdminServlet extends HttpServlet {
         if (data == null) {
             return "";
         }
+<<<<<<< HEAD:src/main/java/control/ModificaOrdineAdminServlet.java
         return data.replace("\\", "\\\\")
                    .replace("\"", "\\\"")
                    .replace("\b", "\\b")
@@ -29,6 +34,16 @@ public class ModificaOrdineAdminServlet extends HttpServlet {
                    .replace("\r", "\\r")
                    .replace("\t", "\\t");
     }
+=======
+        return data.replace("\\", "\\\\") //backslash per escape del backslash
+                   .replace("\"", "\\\"") //backslash per escape del backslash
+                   .replace("\b", "\\b")
+                   .replace("\f", "\\f") //backslash per escape del backslash
+                   .replace("\n", "\\n")
+                   .replace("\r", "\\r") //backslash per escape del backslash
+                   .replace("\t", "\\t"); //backslash per escape del backslash
+    } //metodo per escpae le stringhe json
+>>>>>>> origin/massimo:WebProgramming/src/main/java/control/ModificaOrdineAdminServlet.java
 
     // GET: carica i dati dell'ordine specifico
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -39,14 +54,22 @@ public class ModificaOrdineAdminServlet extends HttpServlet {
         try {
             int idOrdinazione = Integer.parseInt(request.getParameter("idOrdinazione"));
             
+<<<<<<< HEAD:src/main/java/control/ModificaOrdineAdminServlet.java
             // CORREZIONE: Inizializzazione corretta del DAO
+=======
+            // recupero l'ordine specifico dal DAO
+>>>>>>> origin/massimo:WebProgramming/src/main/java/control/ModificaOrdineAdminServlet.java
             OrdineAdminDAO ordineAdminDAO = new OrdineAdminDAO(); 
             OrdinazioneBean ordine = ordineAdminDAO.doRetrieveByKey(idOrdinazione);
             
             if (ordine != null) {
                 String dataPulita = (ordine.getDataOrdinazione() != null) ? ordine.getDataOrdinazione().toString().split(" ")[0] : "";
                 
+<<<<<<< HEAD:src/main/java/control/ModificaOrdineAdminServlet.java
                 // CORREZIONE: Stringa JSON ricostruita correttamente
+=======
+                // costruiamo la stringa JSON con i dati dell'ordine   
+>>>>>>> origin/massimo:WebProgramming/src/main/java/control/ModificaOrdineAdminServlet.java
                 String jsonResponse = String.format(
                     "{" +
                     "\"idOrdinazione\": %d," +
@@ -69,7 +92,11 @@ public class ModificaOrdineAdminServlet extends HttpServlet {
                     dataPulita,
                     String.valueOf(ordine.getImporto())
                 );
+<<<<<<< HEAD:src/main/java/control/ModificaOrdineAdminServlet.java
 
+=======
+                // si invia la risposta JSON
+>>>>>>> origin/massimo:WebProgramming/src/main/java/control/ModificaOrdineAdminServlet.java
                 response.getWriter().write(jsonResponse);
             } else {
                 response.setStatus(HttpServletResponse.SC_NOT_FOUND);
@@ -79,7 +106,11 @@ public class ModificaOrdineAdminServlet extends HttpServlet {
         } catch (NumberFormatException e) {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             response.getWriter().write("{\"errore\": \"ID Formato non valido\"}");
+<<<<<<< HEAD:src/main/java/control/ModificaOrdineAdminServlet.java
         } catch (SQLException e) { // CORREZIONE: Decommentato il blocco SQL obbligatorio
+=======
+        } catch (SQLException e) {
+>>>>>>> origin/massimo:WebProgramming/src/main/java/control/ModificaOrdineAdminServlet.java
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
             response.getWriter().write("{\"errore\": \"Errore database\"}");
         } 
@@ -112,7 +143,11 @@ public class ModificaOrdineAdminServlet extends HttpServlet {
             return;
         }
 
+<<<<<<< HEAD:src/main/java/control/ModificaOrdineAdminServlet.java
         try { //ciao
+=======
+        try {
+>>>>>>> origin/massimo:WebProgramming/src/main/java/control/ModificaOrdineAdminServlet.java
             // conversione sicura dei dati numerici
             int idOrdinazione = Integer.parseInt(idStr);
             float importo = Float.parseFloat(importoStr.trim().replace(",", "."));
@@ -120,7 +155,11 @@ public class ModificaOrdineAdminServlet extends HttpServlet {
             OrdineAdminDAO ordineAdminDAO = new OrdineAdminDAO();
             OrdinazioneBean ordineAggiornato = ordineAdminDAO.doRetrieveByKey(idOrdinazione);
             
+<<<<<<< HEAD:src/main/java/control/ModificaOrdineAdminServlet.java
             // CORREZIONE: Controllo che l'ordine esista davvero nel DB prima di aggiornarlo
+=======
+            // controllo che l'ordine esista davvero nel DB prima di aggiornarlo
+>>>>>>> origin/massimo:WebProgramming/src/main/java/control/ModificaOrdineAdminServlet.java
             if(ordineAggiornato != null) {
                 ordineAggiornato.setCitta(citta.trim());
                 ordineAggiornato.setIndirizzo(indirizzo.trim());
@@ -129,7 +168,11 @@ public class ModificaOrdineAdminServlet extends HttpServlet {
                 ordineAggiornato.setStato(stato.trim());
                 ordineAggiornato.setImporto(importo);
                 
+<<<<<<< HEAD:src/main/java/control/ModificaOrdineAdminServlet.java
                 // CORREZIONE: Controllo sulla data prima del parsing
+=======
+                // controllo sulla data prima del parsing
+>>>>>>> origin/massimo:WebProgramming/src/main/java/control/ModificaOrdineAdminServlet.java
                 if(dataStr != null && !dataStr.trim().isEmpty()) {
                     ordineAggiornato.setDataOrdinazione(java.sql.Date.valueOf(dataStr.trim()));
                 }
@@ -144,7 +187,11 @@ public class ModificaOrdineAdminServlet extends HttpServlet {
             response.getWriter().write("{\"successo\": false, \"messaggio\": \"Formato del prezzo o dell'ID non valido.\"}");
         } catch (SQLException e) {
             response.getWriter().write("{\"successo\": false, \"messaggio\": \"Errore durante l'aggiornamento nel DB.\"}");
+<<<<<<< HEAD:src/main/java/control/ModificaOrdineAdminServlet.java
         } catch (IllegalArgumentException e) { // Aggiunto in caso di formato data non valido
+=======
+        } catch (IllegalArgumentException e) {
+>>>>>>> origin/massimo:WebProgramming/src/main/java/control/ModificaOrdineAdminServlet.java
             response.getWriter().write("{\"successo\": false, \"messaggio\": \"Formato data non valido.\"}");
         }
     }
