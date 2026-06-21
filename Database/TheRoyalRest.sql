@@ -65,69 +65,91 @@ CREATE TABLE Composizione (
     FOREIGN KEY (fk_Composizione_idProdotto) REFERENCES Prodotto(idProdotto) ON DELETE RESTRICT,
     PRIMARY KEY (fk_Composizione_idOrdinazione, fk_Composizione_idProdotto)
 );
+
 INSERT INTO Prodotto (nome, stile, colore, dimensioni, prezzo, quantita, descrizione, immagine)
 VALUES
 -- Saint-Tropez (confermato)
 ('Saint‑Tropez Azure Breeze', 'Saint-Tropez', '#87ceeb', '43x37 cm', 6220.00, 6,
  'Raffreddamento controllato e profumazione marina: l’esperienza balneare più esclusiva dello yacth.',
- 'img/prodotti/sainttropez_azure.jpg'),
+ 'img/prodotti/sainttropez.png'),
 
 -- Kyoto (confermato)
 ('Kyoto Zen Harmony', 'Kyoto', '#c2b280', '42x38 cm', 4310.00, 8,
  'Minimalismo giapponese e chiusura silenziosa: un rituale di pace che inizia… sedendosi.',
- 'img/prodotti/kyoto_zen.jpg'),
+ 'img/prodotti/kyoto_zen.png'),
 
 -- St. Moritz (nuova versione riscaldata)
 ('The Thermal Embrace', 'St. Moritz', '#f8f8ff', '45x40 cm', 7390.00, 4,
- 'Perché l’unico brivido ammesso è quello dello champagne.',
- 'img/prodotti/stmoritz_warmth.jpg'),
+ 'Tavoletta riscaldata: perché l’unico brivido ammesso è quello dello champagne.',
+ 'img/prodotti/stmoritz.png'),
 
 
-('king of the desert', 'Dubai', '#f8f8ff', '45x40 cm', 7390.00, 4,
- 'il soffice tocco del deserto ma senza sabbia ',
- 'img/prodotti/stmoritz_warmth.jpg'),
+('King of The Desert', 'Dubai', '#f8f8ff', '45x40 cm', 7390.00, 4,
+ 'Il tocco vellutato del deserto ma senza sabbia ',
+ 'img/prodotti/dubai.jpeg'),
 
 -- Imperial Roma (nuova creazione)
 ('Imperial Aurea Maxima', 'Roma Imperiale', '#d4af37', '46x40 cm', 7120.00, 5,
  'Una seduta degna di un imperatore: marmo satinato, dettagli dorati e un comfort che fa tremare persino il Senato.',
- 'img/prodotti/imperial_aurea.jpg');
- -- 1. INSERIMENTO DI 10 UTENTI DI LUSSO (CON PASSWORD SEMPLICI)
+ 'img/prodotti/roma.jpeg');
+
 INSERT INTO Utente (email, password_hash, nome, cognome, dataNascita, nazionalita, prefisso, cellulare, num_ordinazioni, isAdmin)
 VALUES
-('conte.vittorio@luxe.it', 'pass123', 'Vittorio', 'Sforza', '1965-03-14', 'Italiana', '+39', '3351122334', 4, FALSE),
-('lady.alexandra@royal.uk', 'secret456', 'Alexandra', 'Windsor', '1982-07-21', 'Inglese', '+44', '7712345678', 6, FALSE),
-('sheikh.mansoor@dubai.ae', 'dubai789', 'Mansoor', 'Al-Maktoum', '1990-11-05', 'Emira', '+971', '501234567', 12, FALSE),
-('monaco.charlotte@royal.mc', 'monaco2026', 'Charlotte', 'Grimaldi', '1988-08-03', 'Monegasca', '+377', '607123456', 3, FALSE),
-('arch.fujimoto@tokyo.jp', 'zenpass', 'Kenzo', 'Fujimoto', '1974-05-19', 'Giapponese', '+81', '9012345678', 5, FALSE),
-('baronessa.elena@vienna.at', 'elena99', 'Elena', 'Von Bismarck', '1971-12-01', 'Austriaca', '+43', '6641234567', 2, FALSE),
-('oligarh.igor@moscow.ru', 'igorvip', 'Igor', 'Ivanov', '1979-02-25', 'Russa', '+7', '9161234567', 8, FALSE),
-('marta.fashion@milano.it', 'marta20', 'Marta', 'Donati', '1995-04-10', 'Italiana', '+39', '3487654321', 7, FALSE),
-('ceo.elon@silicon.com', 'tesla123', 'Elon', 'Marshall', '1985-09-30', 'Americana', '+1', '5551234567', 10, FALSE),
-('dott.ramazzotti@clinica.ch', 'salute77', 'Giovanni', 'Ramazzotti', '1960-01-15', 'Svizzera', '+41', '791234567', 4, FALSE);
-
-
--- 2. INSERIMENTO DELLE RECENSIONI DI LUSSO IN DATE E SCORING DIVERSI
--- (Assumendo che gli ID dei tuoi prodotti vadano da 1 a 5)
+('elon.musk@x.com', sha2('provaprova',256), 'Elon', 'Musk', '1971-06-28', 'Americana', '+1', '5559876543', 15, FALSE),
+('donald.trump@usa.gov', sha2('provaprova',256), 'Donald', 'Trump', '1946-06-14', 'Americana', '+1', '5552024024', 20, FALSE),
+('jannik.sinner@atp.com', sha2('provaprova',256), 'Jannik', 'Sinner', '2001-08-16', 'Italiana', '+39', '3409988776', 9, FALSE),
+('kanye.west@yeezy.com', sha2('provaprova',256), 'Kanye', 'West', '1977-06-08', 'Americana', '+1', '5557770001', 12, FALSE);
 
 INSERT INTO Recensione (data_Recensione, Scoring, descrizione, fk_Prodotto_idProdotto, fk_utente_email)
 VALUES
--- Prodotto 1: Saint‑Tropez Azure Breeze
-('2026-01-15', 5, 'La profumazione marina è sublime, sembra di essere costantemente ormeggiati a Pampelonne. Un capolavoro per il mio yacht.', 1, 'conte.vittorio@luxe.it'),
-('2026-02-20', 4, 'Ottimo sistema idrico, l''azzurro si sposa divinamente con i marmi della mia cabina armatoriale. Unica nota, la spedizione a Monaco ha tardato un giorno.', 1, 'monaco.charlotte@royal.mc'),
+('2026-06-26', 5,
+ 'È così morbida che sembra fatta di nuvole del deserto. Kanye approved.',
+ 4, 'kanye.west@yeezy.com'),
 
--- Prodotto 2: Kyoto Zen Harmony
-('2026-03-05', 5, 'La chiusura silenziosa è una poesia geometrica. Il minimalismo che cercavo per la mia dépendance a Kyoto.', 2, 'arch.fujimoto@tokyo.jp'),
-('2026-03-28', 3, 'Il design è splendido, ma le dimensioni sono leggermente ridotte per gli standard della mia villa a Vienna. Comunque un buon prodotto.', 2, 'baronessa.elena@vienna.at'),
+('2026-06-27', 5,
+ 'Dopo una finale ATP, questo è il vero recovery. Altro che crioterapia.',
+ 4, 'jannik.sinner@atp.com');
 
--- Prodotto 3: The Thermal Embrace (St. Moritz)
-('2026-01-02', 5, 'Riscaldamento impeccabile per lo chalet a St. Moritz. Addio brividi mattutini, ora è un vero abbraccio termico. Superbo.', 3, 'lady.alexandra@royal.uk'),
-('2026-04-12', 5, 'Installato nella mia dimora sulle Alpi svizzere. La tecnologia di regolazione della temperatura è fantascientifica.', 3, 'dott.ramazzotti@clinica.ch'),
-('2026-05-18', 4, 'Molto confortevole, anche se avrei preferito una finitura in platino spazzolato anziché bianco neve. Riscalda magnificamente.', 3, 'ceo.elon@silicon.com'),
+INSERT INTO Recensione (data_Recensione, Scoring, descrizione, fk_Prodotto_idProdotto, fk_utente_email)
+VALUES
+-- Saint‑Tropez Azure Breeze (Prodotto 1)
+('2026-06-20', 5,
+ 'Ho provato toilette in orbita, su jet privati e su razzi. Ma questa… questa è pura aerodinamica francese. Profuma meglio di Marte.',
+ 1, 'elon.musk@x.com'),
+('2026-06-21', 5,
+ 'Saint‑Tropez è fantastica, tutti lo sanno. Ma questa tavoletta è ancora meglio. Nessuno ha mai visto niente del genere, credimi.',
+ 1, 'donald.trump@usa.gov'),
 
--- Prodotto 4: King of the desert (Dubai)
-('2026-02-14', 5, 'Finalmente il comfort del deserto senza il fastidio della sabbia. Splendido, ne ho ordinati altri quattro per l''attico di Doha.', 4, 'sheikh.mansoor@dubai.ae'),
-('2026-05-01', 5, 'Una morbidezza indescrivibile, la pelle utilizzata è di una qualità strabiliante. Si adatta perfettamente al lusso esotico.', 4, 'oligarh.igor@moscow.ru'),
+-- Kyoto Zen Harmony (Prodotto 2)
+('2026-06-22', 5,
+ 'Dopo un allenamento di 5 ore, sedersi qui è come meditare sul Monte Fuji. Zero rumore, zero stress. Solo zen.',
+ 2, 'jannik.sinner@atp.com'),
+('2026-06-23', 5,
+ 'È così minimalista che potrei metterla in un museo. Anzi, forse lo farò. L’arte non ha limiti, nemmeno in bagno.',
+ 2, 'kanye.west@yeezy.com'),
 
--- Prodotto 5: Imperial Aurea Maxima (Roma Imperiale)
-('2026-04-22', 5, 'Il dettaglio dorato al centro è pura maestosità. Gli ospiti della mia sfilata a Milano sono rimasti estasiati da questo pezzo d''arte.', 5, 'marta.fashion@milano.it'),
-('2026-06-05', 5, 'Marmo satinato impeccabile, una seduta regale che trasforma il bagno in una sala del trono del Senato Romano. Eccellente.', 5, 'conte.vittorio@luxe.it');
+-- The Thermal Embrace (Prodotto 3)
+('2026-06-24', 5,
+ 'Il riscaldamento è così potente che potrei usarlo per scongelare un razzo. Perfetto per i miei chalet in mezzo al nulla.',
+ 3, 'elon.musk@x.com'),
+('2026-06-25', 5,
+ 'St. Moritz è lusso. Io sono lusso. Questa tavoletta è lusso. Tutto torna.',
+ 3, 'donald.trump@usa.gov'),
+
+-- King of the Desert (Prodotto 4)
+('2026-06-26', 5,
+ 'È così morbida che sembra fatta di nuvole del deserto. Kanye approved.',
+ 4, 'kanye.west@yeezy.com'),
+('2026-06-27', 5,
+ 'Dopo una finale ATP, questo è il vero recovery. Altro che crioterapia.',
+ 4, 'jannik.sinner@atp.com'),
+
+-- Imperial Aurea Maxima (Prodotto 5)
+('2026-06-28', 5,
+ 'Sembra un trono romano. E io sui troni mi sento a casa. Fantastica.',
+ 5, 'donald.trump@usa.gov'),
+('2026-06-29', 5,
+ 'Il marmo dorato riflette la mia aura. È praticamente un’opera d’arte collaborativa: io + Roma.',
+ 5, 'kanye.west@yeezy.com');
+
+
