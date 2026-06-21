@@ -21,7 +21,9 @@
       List<ProdottoCarrello> elementi = (carrello != null) ? carrello.getElementi() : null;
       boolean carrelloVuoto = elementi == null || elementi.isEmpty();
       boolean utenteLoggato = session.getAttribute("utenteLoggato") != null;
-      float totale = (carrello != null) ? carrello.getTotale() : 0f;
+      float totaleNetto = (carrello != null) ? carrello.calcolaTotaleNetto() : 0f;
+      float iva         = (carrello != null) ? carrello.calcolaIVA() : 0f;
+      float totaleLordo = (carrello != null) ? carrello.calcolaTotaleLordo() : 0f;
   %>
 
   <section class="carrello">
@@ -70,7 +72,11 @@
       <div class="carrello-footer">
         <div class="carrello-totale">
           <span>Totale</span>
-          <span class="carrello-totale-importo">€<%= String.format("%.2f", totale) %></span>
+          <span class="carrello-totale-importo">€<%= String.format("%.2f", totaleNetto) %></span>
+          <span>IVA</span>
+          <span class="carrello-totale-importo">€<%= String.format("%.2f", iva) %></span>
+          <span>Totale Lordo</span>
+          <span class="carrello-totale-importo">€<%= String.format("%.2f", totaleLordo) %></span>
         </div>
         <div class="carrello-azioni-finali">
           <a href="${pageContext.request.contextPath}/CatalogoServlet" class="carrello-link-catalogo">Continua lo shopping</a>

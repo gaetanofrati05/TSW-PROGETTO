@@ -111,7 +111,7 @@
             
         </div>
         
-        <hr></hr
+        <hr>
     </main>
     <script src="${pageContext.request.contextPath}/js/hidden-btn.js"></script>
     <script src="${pageContext.request.contextPath}/js/validazioneProdotti.js" defer></script>

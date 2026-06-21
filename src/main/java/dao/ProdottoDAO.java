@@ -124,8 +124,7 @@ public class ProdottoDAO {
         List<ProdottoBean> prodotti = new ArrayList<>();
         String query = "SELECT DISTINCT P.* FROM Prodotto P "
                 + "INNER JOIN Recensione R ON P.idProdotto = R.fk_Prodotto_idProdotto "
-                + "INNER JOIN Valutazione V ON R.idRecensione = V.fk_Valutazione_idRecensione "
-                + "WHERE V.fk_Valutazione_email = ?";
+                + "WHERE R.fk_utente_email = ?";
 
         try {
             connection = ConnectionPool.getConnection();

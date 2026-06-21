@@ -1,0 +1,384 @@
+@charset "UTF-8";
+
+/* Pagina registrazione recensione — estetica luxury coerente con dettaglio prodotto */
+
+.recensione-page {
+    background-color: var(--crema);
+    color: var(--bronzo-brunito);
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased; /*rende il testo più pulito e nitido*/
+}
+
+/* Intestazione sopra il blocco prodotto */
+.recensione-intestazione {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 120px 40px 0 40px;
+}
+
+.recensione-eyebrow {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--oro);
+    margin-bottom: 18px;
+    display: block; /*blocca l'elemento nella sua zona*/
+}
+
+.recensione-titolo {
+    font-family: 'Georgia', serif;
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--nero);
+    margin-bottom: 12px;
+}
+
+.recensione-sottotitolo {
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--pietra);
+    letter-spacing: 0.02em;
+    margin-bottom: 8px;
+}
+
+.recensione-ordine-ref {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ottone-antico);
+}
+
+/* Avvisi di validazione */
+.recensione-errori {
+    max-width: 1200px;
+    margin: 24px auto 0 auto;
+    padding: 0 40px;
+    list-style: none;
+}
+
+.recensione-errori li {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #A64444;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(166, 68, 68, 0.15);
+}
+
+.recensione-errori li:first-child {
+    border-top: 1px solid rgba(166, 68, 68, 0.15);
+}
+
+/* Layout principale: immagine sx, contenuto dx */
+.recensione-dettaglio {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    max-width: 1200px;
+    margin: 40px auto 0 auto;
+    min-height: calc(100vh - 220px);
+    border-top: 1px solid var(--argilla-chiara);
+}
+
+.recensione-image {
+    overflow: hidden;
+    background: var(--seta-grezza);
+    min-height: 480px;
+}
+
+.recensione-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.recensione-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /*ponilo all'inizio*/
+    padding: 56px 64px 80px 64px;
+    background-color: var(--marmo-calacatta);
+    border-left: 1px solid var(--argilla-chiara);
+}
+
+/* Dettagli prodotto — speculare a dettaglioProd.css */
+.recensione-stile {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--oro);
+    margin-bottom: 18px;
+}
+
+.recensione-nome {
+    font-family: 'Georgia', serif;
+    font-size: 44px;
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--nero);
+    margin-bottom: 24px;
+}
+
+.recensione-descrizione {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 15px;
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.85;
+    color: var(--pietra);
+    letter-spacing: 0.02em;
+    margin-bottom: 36px;
+}
+
+.recensione-specifiche {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 36px;
+    padding: 24px 0;
+    border-top: 1px solid rgba(20, 24, 27, 0.08);
+    border-bottom: 1px solid rgba(20, 24, 27, 0.08);
+}
+
+.recensione-spec-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 340px;
+}
+
+.recensione-spec-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--pietra);
+}
+
+.recensione-spec-value {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--nero);
+    letter-spacing: 0.02em;
+}
+
+.recensione-prezzo {
+    font-family: 'Georgia', serif;
+    font-size: 28px;
+    font-weight: 400;
+    color: var(--nero);
+    margin-bottom: 48px;
+}
+
+/* Sezione form — sotto i dettagli, nella colonna destra */
+.recensione-form-section {
+    margin-top: auto;
+    padding-top: 40px;
+    border-top: 1px solid var(--argilla-chiara);
+}
+
+.recensione-form-label {
+    display: block;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--oro);
+    margin-bottom: 28px;
+}
+
+.recensione-form-modifica {
+    display: flex;
+    flex-direction: column; /*crea la colonna per inserire lo scoring e la descrizione*/
+    gap: 24px; /*separa di 24px colonne e righe*/
+}
+
+.recensione-form-group label {
+    display: block;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--pietra);
+    margin-bottom: 10px;
+}
+
+.recensione-form-group input[type="number"],
+.recensione-form-group textarea {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid var(--argilla-chiara);
+    background-color: var(--crema);
+    color: var(--bronzo-brunito);
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 15px;
+    line-height: 1.6;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.recensione-form-group input[type="number"]:focus,
+.recensione-form-group textarea:focus {
+    outline: none;
+    border-color: var(--oro);
+    box-shadow: 0 0 0 1px rgba(184, 154, 90, 0.15);
+}
+
+.recensione-form-group textarea {
+    min-height: 140px;
+    resize: vertical;
+}
+
+.recensione-form-group textarea::placeholder {
+    color: var(--pietra);
+    font-style: italic;
+    opacity: 0.7;
+}
+
+.recensione-azioni-form {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+}
+
+.recensione-btn-salva {
+    background-color: var(--oro);
+    color: var(--marmo-calacatta);
+    border: 1px solid var(--oro);
+    padding: 16px 36px;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.recensione-btn-salva:hover {
+    background-color: var(--ottone-antico);
+    border-color: var(--ottone-antico);
+}
+
+.recensione-btn-annulla {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--bronzo-brunito);
+    text-decoration: none;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--argilla-chiara);
+    transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.recensione-btn-annulla:hover {
+    color: var(--oro);
+    border-bottom-color: var(--oro);
+}
+
+/* Pagina modifica recensione */
+.recensione-modifica-main {
+    max-width: 720px;
+    margin: 40px auto 80px auto;
+    padding: 0 40px;
+}
+
+.recensione-modifica-card {
+    background-color: var(--marmo-calacatta);
+    border: 1px solid var(--argilla-chiara);
+    padding: 48px 56px;
+}
+
+.recensione-modifica-card .recensione-form-label {
+    margin-bottom: 32px;
+}
+
+.recensione-modifica-card .recensione-azioni-form {
+    margin-top: 32px;
+    padding-top: 28px;
+    border-top: 1px solid var(--argilla-chiara);
+}
+
+/* Avvisi nella lista recensioni */
+.recensione-avviso-successo,
+.recensione-avviso-errore {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 14px 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--argilla-chiara);
+}
+
+.recensione-avviso-successo {
+    color: var(--ottone-antico);
+}
+
+.recensione-avviso-errore {
+    color: #A64444;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .recensione-dettaglio {
+        grid-template-columns: 1fr;
+    }
+
+    .recensione-image {
+        min-height: 360px;
+    }
+
+    .recensione-content {
+        border-left: none; /*rimuobi il bordo sul lato sinistro*/
+        border-top: 1px solid var(--argilla-chiara);
+        padding: 40px 32px 64px 32px;
+    }
+
+    .recensione-nome {
+        font-size: 34px;
+    }
+}
+
+@media (max-width: 768px) {
+    .recensione-intestazione {
+        padding: 100px 24px 0 24px; /*aumentiamo in altezza dimuniamo nei lati*/
+    }
+
+    .recensione-titolo {
+        font-size: 32px; 
+    }
+
+    .recensione-errori {
+        padding: 0 24px; 
+    }
+
+    .recensione-azioni-form {
+        flex-direction: column; /*modifichiamo l'asse orizzontale e mettiamo all'inizio il tasto*/ 
+        align-items: flex-start;
+    }
+
+    .recensione-btn-salva {
+        width: 100%; /*fai prendere l'intera lunghezza*/
+        text-align: center;
+    }
+
+    .recensione-modifica-main {
+        padding: 0 24px;
+    }
+
+    .recensione-modifica-card {
+        padding: 32px 24px;
+    }
+}

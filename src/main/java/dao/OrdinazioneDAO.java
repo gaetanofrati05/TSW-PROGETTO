@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import bean.OrdinazioneBean;
+import bean.ProdottoBean;
 import bean.ProdottoCarrello;
 import bean.UtenteBean;
 public class OrdinazioneDAO {
@@ -231,6 +232,47 @@ public class OrdinazioneDAO {
 				return ordinazione;
 			}
 			return null;
+		} finally {
+			if (result != null) result.close();
+			if (ps != null) ps.close();
+			ConnectionPool.releaseConnection(connection);
+		}
+	}
+
+	public List<ProdottoCarrello> doStampaProdottiOrdinazione(int idOrdinazione, String emailUtente) throws SQLException {
+		Connection connection = null;
+		PreparedStatement ps = null;
+		ResultSet result = null;
+		String query = "SELECT P.*, C.quantita_ordinata "
+				+ "FROM Composizione C "
+				+ "INNER JOIN Prodotto P ON C.fk_Composizione_idProdotto = P.idProdotto "
+				+ "INNER JOIN Ordinazione O ON C.fk_Composizione_idOrdinazione = O.idOrdinazione "
+				+ "WHERE O.idOrdinazione = ? AND O.fk_utente_email = ?";
+
+		try {
+			connection = ConnectionPool.getConnection();
+			ps = connection.prepareStatement(query);
+			ps.setInt(1, idOrdinazione);
+			ps.setString(2, emailUtente);
+			result = ps.executeQuery();
+
+			List<ProdottoCarrello> prodottiOrdine = new ArrayList<>();
+			while (result.next()) {
+				ProdottoBean prodotto = new ProdottoBean();
+				prodotto.setIdProdotto(result.getInt("idProdotto"));
+				prodotto.setNome(result.getString("nome"));
+				prodotto.setStile(result.getString("stile"));
+				prodotto.setColore(result.getString("colore"));
+				prodotto.setDimensioni(result.getString("dimensioni"));
+				prodotto.setPrezzo(result.getFloat("prezzo"));
+				prodotto.setQuantita(result.getInt("quantita"));
+				prodotto.setDescrizione(result.getString("descrizione"));
+				prodotto.setImmagine(result.getString("immagine"));
+
+				int quantitaOrdinata = result.getInt("quantita_ordinata");
+				prodottiOrdine.add(new ProdottoCarrello(prodotto, quantitaOrdinata));
+			}
+			return prodottiOrdine;
 		} finally {
 			if (result != null) result.close();
 			if (ps != null) ps.close();

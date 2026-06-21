@@ -110,9 +110,12 @@
     </main>
 
     <jsp:include page="/fragments/footer.jsp" />
-           <script src="${pageContext.request.contextPath}/js/validation.js" defer></script>
-           <script src="${pageContext.request.contextPath}/js/validazioneRegistrazione.js" defer></script>
-            <script src="${pageContext.request.contextPath}/js/mostraNascondiPwd.js" defer></script>
+    <script>
+    const contextPath = "${pageContext.request.contextPath}";
+</script>
+<script src="${pageContext.request.contextPath}/js/validation.js" defer></script>
+<script src="${pageContext.request.contextPath}/js/validazioneRegistrazione.js" defer></script>
+<script src="${pageContext.request.contextPath}/js/mostraNascondiPwd.js" defer></script>
            
 </body>
 </html>

@@ -100,7 +100,7 @@
                           
                           <%-- Blocco condizionale per la recensione inserito --%>
                           <% if ("consegnato".equalsIgnoreCase(ordinazione.getStato())) { %>
-                              <a class="scrivi-recensione" href="${pageContext.request.contextPath}/InserisciRecensioneServlet?idOrdinazione=<%= ordinazione.getIdOrdinazione() %>">
+                              <a class="scrivi-recensione" href="${pageContext.request.contextPath}/RegistraRecensioneServlet?idOrdinazione=<%= ordinazione.getIdOrdinazione() %>">
                                   Dicci cosa ne pensi
                               </a>
                           <% } %>

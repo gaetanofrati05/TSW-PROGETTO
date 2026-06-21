@@ -1,559 +1,341 @@
 @charset "UTF-8";
+/* admin.css — Area amministrativa · The Royal Rest */
 
-/*
-   Foglio di stile per l'area amministrativa
-   Contiene layout, form, tabelle, badge e componenti condivisi dalle pagine
-   di gestione (catalogo prodotti, ordini, login admin, ecc.). */
-
-/* Campo textarea a tutta larghezza, allineato visivamente agli input admin */
-.custom-textarea {
-    width: 100%;                /* tutta la larghezza del contenitore */
-    padding: 0.8rem 0;          /* spazio sopra e sotto */
-    font-size: 1.05rem;         /* dimensione del testo */
-    font-family: inherit;       /* stesso font dell'elemento genitore */
-    color: var(--nero, #14181B); /* colore del testo */
-    background-color: transparent; /* sfondo trasparente */
-    border: none;                /* nessun bordo */
-    border-bottom: 1px solid rgba(90, 102, 112, 0.2); /* bordo inferiore */
-    resize: vertical;            /* permette di ridimensionare verticalmente */
-    transition: border-color 0.4s ease; /* transizione del  bordo infriore della textarea */
-}
-
-/* Al focus evidenzia il bordo inferiore con il colore oro del tema */
-.custom-textarea:focus { /* al focus della textarea, il bordo inferiore diventa oro */
-    outline: none; /* rimuove il bordo di default */
-    border-bottom: 1px solid var(--oro, #b89a5a); /* il bordo inferiore diventa oro */
-}
-
-
-/* Struttura e contenitori dell'area gestionale
-   Layout principale delle pagine admin: contenitore centrato e titoli di sezione.*/
-
-/* Wrapper centrale con larghezza massima e margini verticali generosi */
-.admin-container {
-    max-width: 1200px; /* larghezza massima del contenitore */
-    margin: 4rem auto; /* margine verticale 4rem e centrato automaticamente */
-    padding: 0 2rem; /* padding orizzontale 2rem */
-    box-sizing: border-box; /* include il padding nella larghezza e altezza del contenitore */
-}
-
-/* Titolo di sezione in stile editoriale */
-.admin-section-title {
-    font-family: 'Playfair Display', Georgia, serif; 
-    font-size: 2.2rem;
-    color: var(--bronzo-brunito, #4A4439);
-    margin-bottom: 1.5rem;
-    font-style: italic;
-    font-weight: 400;
-}
-
-
-/* Stilizzazione delle tabelle
-   Usate nel catalogo prodotti e nella gestione ordini: card con ombra,
-   intestazioni in maiuscolo e righe con hover leggero. */
-
-/* Contenitore "card" che avvolge la tabella con bordi arrotondati e ombra */
-.admin-table-wrapper {
-    background-color: #ffffff;
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(90, 102, 112, 0.04); /* ombra della card */
-    border: 1px solid var(--argilla-chiara, #DFDBCF); /* bordo della card */
-    overflow: hidden; /* nasconde il contenuto che esce dalla card */
-    margin-top: 2rem;
-}
-
-/* Tabella a larghezza piena, senza spazi tra celle (border-collapse) */
-.admin-table {
-    width: 100%;
-    border-collapse: collapse; /* rimuove lo spazio tra le celle */
-    text-align: left;
-    font-size: 0.95rem;
-}
-
-/* Intestazioni colonne: sfondo seta grezza, testo maiuscolo e spaziato */
-.admin-table th {
-    background-color: var(--seta-grezza, #EFECE4);
-    color: var(--bronzo-brunito, #4A4439);
-    font-weight: 500;
-    text-transform: uppercase;
-    font-size: 0.75rem;
-    letter-spacing: 0.12rem;
-    padding: 1.2rem 1.5rem;
-    border-bottom: 1px solid var(--argilla-chiara, #DFDBCF);
-}
-
-/* Celle dati: colore pietra, padding uniforme e allineamento verticale centrale */
-.admin-table td { 
-    padding: 1.2rem 1.5rem;
-    color: var(--pietra, #5A6670);
-    border-bottom: 1px solid rgba(223, 219, 207, 0.4); /* bordo inferiore delle celle dati */
-    vertical-align: middle;
-}
-
-/* Ultima riga senza bordo inferiore, per un chiusura visiva più pulita */
-.admin-table tr:last-child td {
-    border-bottom: none;
-}
-
-/* Hover sulle righe: leggera sfumatura crema e testo più scuro */
-.admin-table tr:hover td {
-    background-color: rgba(246, 243, 237, 0.5);
-    color: var(--nero, #14181B);
-}
-
-<<<<<<< HEAD:src/main/webapp/css/admin.css
-
-=======
->>>>>>> origin/massimo:WebProgramming/src/main/webapp/css/admin.css
-/* Bottoni di azione nel catalogo
-   Pulsanti compatti per modifica ed eliminazione di ogni riga tabella.*/
-
-/* Stile base condiviso: dimensioni ridotte, maiuscolo e transizione fluida */
-.btn-action {
-    padding: 0.5rem 1rem;
-    font-size: 0.72rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08rem; /* spaziatura tra le lettere */
-    font-weight: 500;
-    border-radius: 8px;
-    cursor: pointer; /* Quando passi sopra il bottone, il cursore diventa la mano. */
-    text-decoration: none;
-    display: inline-block; /* fa in modo che il bottone sia inline e non un blocco */
-    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    margin-right: 0.4rem;
-}
-
-/* Modifica: outline oro, al hover si riempie con sfondo oro e testo bianco */
-.btn-edit {
-    background-color: transparent;
-    color: var(--ottone-antico, #8A754B);
-    border: 1px solid var(--oro, #b89a5a);
-}
-.btn-edit:hover {
-    background-color: var(--oro, #b89a5a);
-    color: #ffffff;
-}
-
-/* Elimina: rosso desaturato, coerente con l'estetica luxury (non troppo aggressivo) */
-.btn-delete {
-    background-color: transparent;
-    color: #A64444;
-    border: 1px solid #A64444;
-}
-.btn-delete:hover {
-    background-color: #A64444;
-    color: #ffffff;
-}
-
-
-/* Badge di stato magazzino
-   Etichette colorate per indicare disponibilità, scorte limitate o esaurimento.*/
-
-/* Contenitore badge: padding compatto, maiuscolo e bordi arrotondati */
-.badge-stock {
-    padding: 0.3rem 0.6rem;
-    font-size: 0.7rem;
-    font-weight: 600;
-    border-radius: 6px;
-    text-transform: uppercase;
-    letter-spacing: 0.04rem;
-    display: inline-block; /* fa in modo che il badge sia inline e non un blocco */
-}
-
-/* Prodotto disponibile: verde tenue su sfondo semitrasparente */
-.stock-disponibile {
-    background-color: rgba(46, 204, 113, 0.1);
-    color: #27ae60;
-}
-
-/* Scorte limitate: arancione per segnalare attenzione moderata */
-.stock-limitato {
-    background-color: rgba(230, 126, 34, 0.1);
-    color: #d35400;
-}
-
-/* Prodotto esaurito: rosso per indicare indisponibilità */
-.stock-esaurito {
-    background-color: rgba(231, 76, 60, 0.1);
-    color: #c0392b;
-}
-
-
-/* Layout pagina admin (form centrati)
-   Struttura full-height con gradiente crema/seta e contenuto verticalmente
-   centrato — tipica delle pagine di accesso o form isolati.*/
-
-/* Body/page wrapper: altezza minima viewport, flex column e gradiente di sfondo */
+/* --- SFONDO E STRUTTURA PAGINA --- */
 .admin-page-bg {
     margin: 0;
     padding: 0;
-    min-height: 100vh; /* altezza minima del viewport */
-    display: flex; /* fa in modo che il contenitore sia un flex container */
-    flex-direction: column; /* fa in modo che i figli siano disposti in colonna */
+    min-height: 100vh;
     background: var(--seta-grezza, #EFECE4);
     box-sizing: border-box;
 }
 
-/* Area centrale che occupa lo spazio rimanente e centra il contenuto */
 .admin-wrapper {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    padding: 6rem 2rem 5rem 2rem;
+    padding: 6rem 2rem 5rem;
+    width: 100%;
     box-sizing: border-box;
 }
 
-/* Blocco titolo + sottotitolo sopra la card del form */
+/* --- TITOLI --- */
 .admin-heading-box {
     text-align: center;
-    margin-bottom: 3.5rem;
+    margin-bottom: 3rem;
 }
 
-/* Titolo principale grande, corsivo Playfair, colore bronzo */
 .admin-title-luxury {
     font-family: 'Playfair Display', Georgia, serif;
     font-size: 3.8rem;
     font-weight: 400;
     font-style: italic;
-    color: var(--bronzo-brunito, #4A4439); 
-    margin: 0 0 1.2rem 0;
-    line-height: 1.2;
+    color: var(--bronzo-brunito, #4A4439);
+    margin: 0 0 1rem 0;
 }
 
-/* Sottotitolo in maiuscolo con spaziatura ampia e colore oro */
 .admin-subtitle-luxury {
-    font-size: 1rem;
-    font-weight: 400;
+    font-size: 0.8rem;
     text-transform: uppercase;
-    color: var(--oro, #b89a5a); 
-    letter-spacing: 0.3rem; 
+    color: var(--oro, #b89a5a);
+    letter-spacing: 0.25rem;
     margin: 0;
 }
 
-/* Card bianca che contiene il form: ombra marcata e larghezza massima fissa */
-.admin-card-luxury {
-    background-color: #ffffff; 
-    border-radius: 24px; 
-    box-shadow: 0 20px 50px rgba(90, 102, 112, 0.08);  /* ombra della card */
-    border: 1px solid rgba(223, 219, 207, 0.4);
-    padding: 4.5rem 4rem;
-    width: 100%;
-    max-width: 460px;
-    box-sizing: border-box;
-}
-
-
-/* Form admin Gruppi label + input con 
-    stile sottolineato e pulsante submit full-width. */
-
-/* Spaziatura verticale tra ogni coppia label/campo del form */
-.admin-form-group {
-    margin-bottom: 2.8rem;
-    text-align: left;
-}
-
-<<<<<<< HEAD:src/main/webapp/css/admin.css
-=======
-/* Form admin Gruppi label + input con 
-    stile sottolineato e pulsante submit full-width. */
-/* Form admin Gruppi label + input con  stile sottolineato e pulsante submit full-width. 
-    stile sottolineato e pulsante submit full-width. per i prodotti */
-/* Form admin Gruppi label + input con 
-    stile sottolineato e pulsante submit full-width. */
-/* Form admin Gruppi label + input con  stile sottolineato e pulsante submit full-width. */
-.admin-form-group-prodotti {
-    display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: 1.2rem 1.5rem;
-    align-items: end;
+.admin-section-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.8rem;
+    font-style: italic;
+    color: var(--bronzo-brunito, #4A4439);
     margin-bottom: 1.5rem;
-    padding: 1.5rem 1.5rem 0.5rem;
-    text-align: left;
-    box-sizing: border-box;
-    width: 100%;
 }
 
-.admin-form-group-prodotti > div {
+/* --- CARD PICCOLA (form login, inserimento) --- */
+.admin-card-luxury {
+    background: #fff;
+    border-radius: 24px;
+    box-shadow: 0 10px 40px rgba(90, 102, 112, 0.08);
+    border: 1px solid rgba(223, 219, 207, 0.5);
+    padding: 4rem 3.5rem;
+    width: 100%;
+    max-width: 460px; /* stretta solo per i form piccoli */
+    box-sizing: border-box;
+}
+
+/* --- CARD LARGA (tabelle catalogo e ordini) --- */
+/* classe separata, NON estende .admin-card-luxury per evitare conflitti */
+.admin-table-wrapper {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(90, 102, 112, 0.08);
+    border: 1px solid rgba(223, 219, 207, 0.5);
+    padding: 2.5rem;
+    width: 92%;          /* quasi tutta la larghezza della pagina */
+    max-width: 1400px;   /* limite su schermi molto grandi */
+    box-sizing: border-box;
+    overflow-x: auto;    /* scroll orizzontale se la tabella non ci sta */
+}
+
+/* --- TABELLA --- */
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    text-align: left;
+    min-width: 700px; /* impedisce che la tabella si schiacci troppo */
+}
+
+.admin-table th {
+    background: var(--seta-grezza, #EFECE4);
+    color: var(--bronzo-brunito, #4A4439);
+    font-size: 0.72rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    padding: 1rem 1.2rem;
+    border-bottom: 1px solid var(--argilla-chiara, #DFDBCF);
+    white-space: nowrap; /* le intestazioni non vanno a capo */
+}
+
+.admin-table td {
+    padding: 1rem 1.2rem;
+    color: var(--pietra, #5A6670);
+    border-bottom: 1px solid rgba(223, 219, 207, 0.4);
+    vertical-align: middle;
+}
+
+.admin-table tr:last-child td { border-bottom: none; }
+.admin-table tr:hover td {
+    background: rgba(246, 243, 237, 0.6);
+    color: var(--nero, #14181B);
+}
+
+/* --- FORM FILTRI --- */
+/* griglia orizzontale: si adatta da 5-6 colonne a meno su mobile */
+.admin-form-group-prodotti,
+.admin-form-group-ordini {
+    display: grid;
+    gap: 1rem 1.5rem;
+    align-items: end;
+    margin-bottom: 2rem;
+    padding: 1rem 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.admin-form-group-prodotti { grid-template-columns: repeat(5, 1fr) auto auto; }
+.admin-form-group-ordini   { grid-template-columns: repeat(5, 1fr) auto auto; }
+
+.admin-form-group-prodotti > div,
+.admin-form-group-ordini > div {
     display: flex;
     flex-direction: column;
-    min-width: 0;
+    min-width: 0; /* impedisce overflow */
 }
 
-.admin-label-prodotti {
-    display: block;
-    font-size: 0.75rem;
+.admin-label-prodotti,
+.admin-label-ordini {
+    font-size: 0.7rem;
     text-transform: uppercase;
-    letter-spacing: 0.12rem;
+    letter-spacing: 0.1rem;
     color: var(--pietra, #5A6670);
-    margin-bottom: 0.6rem;
+    margin-bottom: 0.5rem;
     font-weight: 500;
+    white-space: nowrap;
 }
 
-.admin-input-prodotti {
+.admin-input-prodotti,
+.admin-input-ordini {
     width: 100%;
-    max-width: 100%;
-    padding: 0.6rem 0;
-    font-size: 0.95rem;
+    padding: 0.5rem 0;
+    font-size: 0.9rem;
     font-weight: 300;
     color: var(--nero, #14181B);
-    background-color: transparent;
+    background: transparent;
     border: none;
-    border-bottom: 1px solid rgba(90, 102, 112, 0.2);
-    border-radius: 0;
+    border-bottom: 1px solid rgba(90, 102, 112, 0.25);
     box-sizing: border-box;
-    transition: border-color 0.4s ease;
+    transition: border-color 0.3s ease;
 }
 
-.admin-input-prodotti:focus {
+.admin-input-prodotti:focus,
+.admin-input-ordini:focus {
     outline: none;
     border-bottom: 1px solid var(--oro, #b89a5a);
 }
 
-.admin-form-group-ordini {
-    display: grid;
-    grid-template-columns: repeat(6, minmax(0, 1fr)); /* 6 colonne */
-    gap: 1.2rem 1.5rem; /* spazio tra le colonne */
-    align-items: end; /* allinea gli elementi al fondo */
-    margin-bottom: 1.5rem; /* spazio tra le righe */
-    padding: 1.5rem 1.5rem 0.5rem;
-    text-align: left; /* allinea il testo a sinistra */
-    box-sizing: border-box; /* include il padding nella larghezza e altezza del contenitore */
-    width: 100%; /* larghezza del contenitore */
-}
-/* utilizzato per i prodotti */
-.admin-form-group-ordini > div {
-    display: flex; /* fa in modo che il contenitore sia un flex container */
-    flex-direction: column; /* fa in modo che i figli siano disposti in colonna */
-    min-width: 0; /* fa in modo che il contenitore sia il più piccolo possibile */
-}
-
-
-
-.admin-label-ordini {
-    display: block;
-    font-size: 0.75rem;
+/* --- BOTTONI AZIONE (modifica/elimina nelle tabelle) --- */
+.btn-action {
+    padding: 0.45rem 0.9rem;
+    font-size: 0.7rem;
     text-transform: uppercase;
-    letter-spacing: 0.12rem;
-    color: var(--pietra, #5A6670);
-    margin-bottom: 0.6rem;
+    letter-spacing: 0.06rem;
     font-weight: 500;
-}
-
-.admin-input-ordini {
-    width: 100%;
-    padding: 0.6rem 0;
-    font-size: 0.95rem;
-    font-weight: 300;
-    color: var(--nero, #14181B);
-    background-color: transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.25s ease;
+    margin-right: 0.3rem;
+    white-space: nowrap;
     border: none;
-    border-bottom: 1px solid rgba(90, 102, 112, 0.2);
-    border-radius: 0;
-    box-sizing: border-box;
-    transition: border-color 0.4s ease;
 }
 
-.btn-filtra-ordini {
-    background-color: transparent;
+.btn-edit, .btn-filtra-ordini {
+    background: transparent;
     color: var(--ottone-antico, #8A754B);
     border: 1px solid var(--oro, #b89a5a);
 }
-
-.btn-filtra-ordini:hover {
-    background-color: var(--oro, #b89a5a);
-    color: #ffffff;
+.btn-edit:hover, .btn-filtra-ordini:hover {
+    background: var(--oro, #b89a5a);
+    color: #fff;
 }
 
->>>>>>> origin/massimo:WebProgramming/src/main/webapp/css/admin.css
-/* Etichetta campo: piccola, maiuscola, colore pietra e spaziatura lettere */
+.btn-delete {
+    background: transparent;
+    color: #A64444;
+    border: 1px solid #A64444;
+}
+.btn-delete:hover {
+    background: #A64444;
+    color: #fff;
+}
+
+/* --- FORM DI MODIFICA (input singoli nei form piccoli) --- */
+.admin-form-group {
+    margin-bottom: 2rem;
+}
+
 .admin-label {
     display: block;
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     text-transform: uppercase;
-    letter-spacing: 0.18rem;
+    letter-spacing: 0.15rem;
     color: var(--pietra, #5A6670);
-    margin-bottom: 1.2rem;
+    margin-bottom: 0.8rem;
     font-weight: 500;
 }
 
-<<<<<<< HEAD:src/main/webapp/css/admin.css
-=======
-/* Input per i filtri dei prodotti - regole consolidate sopra con .admin-form-group-prodotti */
-
->>>>>>> origin/massimo:WebProgramming/src/main/webapp/css/admin.css
-/* Input testuale: solo bordo inferiore, senza box classico, transizione al focus */
 .admin-input {
     width: 100%;
-    padding: 0.8rem 0;
-    font-size: 1.05rem;
+    padding: 0.7rem 0;
+    font-size: 1rem;
     font-weight: 300;
     color: var(--nero, #14181B);
-    background-color: transparent;
+    background: transparent;
     border: none;
     border-bottom: 1px solid rgba(90, 102, 112, 0.2);
-    border-radius: 0;
     box-sizing: border-box;
-    transition: border-color 0.4s ease, letter-spacing 0.4s ease;
+    transition: border-color 0.3s ease;
 }
-
-/* Al focus il bordo inferiore diventa oro, coerente con .custom-textarea */
 .admin-input:focus {
     outline: none;
     border-bottom: 1px solid var(--oro, #b89a5a);
 }
 
-/* Pulsante invio: nero pieno, full-width; al hover diventa outline invertito */
-.btn-admin-submit {
+.custom-textarea {
     width: 100%;
-    padding: 1.2rem;
-    margin-top: 1rem;
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 0.22rem;
-    font-weight: 500;
-    background-color: var(--nero, #14181B);
-    color: var(--crema, #F6F3ED);
-    border: 1px solid var(--nero, #14181B);
-    border-radius: 12px; 
-    cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.btn-admin-submit:hover {
-    background-color: transparent;
+    padding: 0.7rem 0;
+    font-size: 1rem;
+    font-family: inherit;
     color: var(--nero, #14181B);
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(90, 102, 112, 0.2);
+    resize: vertical;
+    transition: border-color 0.3s ease;
+}
+.custom-textarea:focus {
+    outline: none;
+    border-bottom: 1px solid var(--oro, #b89a5a);
 }
 
-
-/* Link e redirect
-   Testo secondario sotto il form con link di navigazione (es. torna al sito).*/
-
-/* Box centrato sotto il form per messaggi o link aggiuntivi */
-.admin-redirect-box {
-    margin-top: 2.2rem; 
-    text-align: center;
-    font-size: 0.85rem;
-}
-
-/* Link in colore oro con transizione al passaggio del mouse */
-.admin-link {
-    color: var(--oro, #b89a5a); 
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-/* File input: nasconde l'input file di default del browser e allinea orizzontalmente il finto bottone e il testo del file */
-
-/* Nasconde l'input file di default del browser */
-/* Nasconde l'input visivamente ma lo mantiene "tecnicamente" nel DOM per i controlli required */
-/* 1. Nascondiamo l'input nel modo più breve possibile per non rompere il controllo "required" */
-.hidden-file-input {
-    opacity: 0;
-    position: absolute;
-    z-index: -1;
-}
-
-/* 2. Affianchiamo bottone e testo in modo semplice */
-.custom-file-wrapper label {
-    display: inline-block;
-    vertical-align: middle; /* Allinea il bottone al centro rispetto al testo */
-}
-
-/* 3. Stile base per il testo */
-.file-name-text {
-    display: inline-block;
-    vertical-align: middle; /* Allinea il testo al centro rispetto al bottone */
-    margin-left: 0.5rem;     
-    margin-top: 1rem;
-    font-size: 0.9rem;
-    color: var(--pietra, #5A6670);
-    font-style: italic;
-}
-
-/* Form di modifica ordine */
-<<<<<<< HEAD:src/main/webapp/css/admin.css
-.form-modifica-ordine-admin {
-=======
-
-/* Popup centrato e adattivo */
+/* --- POPUP MODIFICA (fisso al centro dello schermo) --- */
 .form-modifica-ordine-admin {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1000;
-
-    width: min(92vw, 520px);     /* si adatta allo schermo */
-    max-height: 90vh;            /* non esce dall'altezza viewport */
-    overflow-y: auto;            /* scroll interno se serve */
-
->>>>>>> origin/massimo:WebProgramming/src/main/webapp/css/admin.css
-    background-color: #ffffff;
-    border-radius: 24px;
-    box-shadow: 0 20px 50px rgba(90, 102, 112, 0.08);
-    border: 1px solid rgba(223, 219, 207, 0.4);
-<<<<<<< HEAD:src/main/webapp/css/admin.css
-    padding: 4.5rem 4rem;
-    width: 100%;
-    max-width: 460px;
-=======
-    padding: 2rem;
->>>>>>> origin/massimo:WebProgramming/src/main/webapp/css/admin.css
+    width: min(90vw, 500px);
+    max-height: 90vh;
+    overflow-y: auto;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+    border: 1px solid rgba(223, 219, 207, 0.5);
+    padding: 2.5rem;
     box-sizing: border-box;
 }
 
-/*responsive*/
-@media (max-width: 992px) {
-    .admin-wrapper {
-        padding: 3rem 2rem 4rem 2rem;
-    }
-    .admin-title-luxury {
-        font-size: 2.6rem;
-    }
-    .admin-subtitle-luxury {
-        font-size: 0.85rem;
-    }
-<<<<<<< HEAD:src/main/webapp/css/admin.css
-=======
-    .admin-form-group-ordini {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-    .admin-form-group-prodotti {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
->>>>>>> origin/massimo:WebProgramming/src/main/webapp/css/admin.css
+/* --- BOTTONE SUBMIT NEI POPUP --- */
+.btn-admin-submit {
+    width: 100%;
+    padding: 1rem;
+    margin-top: 0.8rem;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+    font-weight: 500;
+    background: var(--nero, #14181B);
+    color: var(--crema, #F6F3ED);
+    border: 1px solid var(--nero, #14181B);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.btn-admin-submit:hover {
+    background: transparent;
+    color: var(--nero, #14181B);
+}
+
+/* --- BADGE STOCK --- */
+.badge-stock {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.68rem;
+    font-weight: 600;
+    border-radius: 6px;
+    text-transform: uppercase;
+    display: inline-block;
+}
+.stock-disponibile { background: rgba(46, 204, 113, 0.1); color: #27ae60; }
+.stock-limitato    { background: rgba(230, 126, 34, 0.1);  color: #d35400; }
+.stock-esaurito    { background: rgba(231, 76, 60, 0.1);   color: #c0392b; }
+
+/* --- INPUT FILE --- */
+.hidden-file-input { opacity: 0; position: absolute; z-index: -1; }
+.custom-file-wrapper label { display: inline-block; vertical-align: middle; }
+.file-name-text {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--pietra, #5A6670);
+    font-style: italic;
+}
+
+/* --- REDIRECT LINK --- */
+.admin-redirect-box { margin-top: 2rem; text-align: center; }
+.admin-link { color: var(--oro, #b89a5a); text-decoration: none; transition: color 0.3s ease; }
+.admin-link:hover { color: var(--ottone-antico, #8A754B); }
+
+/* --- RESPONSIVE --- */
+@media (max-width: 1024px) {
+    .admin-form-group-prodotti { grid-template-columns: repeat(3, 1fr); }
+    .admin-form-group-ordini   { grid-template-columns: repeat(3, 1fr); }
+    .admin-table-wrapper { width: 96%; }
 }
 
 @media (max-width: 768px) {
-    .admin-wrapper {
-        padding: 2rem 1rem 3rem 1rem;
-    }
-    .admin-title-luxury {
-        font-size: 2.2rem;
-    }
-    .admin-subtitle-luxury {
-        font-size: 0.75rem;
-    }
-<<<<<<< HEAD:src/main/webapp/css/admin.css
-=======
-    .admin-form-group-ordini {
-        grid-template-columns: 1fr;
-        padding: 1rem;
-    }
-    .admin-form-group-prodotti {
-        grid-template-columns: 1fr;
-        padding: 1rem;
-    }
-    .form-modifica-ordine-admin {
-        width: 95vw;
-        max-height: 95vh;
-        padding: 1.5rem 1.2rem;
-        border-radius: 16px;
-    }
+    .admin-title-luxury { font-size: 2.5rem; }
+    .admin-wrapper { padding: 4rem 1rem 3rem; }
+    .admin-table-wrapper { width: 100%; padding: 1.5rem 1rem; }
+    .admin-form-group-prodotti { grid-template-columns: repeat(2, 1fr); }
+    .admin-form-group-ordini   { grid-template-columns: repeat(2, 1fr); }
+    .form-modifica-ordine-admin { width: 95vw; padding: 1.5rem; }
+}
 
-    .form-modifica-ordine-admin .admin-form-group {
-        margin-bottom: 1.5rem;
-    }
->>>>>>> origin/massimo:WebProgramming/src/main/webapp/css/admin.css
+@media (max-width: 480px) {
+    .admin-form-group-prodotti { grid-template-columns: 1fr; }
+    .admin-form-group-ordini   { grid-template-columns: 1fr; }
 }

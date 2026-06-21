@@ -17,8 +17,8 @@
 .dettaglio-content {
     display: flex;
     flex-direction: column;
-    justify-content: center; /*centra verticalmente le info nella colonna*/
-    padding: 60px 80px; /*spazio interno generoso, dà respiro al testo*/
+    justify-content: flex-start;
+    padding: 60px 80px 80px 80px;
 }
 /*responsive*/
 @media (max-width: 768px) {
@@ -100,6 +100,8 @@
     display: flex;
     align-items: center;
     gap: 36px; /*spazio tra prezzo e bottone*/
+    margin-bottom: 48px;
+    
 }
 .dettaglio-prezzo {
     font-family: 'Georgia', serif; /*stesso font usato per .card-price*/
@@ -126,6 +128,35 @@
 .dettaglio-btn-carrello:hover {
     background: var(--ottone-antico); /*tonalità più scura dell'oro, già definita nelle tue variabili*/
 }
+
+/* Sezione recensioni sotto i dettagli, colonna destra */
+.dettaglio-recensioni {
+    width: 100%;
+    margin-top: 48px;
+    padding-top: 40px;
+    border-top: 1px solid var(--argilla-chiara);
+}
+
+.dettaglio-recensioni .section-label {
+    margin-bottom: 24px;
+}
+
+.dettaglio-recensioni-track {
+    grid-template-columns: 1fr;
+    gap: 16px;
+}
+
+.dettaglio-recensioni .recensione-avviso-successo {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ottone-antico);
+    padding: 0 0 16px 0;
+    margin-bottom: 8px;
+}
+
 /*responsive*/
 @media (max-width: 480px) {
     .dettaglio-footer {

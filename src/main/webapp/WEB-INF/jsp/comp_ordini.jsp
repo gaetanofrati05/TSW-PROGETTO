@@ -20,7 +20,7 @@
             <td><span class="badge-stato"><%= ordine.getStato() %></span></td>
             <td>
                 <%-- Link per inserire la recensione passando l'ID dell'ordine --%>
-                <a class="scrivi-recensione" href="${pageContext.request.contextPath}/InserisciRecensioneServlet?idOrdinazione=<%= ordine.getIdOrdinazione() %>">
+                <a class="scrivi-recensione" href="${pageContext.request.contextPath}/RegistraRecensioneServlet?idOrdinazione=<%= ordine.getIdOrdinazione() %>">
                     Dai una tua opinione
                 </a>
             </td>

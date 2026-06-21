@@ -63,7 +63,7 @@ public class LoginServlet extends HttpServlet {
 
                 // redirect diverso in base al ruolo
                 if (utente.getAdmin()) {
-                    response.sendRedirect(request.getContextPath() + "/DashboardAdminServlet");
+                    response.sendRedirect(request.getContextPath() + "/index.jsp");
                 } else {
                     response.sendRedirect(request.getContextPath() + "/index.jsp");
                 }

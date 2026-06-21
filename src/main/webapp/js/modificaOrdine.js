@@ -1,9 +1,5 @@
-<<<<<<< HEAD:src/main/webapp/js/modificaOrdine.js
-// 1. FUNZIONE PER CARICARE I DATI NEL MINI-FORM
-=======
 // file js per la modifica dell'ordine
 // FUNZIONE PER CARICARE I DATI NEL MINI-FORM
->>>>>>> origin/massimo:WebProgramming/src/main/webapp/js/modificaOrdine.js
 function caricaModificaOrdine(idOrdinazione) {
     fetch(`${contextPath}/ModificaOrdineAdminServlet?idOrdinazione=${idOrdinazione}`)
     .then(response => {
@@ -86,13 +82,10 @@ function salvaModificaOrdine(event) {
     });
 }
 
-<<<<<<< HEAD:src/main/webapp/js/modificaOrdine.js
-=======
 function resetFiltriOrdini() {
     window.location.href = contextPath + "/GestioneOrdiniAdminServlet";
 }
 
->>>>>>> origin/massimo:WebProgramming/src/main/webapp/js/modificaOrdine.js
 // 3. FUNZIONE PER CHIUDERE IL MINI-FORM
 function chiudiModificaOrdine() {
     document.getElementById('form-modifica-ordine-admin').style.display = 'none';
