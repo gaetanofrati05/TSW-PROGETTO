@@ -1,0 +1,172 @@
+/* ===== FATTURA — schermo ===== */
+
+body {
+    background: #f5f5f0;
+    font-family: Georgia, serif;
+    color: #1a1a1a;
+    margin: 0;
+    padding: 0;
+}
+
+.fattura-wrapper {
+    max-width: 760px;
+    margin: 40px auto;
+    padding: 0 20px 60px;
+}
+
+.fattura-intestazione {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.fattura-intestazione h1 {
+    font-size: 1.8rem;
+    margin-bottom: 6px;
+}
+
+.fattura-documento {
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 40px;
+}
+
+.fattura-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.fattura-brand {
+    font-size: 1.5rem;
+    margin: 0 0 6px;
+    letter-spacing: 1px;
+}
+
+.fattura-ref {
+    text-align: right;
+    font-size: 0.9rem;
+}
+
+.fattura-divider {
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 24px 0;
+}
+
+.fattura-sezione-titolo {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #888;
+    margin-bottom: 6px;
+}
+
+.fattura-cliente p {
+    margin: 3px 0;
+    font-size: 0.95rem;
+}
+
+.fattura-tabella {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+}
+
+.fattura-tabella th {
+    text-align: left;
+    border-bottom: 2px solid #1a1a1a;
+    padding: 8px 6px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.fattura-tabella td {
+    padding: 10px 6px;
+    border-bottom: 1px solid #eee;
+}
+
+.fattura-totali {
+    max-width: 280px;
+    margin-left: auto;
+    font-size: 0.95rem;
+}
+
+.fattura-riga-totale {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.fattura-totale-finale {
+    font-weight: bold;
+    font-size: 1.05rem;
+    border-bottom: 2px solid #1a1a1a;
+    padding-top: 10px;
+}
+
+.fattura-azioni {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    margin-top: 32px;
+}
+
+.fattura-btn-stampa {
+    background: #1a1a1a;
+    color: #fff;
+    border: none;
+    padding: 12px 28px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+}
+
+.fattura-btn-stampa:hover {
+    background: #444;
+}
+
+.fattura-link-ordini {
+    display: inline-block;
+    padding: 12px 28px;
+    border: 1px solid #1a1a1a;
+    color: #1a1a1a;
+    text-decoration: none;
+    font-size: 0.95rem;
+}
+
+.fattura-link-ordini:hover {
+    background: #f0f0f0;
+}
+
+/* ===== STAMPA ===== */
+
+@media print {
+    /* Nasconde tutto ciò che non serve in stampa */
+    .no-print {
+        display: none !important;
+    }
+
+    body {
+        background: #fff;
+        margin: 0;
+        padding: 0;
+    }
+
+    .fattura-wrapper {
+        margin: 0;
+        padding: 0;
+    }
+
+    .fattura-documento {
+        border: none;
+        padding: 20px;
+        box-shadow: none;
+    }
+
+    /* Evita interruzioni di pagina nel mezzo della tabella */
+    .fattura-tabella tr {
+        page-break-inside: avoid;
+    }
+}

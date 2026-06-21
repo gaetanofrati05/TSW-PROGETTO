@@ -151,5 +151,3 @@ VALUES
 ('2026-06-29', 5,
  'Il marmo dorato riflette la mia aura. È praticamente un’opera d’arte collaborativa: io + Roma.',
  5, 'kanye.west@yeezy.com');
-
-

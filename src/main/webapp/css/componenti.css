@@ -1,0 +1,193 @@
+body {
+    background: var(--crema); /*crema*/
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    color: var(--nero); /*nero*/
+}
+
+nav ul li a {
+    color: var(--pietra);
+    text-decoration: none; /*rimuovi sottolineatura link*/
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.main-goldtext {
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--oro);
+    margin-bottom: 24px;
+}
+
+.main h1 {
+	font-family: 'Georgia', serif;
+    font-size: 72px;
+    font-weight: 700;
+    line-height: 1.05;
+    margin-bottom: 24px;
+}
+
+.main p {
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--pietra);
+    margin-bottom: 48px;
+}
+
+.main-explore{
+    color: var(--nero);
+    text-decoration: none;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--nero);
+    width: fit-content;
+}
+
+.oro {
+    color: var(--oro);
+}
+/*catalogo*/
+.card {
+    overflow: hidden; /*se l'immagine esce fuori dalla carta la nascondi*/
+    position: relative;
+    background: var(--crema-scuro);
+}
+
+.card-img-wrap {
+    height: 300px;
+    overflow: hidden;/*l'immagine non esce dai bordi*/
+    background: var(--crema-scuro);
+}
+
+.card-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;/*l'immagine riempie lo spazio*/
+}
+
+.card-body {
+    padding: 28px 28px 32px; /*spazio interno: top, left/right, bottom*/
+}
+
+/*etichetta stile/categoria del prodotto */
+.card-location {
+    font-size: 8px;
+    font-weight: 500;
+    letter-spacing: 0.2em; /*lettere distanziate*/
+    text-transform: uppercase;
+    color: var(--oro); /*colore distintivo, coerente con i dettagli oro del sito*/
+    margin-bottom: 10px;
+}
+
+.card h3 {
+    font-family: 'Georgia', serif; /*stesso font usato per i titoli in componenti.css*/
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.15; /*righe vicine, utile se il titolo va su due linee*/
+    margin-bottom: 12px;
+    color: var(--nero);
+}
+
+.card p {
+    font-size: 11px;
+    font-weight: 300;
+    line-height: 1.7; /*righe distanziate per leggibilità*/
+    color: var(--pietra);
+    letter-spacing: 0.03em;
+    margin-bottom: 28px;
+}
+.card-footer {
+    display: flex;
+    justify-content: space-between; /*prezzo a sinistra, link a destra, agli estremi*/
+    align-items: center; /*allinea verticalmente al centro*/
+    padding-top: 20px;
+    border-top: 1px solid rgba(20, 24, 27, 0.08); /*linea sottile e quasi trasparente sopra il footer*/
+}
+.card-price {
+    font-family: 'Georgia', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--nero);
+}
+.card-link {
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--oro);
+    text-decoration: none; /*rimuove la sottolineatura del link*/
+    display: flex; /*permette di allineare testo e freccia sulla stessa riga, distanziati*/
+    align-items: center;
+    gap: 8px; /*spazio tra testo "Scopri" e la freccia*/
+}
+
+
+/*footer - testi e colori*/
+.footer-eyebrow {
+    display: block;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.22em; /*lettere ben distanziate, stile "etichetta" come altrove nel sito*/
+    text-transform: uppercase;
+    color: var(--oro); /*colore distintivo dorato, coerente col resto del sito*/
+    margin-bottom: 20px;
+}
+.footer-titolo {
+    font-family: 'Georgia', serif; /*stesso font dei titoli usato altrove (.main h1, .card h3)*/
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--crema); /*testo chiaro, leggibile sullo sfondo scuro*/
+    margin-bottom: 20px;
+}
+.footer-sottotitolo {
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.8; /*righe distanziate per leggibilità su più righe*/
+    color: rgba(246, 243, 237, 0.6); /*crema semi-trasparente, più discreto del titolo*/
+}
+.footer-contatto-regione {
+    font-family: 'Georgia', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--crema);
+    margin-bottom: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+.footer-contatto-numero {
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(246, 243, 237, 0.75); /*leggermente più tenue del titolo regione*/
+    margin-bottom: 10px;
+}
+.footer-contatto-email {
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--oro); /*email in oro, per distinguerla visivamente come link cliccabile*/
+    text-decoration: underline; /*sottolineata, segnale chiaro che è un link*/
+    letter-spacing: 0.02em;
+}
+.footer-contatto-email:hover {
+    color: var(--crema); /*cambia colore al passaggio del mouse, piccolo feedback interattivo*/
+}
+.footer-meta-item {
+    font-size: 8px;
+    font-weight: 500;
+    letter-spacing: 0.18em; /*lettere distanziate, stile "etichetta" minimale*/
+    text-transform: uppercase;
+    color: rgba(246, 243, 237, 0.35); /*molto discreto, è solo info di chiusura*/
+}
+.footer-sep {
+    width: 4px;
+    height: 4px;
+    background: var(--oro); /*piccolo pallino dorato come separatore visivo*/
+    border-radius: 50%; /*lo rende un cerchio perfetto*/
+    opacity: 0.5; /*discreto, non deve distrarre*/
+    display: inline-block; /*necessario perché width/height funzionino su uno span*/
+}

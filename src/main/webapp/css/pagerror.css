@@ -1,0 +1,171 @@
+
+.error-wrapper {
+    display: flex;
+    min-height: 85vh;               /* Lascia spazio d'aria sotto la navbar */
+    background-color: var(--crema); /* Sfondo principale rilassante */
+    box-sizing: border-box;
+}
+
+
+.error-content {
+    flex: 12;                       /* Proporzione elegante rispetto alla foto */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;      /* Spinge il contenuto verso il basso */
+    padding: 4rem 4rem 6rem 8%;     /* Ampio margine sartoriale a sinistra */
+    box-sizing: border-box;
+}
+
+.text-block {
+    text-align: left;
+    margin-bottom: 3.5rem;          /* Distanza zen tra testo e azioni */
+}
+
+.js-error { 						
+            color: var(--oro, #b89a5a);
+            font-size: 0.8rem; 
+            display: none; 
+            margin-top: 8px; 
+            text-align: left;
+            text-transform: uppercase;
+            letter-spacing: 0.08rem;
+        }
+
+.error-code {
+    display: block;
+    font-size: 0.85rem;
+    letter-spacing: 0.25rem;
+    text-transform: uppercase;
+    color: var(--pietra);           /* Grigio pietra discreto */
+    margin-bottom: 1.5rem;
+    font-family: 'Georgia', serif;
+}
+
+.error-title h1{
+	font-family: 'Georgia', serif;
+	font-size: 70px;
+	font-weight: 200;
+	margin-bottom: 20px
+}
+.error-title {
+    font-size: 2.6rem;
+    font-weight: 300;               
+    color: var(--oro);
+    line-height: 1.2;
+    margin: 0 0 0.8rem 0;
+}
+
+.error-subtitle {
+    font-size: 1.15rem;
+    font-weight: 400;
+    font-style: italic;             /* Tocco di filosofia classica */
+    color: var(--ardesia-velata, #3E474F);
+    margin: 0 0 2rem 0;
+}
+.error-text p{
+	font-size: 13px;
+    font-weight: 300;
+    color: var(--pietra);
+    margin-bottom: 48px;
+}
+.error-text {
+    font-size: 1.05rem;
+    line-height: 1.8;               
+    color: var(--bronzo-brunito);
+    max-width: 520px;             
+}
+
+
+.error-action-box {
+    text-align: left;
+}
+
+.box-buttons {
+    display: flex;
+    gap: 1.5rem;                    
+    flex-wrap: wrap;
+}
+
+
+.box-buttons .button {
+    display: inline-block;
+    padding: 1rem 2.2rem;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15rem;
+    text-decoration: none;
+    background-color: var(--nero);
+    color: var(--crema);
+    border: 1px solid var(--nero);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.box-buttons .button:hover {
+    background-color: transparent;
+    color: var(--ottone-antico);
+}
+
+
+.box-buttons .second-button {
+    display: inline-block;
+    padding: 1rem 2.2rem;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15rem;
+    text-decoration: none;
+    background-color: transparent;
+    color: var(--oro);
+    border: 1px solid var(--oro);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.box-buttons .second-button:hover {
+    background-color: var(--oro);
+    color: var(--crema);
+}
+
+
+.error-media {
+    flex: 10;                       
+    position: relative;
+    background-color: var(--seta-grezza); 
+}
+.error-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+/*error media 403*/
+.error-media-403 { 
+    flex: 10; 
+    position: relative;
+    overflow: hidden;
+}
+
+.error-media-403 .left-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+
+@media (max-width: 992px) { /*media query per mobile*/
+    .error-wrapper {
+        flex-direction: column-reverse; 
+        min-height: auto;
+    }
+    .error-content {
+        padding: 3rem 2rem 4rem 2rem;
+    }
+    .error-media {
+        height: 35vh;              
+    }
+    .error-title {
+        font-size: 2rem;
+    }
+}

@@ -1,0 +1,200 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*navbar*/
+nav {
+    display: flex;
+    justify-content: space-between; /*spingi il primo elemento a sinistra e l'ultimo a destra*/
+    align-items: center;
+    padding: 18px 52px 28px 32px; /*top-right-bottom-left*/
+    
+    position: fixed; /*si fissa in cima alla pagina*/
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100; /*sta sopra a tutto*/
+    
+    
+    background: linear-gradient(
+        to bottom,
+        rgba(246, 243, 237, 0.95),
+        rgba(246, 243, 237, 0)
+    ); /*sfuma dal crema verso trasparente*/
+}
+nav ul {
+    display: flex;
+    gap: 44px; /*spazio tra i link*/
+    list-style: none; /*rimuovi i pallini dalla lista*/
+}
+.nav-logo img {
+    width: 65px;
+    height: auto;
+}
+@media (max-width: 768px) {
+    nav {
+        padding: 20px 24px; /*meno padding su mobile*/
+    }
+    nav ul {
+        gap: 20px; /*meno spazio tra i link su mobile*/
+    }
+}
+
+
+
+
+/*main*/
+.main {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /*dividi in 2 parti uguali*/
+    min-height: 100vh; /*tutto lo spazio verticale disponibile*/
+}
+.main-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 140px 52px 80px 52px;
+}
+
+.main-image img {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+/*responsive*/
+@media (max-width: 768px) {
+        .main-content { padding: 100px 24px 60px 24px; }
+    	.main { grid-template-columns: 1fr;  /*una sola colonna su mobile*/}
+}
+
+
+/*catalogo*/
+.catalogo {
+    padding: 160px 52px 120px 52px; /*spazio sopra per non sovrapporsi alla navbar fissa*/
+}
+.catalogo-search {
+    margin-bottom: 64px;
+    display: flex;
+    justify-content: center; /*centra l'input orizzontalmente*/
+    overflow: visible;
+}
+.catalogo-search-wrap {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    overflow: visible;
+}
+.suggerimenti-lista {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    list-style: none;
+    padding: 0;
+    margin: 4px 0 0 0;
+    background: var(--crema);
+    border: 1px solid rgba(184, 154, 90, 0.3);
+    box-shadow: 0 8px 24px rgba(20, 24, 27, 0.08);
+    z-index: 200;
+}
+.suggerimenti-lista li {
+    padding: 12px 16px;
+    font-size: 12px;
+    cursor: pointer;
+    letter-spacing: 0.05em;
+    color: var(--nero);
+}
+.suggerimenti-lista li:hover {
+    background: var(--seta-grezza);
+    color: var(--oro);
+}
+.catalogo-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /*4 colonne di larghezza uguale*/
+    gap: 2px; /*spazio minimo tra le card*/
+}
+.catalogo-vuoto {
+    grid-column: 1 / -1; /*occupa tutta la larghezza della griglia*/
+    text-align: center;
+    padding: 80px 0;
+}
+
+.catalogo-search input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--oro); /*solo linea inferiore, stile minimale*/
+    padding: 14px 4px;
+    outline: none; /*rimuove il contorno blu di default al focus*/
+    text-align: center;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    color: var(--nero);
+}
+.catalogo-search input::placeholder {
+    color: var(--pietra);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: 10px;
+}
+
+/*responsive*/
+@media (max-width: 1024px) {
+    .catalogo-grid {
+        grid-template-columns: repeat(2, 1fr); /*2 colonne su tablet*/
+    }
+}
+@media (max-width: 768px) {
+    .catalogo {
+        padding: 120px 24px 80px 24px; /*meno spazio su mobile*/
+    }
+    .catalogo-grid {
+        grid-template-columns: 1fr; /*1 colonna su mobile*/
+    }
+}
+
+
+/*footer*/
+.footer {
+    padding: 100px 52px 60px; /*tanto spazio sopra per dare respiro, meno sotto*/
+    background: var(--bronzo-brunito); /*sfondo scuro caldo, distingue il footer dal resto della pagina*/
+}
+.footer-info {
+    text-align: center; /*titolo e sottotitolo centrati*/
+    max-width: 560px; /*non fa allargare troppo il testo su schermi grandi*/
+    margin: 0 auto 72px; /*centra il blocco orizzontalmente e lascia spazio sotto prima dei contatti*/
+}
+.footer-contatti {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /*3 colonne uguali, una per regione*/
+    gap: 40px; /*spazio tra i blocchi regione*/
+    max-width: 900px; /*non si allarga troppo su schermi molto grandi*/
+    margin: 0 auto 80px; /*centra il blocco e lascia spazio sotto prima della riga meta finale*/
+    text-align: center; /*ogni blocco regione centrato al suo interno*/
+}
+.footer-meta {
+    display: flex;
+    justify-content: center; /*riga meta centrata orizzontalmente*/
+    align-items: center; /*allinea verticalmente testo e separatori a pallino*/
+    gap: 14px; /*spazio tra i singoli elementi e i separatori*/
+    padding-top: 32px; /*distanza dalla riga sopra*/
+    border-top: 1px solid rgba(246, 243, 237, 0.1); /*linea sottile e quasi invisibile, separa la riga meta dai contatti*/
+}
+/*responsive*/
+@media (max-width: 768px) {
+    .footer {
+        padding: 70px 24px 40px; /*meno spazio su mobile*/
+    }
+    .footer-contatti {
+        grid-template-columns: 1fr; /*una colonna su mobile, i blocchi regione si impilano*/
+        gap: 48px; /*più spazio verticale tra blocchi impilati*/
+    }
+    .footer-meta {
+        flex-wrap: wrap; /*va a capo se gli elementi non ci stanno su una riga*/
+    }
+}
