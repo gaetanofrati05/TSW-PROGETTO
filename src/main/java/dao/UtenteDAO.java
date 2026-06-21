@@ -122,19 +122,46 @@ public class UtenteDAO {
 	    ConnectionPool.releaseConnection(connection);
 		}
 	}
-	public void doDeleteUtente(UtenteBean utente)throws SQLException {
-		Connection connection=null;
-		PreparedStatement  psUtente=null;
-		String deleUtente= "DELETE FROM Utente WHERE email=?";
+	public void doDeleteUtente(UtenteBean utente) throws SQLException {
+		Connection connection = null;
+		PreparedStatement ps = null;
+		String email = utente.getEmail();
 		try {
-			connection= ConnectionPool.getConnection();
-			psUtente= connection.prepareStatement(deleUtente);
-			psUtente.setString(1, utente.getEmail());
-			psUtente.executeUpdate();
-		}finally {
-			if(psUtente!=null) {
-				psUtente.close();
-			}
+			connection = ConnectionPool.getConnection();
+			connection.setAutoCommit(false);
+
+			// 1. elimina le recensioni dell'utente
+			ps = connection.prepareStatement("DELETE FROM Recensione WHERE fk_utente_email = ?");
+			ps.setString(1, email);
+			ps.executeUpdate();
+			ps.close();
+
+			// 2. elimina le righe di composizione degli ordini dell'utente
+			ps = connection.prepareStatement(
+				"DELETE FROM Composizione WHERE fk_Composizione_idOrdinazione IN " +
+				"(SELECT idOrdinazione FROM Ordinazione WHERE fk_utente_email = ?)");
+			ps.setString(1, email);
+			ps.executeUpdate();
+			ps.close();
+
+			// 3. elimina gli ordini dell'utente
+			ps = connection.prepareStatement("DELETE FROM Ordinazione WHERE fk_utente_email = ?");
+			ps.setString(1, email);
+			ps.executeUpdate();
+			ps.close();
+
+			// 4. elimina l'utente
+			ps = connection.prepareStatement("DELETE FROM Utente WHERE email = ?");
+			ps.setString(1, email);
+			ps.executeUpdate();
+
+			connection.commit();
+		} catch (SQLException e) {
+			if (connection != null) connection.rollback();
+			throw e;
+		} finally {
+			if (ps != null) ps.close();
+			if (connection != null) connection.setAutoCommit(true);
 			ConnectionPool.releaseConnection(connection);
 		}
 	}
