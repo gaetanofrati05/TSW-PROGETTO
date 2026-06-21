@@ -70,16 +70,25 @@ public class RegistraOrdinazioneServlet extends HttpServlet {
 			ordinazione.setIndirizzo(request.getParameter("indirizzo").trim());
 			ordinazione.setCivico(request.getParameter("civico").trim());
 			ordinazione.setCap(request.getParameter("cap").trim());
-			float totaleLordo = carrello.getTotale() * 1.22f;
+			float totaleNetto = carrello.getTotale();
+			float iva = totaleNetto * 0.22f;
+			float totaleLordo = totaleNetto + iva;
 			ordinazione.setImporto(totaleLordo);
 			ordinazione.setStato("in elaborazione");
 			ordinazione.setDataOrdinazione(new java.sql.Date(System.currentTimeMillis()));
 
 			List<ProdottoCarrello> items = new ArrayList<>(carrello.getElementi());
 			int idOrdinazione = ordinazioneDAO.doCreateOrdinazioneFromCarrello(ordinazione, items);
+			ordinazione.setIdOrdinazione(idOrdinazione);
 
 			session.removeAttribute("carrello");
-			response.sendRedirect(request.getContextPath() + "/VisualizzaOrdiniServlet?ordinazioneSalvata=" + idOrdinazione);
+
+			request.setAttribute("ordinazione", ordinazione);
+			request.setAttribute("items", items);
+			request.setAttribute("totaleNetto", totaleNetto);
+			request.setAttribute("iva", iva);
+			request.setAttribute("totaleLordo", totaleLordo);
+			request.getRequestDispatcher("/WEB-INF/jsp/fattura.jsp").forward(request, response);
 		} catch (SQLException e) {
 			request.setAttribute("errore", "Impossibile completare l'ordine. Riprova.");
 			request.getRequestDispatcher("/WEB-INF/jsp/registraOrdinazione.jsp").forward(request, response);
