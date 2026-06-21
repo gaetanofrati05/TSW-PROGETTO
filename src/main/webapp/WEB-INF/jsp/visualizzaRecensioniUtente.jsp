@@ -24,38 +24,6 @@
      <link rel="stylesheet" href="${pageContext.request.contextPath}/css/componenti.css">
      <link rel="stylesheet" href="${pageContext.request.contextPath}/css/profilo.css">
      <title>Le mie Recensioni - <%= utente.getNome() %></title>
-     
-     <style>
-         .recensione-card {
-             background: white;
-             padding: 15px;
-             border-radius: 8px;
-             margin-bottom: 15px;
-             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-         }
-         .recensione-info {
-             font-size: 13px;
-             color: #777;
-             margin-top: 5px;
-         }
-         .recensione-azioni {
-             display: flex;
-             gap: 10px;
-             margin-top: 10px;
-             justify-content: flex-end;
-         }
-         .btn-azione {
-             padding: 6px 12px;
-             border: none;
-             border-radius: 4px;
-             font-weight: bold;
-             cursor: pointer;
-             text-decoration: none;
-             font-size: 13px;
-         }
-         .btn-modifica { background-color: #ffc107; color: #212529; }
-         .btn-elimina { background-color: #dc3545; color: white; }
-     </style>
 </head>
 <body class="profilo-page-bg">
   
@@ -75,6 +43,21 @@
        
        <aside class="lista-recensioni">
           <p class="section-label">Le tue recensioni pubblicate</p>
+
+          <% if ("true".equals(request.getParameter("recensioneModificata"))) { %>
+              <p class="recensione-avviso-successo">Recensione aggiornata con successo.</p>
+          <% } else if ("true".equals(request.getParameter("recensioneEliminata"))) { %>
+              <p class="recensione-avviso-successo">Recensione eliminata con successo.</p>
+          <% } else if ("true".equals(request.getParameter("recensioneSalvata"))) { %>
+              <p class="recensione-avviso-successo">Recensione pubblicata con successo.</p>
+          <% } else if ("NonAutorizzato".equals(request.getParameter("errore"))) { %>
+              <p class="recensione-avviso-errore">Non sei autorizzato a modificare questa recensione.</p>
+          <% } else if ("RecensioneNonTrovata".equals(request.getParameter("errore"))) { %>
+              <p class="recensione-avviso-errore">Recensione non trovata.</p>
+          <% } else if ("ProdottoNonTrovato".equals(request.getParameter("errore"))) { %>
+              <p class="recensione-avviso-errore">Prodotto associato alla recensione non trovato.</p>
+          <% } %>
+
           <div class="recensioni-track">
               <% if(listaRecensioni != null && !listaRecensioni.isEmpty()) { %>
                   <% for(RecensioneBean recensione : listaRecensioni) { %>
@@ -113,9 +96,16 @@
         <input type="hidden" id="idRecensioneInput" name="idRecensione">
     </form>
 
-    
+    <script>
+        function confermaEliminazione(idRecensione) {
+            if (confirm("Sei sicuro di voler eliminare questa recensione?")) {
+                document.getElementById("idRecensioneInput").value = idRecensione;
+                document.getElementById("formEliminaRecensione").submit();
+            }
+        }
+    </script>
 
-   
-     
+    <jsp:include page="/fragments/footer.jsp" />
+
 </body>
 </html>

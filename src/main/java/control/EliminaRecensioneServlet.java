@@ -81,7 +81,7 @@ public class EliminaRecensioneServlet extends HttpServlet {
 			RecensioneBean recensione= new RecensioneBean();
 			recensione.setIdRecensione(idRecensione);
 			recensioneDAO.deleteRecensione(recensione);
-			response.sendRedirect(request.getContextPath() + "/ModificaProfiloServlet?recensioneEliminata=true");
+			response.sendRedirect(request.getContextPath() + "/VisualizzaRecensioniServlet?recensioneEliminata=true");
 		}catch(SQLException  | NumberFormatException e) {
 			throw new ServletException("Errore nel daabase durante l'eliminazione della recensione");
 		}

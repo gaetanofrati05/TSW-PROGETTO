@@ -46,11 +46,12 @@ public class VisualizzaRecensioniServlet extends HttpServlet {
 			response.sendRedirect(request.getContextPath()+ "/LoginServlet");
 			return;
 		}
+		bean.UtenteBean utente = (bean.UtenteBean) session.getAttribute("utenteLoggato");
 		try {
-			List<RecensioneBean> listaRecensioni= recensioneDAO.doRetrieveByScoring();			
-			request.setAttribute("recensioniUtenti", listaRecensioni);
-			
-			request.getRequestDispatcher("/WEB-INF/jsp/visualizzaRecensioni.jsp").forward(request, response);
+			List<RecensioneBean> listaRecensioni = recensioneDAO.doRetrieveByEmailWithOrder(utente.getEmail(), null);
+			request.setAttribute("listaRecensioni", listaRecensioni);
+
+			request.getRequestDispatcher("/WEB-INF/jsp/visualizzaRecensioniUtente.jsp").forward(request, response);
 			
 		}catch(SQLException e) {
 			e.printStackTrace();

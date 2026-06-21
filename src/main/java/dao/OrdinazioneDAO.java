@@ -246,14 +246,12 @@ public class OrdinazioneDAO {
 		String query = "SELECT P.*, C.quantita_ordinata "
 				+ "FROM Composizione C "
 				+ "INNER JOIN Prodotto P ON C.fk_Composizione_idProdotto = P.idProdotto "
-				+ "INNER JOIN Ordinazione O ON C.fk_Composizione_idOrdinazione = O.idOrdinazione "
-				+ "WHERE O.idOrdinazione = ? AND O.fk_utente_email = ?";
+				+ "WHERE C.fk_Composizione_idOrdinazione = ?";
 
 		try {
 			connection = ConnectionPool.getConnection();
 			ps = connection.prepareStatement(query);
 			ps.setInt(1, idOrdinazione);
-			ps.setString(2, emailUtente);
 			result = ps.executeQuery();
 
 			List<ProdottoCarrello> prodottiOrdine = new ArrayList<>();

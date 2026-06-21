@@ -65,6 +65,7 @@ public class RegistraRecensioneServlet extends HttpServlet {
 			if (prodottiOrdine.isEmpty()) {
 				response.sendRedirect(request.getContextPath() + "/VisualizzaOrdiniServlet?errore=ProdottoNonTrovato");
 				return;
+
 			}
 
 			ProdottoCarrello itemSelezionato = null;

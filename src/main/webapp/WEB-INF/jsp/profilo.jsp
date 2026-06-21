@@ -108,7 +108,7 @@
           <ul>
             <li><a href="${pageContext.request.contextPath}/index.jsp">Torna alla luxury principale</a></li>
             <li><a href="${pageContext.request.contextPath}/VisualizzaOrdiniServlet">Le mie tavolette</a></li>
-            <li><a href="${pageContext.request.contextPath}/VisualizzaRecensioniServlet">Visualizza recensioni</a></li>
+            <li><a href="${pageContext.request.contextPath}/RegistraRecensioniServlet">Visualizza recensioni</a></li>
             <li><a href="${pageContext.request.contextPath}/ModificaProfiloServlet">Modifica il tuo status</a></li>
             <li><a href="${pageContext.request.contextPath}/EliminazioneUtenteServlet">Distruggi il tuo trono</a></li>
           </ul>

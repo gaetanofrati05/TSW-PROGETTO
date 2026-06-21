@@ -1,5 +1,8 @@
 package control;
+
+import bean.ProdottoBean;
 import bean.RecensioneBean;
+import bean.UtenteBean;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -11,72 +14,76 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import dao.ProdottoDAO;
 import dao.RecensioneDAO;
 
-/**
- * Servlet implementation class ModificaRecensioneServlet
- */
 @WebServlet("/ModificaRecensioneServlet")
 public class ModificaRecensioneServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private RecensioneDAO recensioneDAO;
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+    private ProdottoDAO prodottoDAO;
+
     public ModificaRecensioneServlet() {
         super();
-        
     }
 
-	/**
-	 * @see Servlet#init(ServletConfig)
-	 */
 	public void init(ServletConfig config) throws ServletException {
-		recensioneDAO= new RecensioneDAO();
+		recensioneDAO = new RecensioneDAO();
+		prodottoDAO = new ProdottoDAO();
 	}
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession(false);
-		if(session == null || session.getAttribute("utenteLoggato") == null) {
-			response.sendRedirect(request.getContextPath() + "/LoginServlet");
+		UtenteBean utenteLoggato = getUtenteLoggato(request, response);
+		if (utenteLoggato == null) {
 			return;
 		}
 
 		String idStr = request.getParameter("id");
 		if (idStr == null || idStr.trim().isEmpty()) {
-			response.sendRedirect(request.getContextPath() + "/ModificaProfiloServlet");
+			response.sendRedirect(request.getContextPath() + "/VisualizzaRecensioniServlet");
 			return;
 		}
 
 		try {
-			int idRecensione = Integer.parseInt(idStr);
-			RecensioneBean recensione = recensioneDAO.doRetrieveByKey(idRecensione);
+			int idRecensione = Integer.parseInt(idStr.trim());
+			RecensioneBean recensione = recensioneDAO.doRetrieveByKey(idRecensione, utenteLoggato.getEmail());
 
 			if (recensione != null) {
-				request.setAttribute("recensioneDaModificare", recensione);
-				request.getRequestDispatcher("/WEB-INF/jsp/modificaRecensione.jsp").forward(request, response);
+				forwardModifica(request, response, recensione);
 			} else {
-				response.sendRedirect(request.getContextPath() + "/ModificaProfiloServlet?errore=RecensioneNonTrovata");
+				response.sendRedirect(request.getContextPath() + "/VisualizzaRecensioniServlet?errore=RecensioneNonTrovata");
 			}
-		} catch (SQLException | NumberFormatException e) {
+		} catch (NumberFormatException e) {
+			response.sendRedirect(request.getContextPath() + "/VisualizzaRecensioniServlet");
+		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new ServletException("Errore durante il recupero della recensione", e);
 		}
 	}
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession(false);
-		if(session == null || session.getAttribute("utenteLoggato") == null) {
-			response.sendRedirect(request.getContextPath() + "/LoginServlet");
+		UtenteBean utenteLoggato = getUtenteLoggato(request, response);
+		if (utenteLoggato == null) {
 			return;
 		}
 
-		// 1. Recupero i dati inviati dal form HTML
-		String idStr = request.getParameter("idRecensione"); // Campo nascosto (hidden) nel form
+		String idStr = request.getParameter("idRecensione");
 		String scoringStr = request.getParameter("scoring");
 		String descrizione = request.getParameter("descrizione");
 
 		List<String> errori = new ArrayList<>();
 
-		// 2. Validazione dei dati inseriti
+		int idRecensione = 0;
+		try {
+			if (idStr == null || idStr.trim().isEmpty()) {
+				throw new NumberFormatException();
+			}
+			idRecensione = Integer.parseInt(idStr.trim());
+		} catch (NumberFormatException e) {
+			response.sendRedirect(request.getContextPath() + "/VisualizzaRecensioniServlet");
+			return;
+		}
+
 		int scoring = 0;
 		try {
 			scoring = Integer.parseInt(scoringStr);
@@ -91,31 +98,61 @@ public class ModificaRecensioneServlet extends HttpServlet {
 			errori.add("La descrizione della recensione non può essere vuota");
 		}
 
-		if (!errori.isEmpty()) {
-			request.setAttribute("errore", errori);
-			doGet(request, response); 
-			return;
-		}
-
 		try {
-			int idRecensione = Integer.parseInt(idStr);
-			
-		    // Costruiamo il Bean con i NUOVI dati da aggiornare
-			RecensioneBean recensione = new RecensioneBean();
-			recensione.setIdRecensione(idRecensione);
-			recensione.setScoring(scoring);
-			recensione.setDescrizione(descrizione.trim());
-			// Impostiamo la data corrente come data di modifica
-			recensione.setDataRecensione(new java.sql.Date(System.currentTimeMillis()));
+			RecensioneBean recensioneEsistente = recensioneDAO.doRetrieveByKey(idRecensione, utenteLoggato.getEmail());
 
-			recensioneDAO.doUpdateRecensione(recensione);
-			response.sendRedirect(request.getContextPath() + "/ModificaProfiloServlet?recensioneModificata=true");
+			if (recensioneEsistente == null) {
+				response.sendRedirect(request.getContextPath() + "/VisualizzaRecensioniServlet?errore=NonAutorizzato");
+				return;
+			}
 
-		} catch (SQLException | NumberFormatException e) {
+			if (!errori.isEmpty()) {
+				recensioneEsistente.setScoring(scoring);
+				recensioneEsistente.setDescrizione(descrizione != null ? descrizione : "");
+				request.setAttribute("erroriRecensione", errori);
+				forwardModifica(request, response, recensioneEsistente);
+				return;
+			}
+
+			RecensioneBean recensioneDaAggiornare = new RecensioneBean();
+			recensioneDaAggiornare.setIdRecensione(idRecensione);
+			recensioneDaAggiornare.setScoring(scoring);
+			recensioneDaAggiornare.setDescrizione(descrizione.trim());
+			recensioneDaAggiornare.setDataRecensione(new java.sql.Date(System.currentTimeMillis()));
+
+			recensioneDAO.doUpdateRecensione(recensioneDaAggiornare);
+			response.sendRedirect(request.getContextPath() + "/VisualizzaRecensioniServlet?recensioneModificata=true");
+
+		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new ServletException("Errore durante l'aggiornamento della recensione nel DB", e);
 		}
 	}
-	
 
+	private void forwardModifica(HttpServletRequest request, HttpServletResponse response, RecensioneBean recensione)
+			throws ServletException, IOException, SQLException {
+		if (recensione.getProdotto() == null) {
+			response.sendRedirect(request.getContextPath() + "/VisualizzaRecensioniServlet?errore=ProdottoNonTrovato");
+			return;
+		}
+
+		ProdottoBean prodotto = prodottoDAO.doRetrieveById(recensione.getProdotto().getIdProdotto());
+		if (prodotto == null) {
+			response.sendRedirect(request.getContextPath() + "/VisualizzaRecensioniServlet?errore=ProdottoNonTrovato");
+			return;
+		}
+
+		request.setAttribute("recensioneDaModificare", recensione);
+		request.setAttribute("prodotto", prodotto);
+		request.getRequestDispatcher("/WEB-INF/jsp/modificaRecensione.jsp").forward(request, response);
+	}
+
+	private UtenteBean getUtenteLoggato(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		HttpSession session = request.getSession(false);
+		if (session == null || session.getAttribute("utenteLoggato") == null) {
+			response.sendRedirect(request.getContextPath() + "/LoginServlet");
+			return null;
+		}
+		return (UtenteBean) session.getAttribute("utenteLoggato");
+	}
 }

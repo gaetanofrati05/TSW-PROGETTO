@@ -146,12 +146,46 @@ public class RecensioneDAO {
             ps = connection.prepareStatement(queryId);
             ps.setInt(1, idRecensione);
             result = ps.executeQuery();
-            while (result.next()) {
+            if (result.next()) {
                 RecensioneBean recensione = new RecensioneBean();
                 recensione.setIdRecensione(result.getInt("idRecensione"));
                 recensione.setDataRecensione(result.getDate("data_Recensione"));
                 recensione.setScoring(result.getInt("Scoring"));
                 recensione.setDescrizione(result.getString("descrizione"));
+                bean.ProdottoBean prodotto = new bean.ProdottoBean();
+                prodotto.setIdProdotto(result.getInt("fk_Prodotto_idProdotto"));
+                recensione.setProdotto(prodotto);
+                return recensione;
+            }
+            return null;
+        } finally {
+            if (result != null) result.close();
+            if (ps != null) ps.close();
+            ConnectionPool.releaseConnection(connection);
+        }
+    }
+
+    public RecensioneBean doRetrieveByKey(int idRecensione, String emailUtente) throws SQLException {
+        Connection connection = null;
+        PreparedStatement ps = null;
+        ResultSet result = null;
+        String queryId = "SELECT * FROM Recensione WHERE idRecensione=? AND fk_utente_email=?";
+
+        try {
+            connection = ConnectionPool.getConnection();
+            ps = connection.prepareStatement(queryId);
+            ps.setInt(1, idRecensione);
+            ps.setString(2, emailUtente);
+            result = ps.executeQuery();
+            if (result.next()) {
+                RecensioneBean recensione = new RecensioneBean();
+                recensione.setIdRecensione(result.getInt("idRecensione"));
+                recensione.setDataRecensione(result.getDate("data_Recensione"));
+                recensione.setScoring(result.getInt("Scoring"));
+                recensione.setDescrizione(result.getString("descrizione"));
+                bean.ProdottoBean prodotto = new bean.ProdottoBean();
+                prodotto.setIdProdotto(result.getInt("fk_Prodotto_idProdotto"));
+                recensione.setProdotto(prodotto);
                 return recensione;
             }
             return null;

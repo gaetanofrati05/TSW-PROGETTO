@@ -235,18 +235,22 @@ public class ProdottoAdminDAO {
         }
     }
 
-    // "elimina" un prodotto impostando la quantità a 0 (soft delete).
-    // non cancelliamo dal DB perché la tabella Composizione ha ON DELETE RESTRICT
-    // sulla FK del prodotto: un DELETE vero fallirebbe se il prodotto è in qualche ordine.
     public void doDelete(int idProdotto) throws SQLException {
         Connection connection = null;
         PreparedStatement ps = null;
-        String query = "UPDATE Prodotto SET quantita = 0 WHERE idProdotto = ?";
         try {
             connection = ConnectionPool.getConnection();
-            ps = connection.prepareStatement(query);
-            ps.setInt(1, idProdotto);
-            ps.executeUpdate();
+            try {
+                ps = connection.prepareStatement("DELETE FROM Prodotto WHERE idProdotto = ?");
+                ps.setInt(1, idProdotto);
+                ps.executeUpdate();
+            } catch (SQLException e) {
+                // il prodotto è collegato a degli ordini: imposta quantita = 0
+                if (ps != null) ps.close();
+                ps = connection.prepareStatement("UPDATE Prodotto SET quantita = 0 WHERE idProdotto = ?");
+                ps.setInt(1, idProdotto);
+                ps.executeUpdate();
+            }
         } finally {
             if (ps != null) ps.close();
             ConnectionPool.releaseConnection(connection);
