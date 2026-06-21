@@ -12,6 +12,7 @@
         response.sendRedirect(request.getContextPath() + "/CarrelloServlet");
         return;
     }
+    float totaleLordo = carrello.getTotale() * 1.22f;
 %>
 <!DOCTYPE html>
 <html lang="it">
@@ -35,7 +36,7 @@
     <main class="login-wrapper">
         <div class="welcome-heading-box">
             <h1 class="login-titolo-fine">Completa l'acquisto</h1>
-            <p class="sottotitolo-fine">Totale: €<%= String.format("%.2f", carrello.getTotale()) %></p>
+            <p class="sottotitolo-fine">Totale: €<%= String.format("%.2f", totaleLordo) %></p>
         </div>
 
         <div class="login-card-luxury">

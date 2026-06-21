@@ -70,7 +70,8 @@ public class RegistraOrdinazioneServlet extends HttpServlet {
 			ordinazione.setIndirizzo(request.getParameter("indirizzo").trim());
 			ordinazione.setCivico(request.getParameter("civico").trim());
 			ordinazione.setCap(request.getParameter("cap").trim());
-			ordinazione.setImporto(carrello.getTotale());
+			float totaleLordo = carrello.getTotale() * 1.22f;
+			ordinazione.setImporto(totaleLordo);
 			ordinazione.setStato("in elaborazione");
 			ordinazione.setDataOrdinazione(new java.sql.Date(System.currentTimeMillis()));
 

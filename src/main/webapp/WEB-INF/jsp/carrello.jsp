@@ -21,9 +21,9 @@
       List<ProdottoCarrello> elementi = (carrello != null) ? carrello.getElementi() : null;
       boolean carrelloVuoto = elementi == null || elementi.isEmpty();
       boolean utenteLoggato = session.getAttribute("utenteLoggato") != null;
-      float totaleNetto = (carrello != null) ? carrello.calcolaTotaleNetto() : 0f;
-      float iva         = (carrello != null) ? carrello.calcolaIVA() : 0f;
-      float totaleLordo = (carrello != null) ? carrello.calcolaTotaleLordo() : 0f;
+      float totale = (carrello != null) ? carrello.getTotale() : 0f;
+      float iva = totale * 0.22f;
+      float totaleLordo = totale + iva;
   %>
 
   <section class="carrello">
@@ -72,7 +72,7 @@
       <div class="carrello-footer">
         <div class="carrello-totale">
           <span>Totale</span>
-          <span class="carrello-totale-importo">€<%= String.format("%.2f", totaleNetto) %></span>
+          <span class="carrello-totale-importo">€<%= String.format("%.2f", totale) %></span>
           <span>IVA</span>
           <span class="carrello-totale-importo">€<%= String.format("%.2f", iva) %></span>
           <span>Totale Lordo</span>
